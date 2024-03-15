@@ -1,0 +1,46 @@
+/Backend/BackendApiService/.vs
+/Backend/BackendApiService/obj
+/Backend/BackendApiService/bin
+
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# Compiled output
+/Frontend/FESCRestoriaFrontend/dist
+/Frontend/FESCRestoriaFrontend/tmp
+/Frontend/FESCRestoriaFrontend/out-tsc
+/Frontend/FESCRestoriaFrontend/bazel-out
+
+# Node
+/Frontend/FESCRestoriaFrontend/node_modules
+/Frontend/FESCRestoriaFrontend/npm-debug.log
+/Frontend/FESCRestoriaFrontend/yarn-error.log
+
+# IDEs and editors
+/Frontend/FESCRestoriaFrontend/.idea/
+/Frontend/FESCRestoriaFrontend/.project
+/Frontend/FESCRestoriaFrontend/.classpath
+/Frontend/FESCRestoriaFrontend/.c9/
+/Frontend/FESCRestoriaFrontend/*.launch
+/Frontend/FESCRestoriaFrontend/.settings/
+/Frontend/FESCRestoriaFrontend/*.sublime-workspace
+
+# Visual Studio Code
+/Frontend/FESCRestoriaFrontend/.vscode/*
+/Frontend/FESCRestoriaFrontend/!.vscode/settings.json
+/Frontend/FESCRestoriaFrontend/!.vscode/tasks.json
+/Frontend/FESCRestoriaFrontend/!.vscode/launch.json
+/Frontend/FESCRestoriaFrontend/!.vscode/extensions.json
+/Frontend/FESCRestoriaFrontend/.history/*
+
+# Miscellaneous
+/Frontend/FESCRestoriaFrontend/.angular/cache
+/Frontend/FESCRestoriaFrontend/.sass-cache/
+/Frontend/FESCRestoriaFrontend/connect.lock
+/Frontend/FESCRestoriaFrontend/coverage
+/Frontend/FESCRestoriaFrontend/libpeerconnection.log
+/Frontend/FESCRestoriaFrontend/testem.log
+/Frontend/FESCRestoriaFrontend/typings
+
+# System files
+/Frontend/FESCRestoriaFrontend/.DS_Store
+/Frontend/FESCRestoriaFrontend/Thumbs.db
