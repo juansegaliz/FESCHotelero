@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "FESCRestoriaFrontend": {
+    "FESCFrontend": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -12,12 +12,12 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "FRF",
+      "prefix": "Ffr",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/fescrestoria-frontend",
+            "outputPath": "dist/fescfrontend",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -67,10 +67,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "FESCRestoriaFrontend:build:production"
+              "buildTarget": "FESCFrontend:build:production"
             },
             "development": {
-              "buildTarget": "FESCRestoriaFrontend:build:development"
+              "buildTarget": "FESCFrontend:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -78,7 +78,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "FESCRestoriaFrontend:build"
+            "buildTarget": "FESCFrontend:build"
           }
         },
         "test": {
