@@ -1,6 +1,6 @@
 /Backend/BackendApiService/.vs
-/Backend/BackendApiService/obj
-/Backend/BackendApiService/bin
+/Backend/BackendApiService/*/obj/
+/Backend/BackendApiService/*/bin/
 
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
