@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { HttpService } from './core/services/http.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -12,5 +11,4 @@ import { CommonModule } from '@angular/common';
 })
 export class AppComponent {
   title = 'Fesc Hotelero';
-  constructor(private httpService: HttpService) {}
 }
