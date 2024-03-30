@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import { getFromLocalStorage } from '../../utils/utils';
+import { utils } from '../../utils/utils';
 
 @Injectable({
   providedIn: 'root',
 })
-
 export class AuthService {
+  constructor(private funcionesUtiles: utils) {}
 
   getAccessToken() {
-    return getFromLocalStorage('sessionToken');
+    return this.funcionesUtiles.getFromLocalStorage('sessionToken');
   }
 
   isAuthenticated() {

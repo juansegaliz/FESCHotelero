@@ -14,6 +14,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes, withComponentInputBinding()),
     provideClientHydration(),
     provideHttpClient(withFetch()),
-    importProvidersFrom(HttpClientModule),
+    HttpClientModule
   ],
 };
