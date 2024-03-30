@@ -32,7 +32,7 @@ namespace Application.Services
 
             if (userCheckExist != null)
             {
-                response.Messages.Add("Ya existe un usuario registrado con ese correo electrónico");
+                response.AddMessage("Ya existe un usuario registrado con ese correo electrónico");
                 return response;
             }
 
@@ -41,7 +41,7 @@ namespace Application.Services
 
             if (userCreated is null)
             {
-                response.Messages.Add("Ocurrió un error al momento de crear el usuario");
+                response.AddMessage("Ocurrió un error al momento de crear el usuario");
                 return response;
             }
 
