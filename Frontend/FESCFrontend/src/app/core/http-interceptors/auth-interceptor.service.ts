@@ -31,7 +31,7 @@ export class AuthInterceptorService implements HttpInterceptor {
 
       return next.handle(request);
     }
-    // Si no estamos en el lado del cliente, continuamos sin modificar la solicitud.
+
     return next.handle(request);
   }
 }
