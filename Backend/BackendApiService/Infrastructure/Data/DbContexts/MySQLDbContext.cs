@@ -21,6 +21,6 @@ namespace Infrastructure.Data.DbContexts
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseMySQL(_mySQLSettings.ConnectionStrings);
+        => optionsBuilder.UseMySQL(_mySQLSettings.ConnectionString);
     }
 }

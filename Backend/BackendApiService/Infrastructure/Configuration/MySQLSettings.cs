@@ -8,6 +8,6 @@ namespace Infrastructure.Configuration
 {
     public class MySQLSettings
     {
-        public string ConnectionStrings { get; set; }
+        public string ConnectionString { get; set; }
     }
 }

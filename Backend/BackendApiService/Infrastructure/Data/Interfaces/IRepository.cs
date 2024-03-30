@@ -12,7 +12,7 @@ namespace Infrastructure.Data.Interfaces
     {
         Task<T?> Create(T entity);
         Task Delete(int id);
-        Task<T> Get(int id);
+        Task<T?> Get(int id);
         Task<List<T>> GetAll();
         Task<List<T>> GetByCondition(Expression<Func<T, bool>> predicate);
         Task<bool> Update(T entity);
