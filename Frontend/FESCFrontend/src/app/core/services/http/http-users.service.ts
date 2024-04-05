@@ -15,7 +15,7 @@ export class HttpUsersService {
   constructor(private httpClient: HttpClient) {}
 
   getAll(): Observable<Response<User[]>> {
-    return this.httpClient.get<Response<User[]>>(`${this.serverUrl}/clients`);
+    return this.httpClient.post<Response<User[]>>(`${this.serverUrl}/auth/me`,null);
   }
 
   post(info: User): Observable<Response<boolean>> {
