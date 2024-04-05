@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { LoginComponent } from '../formulario/login/login.component';
 
 @Component({
   selector: 'Ffr-home',
   standalone: true,
-  imports: [LoginComponent],
+  imports: [],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
