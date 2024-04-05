@@ -21,7 +21,7 @@ namespace BackendApiService.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateUser(CreateUserDTO request)
         {
-            ResponseDTO<UserDTO> response = await _userService.RegisterUser(request);
+            ResponseDTO<UserDTO> response = await _userService.CreateUser(request);
             return new ObjectResult(response) { StatusCode = response.Code };
         }
     }

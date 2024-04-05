@@ -1,8 +1,11 @@
-using Domain.Entities;
+using Application.AutomapperProfilers;
+using Application.Interfaces;
+using Application.Services;
 using Infrastructure.Configuration;
 using Infrastructure.Data.DbContexts;
 using Infrastructure.Data.Interfaces;
 using Infrastructure.Data.Repositories;
+using Infrastructure.Data.Scaffold;
 using Infrastructure.Services;
 using Infrastructure.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -20,10 +23,15 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddAutoMapper(typeof(UserProfile));
+
 builder.Services.AddScoped<IAppSettingsService, AppSettingsService>();
 builder.Services.AddScoped<MySQLDbContext>();
 
 builder.Services.AddScoped<IRepository<User>, Repository<User>>();
+builder.Services.AddScoped<IRepositoryUser, RepositoryUser>();
+
+builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.AddDbContext<MySQLDbContext>(options =>
 {
@@ -41,6 +49,7 @@ builder.Services.AddCors(opt =>
             .AllowCredentials();
     });
 });
+
 
 var app = builder.Build();
 
