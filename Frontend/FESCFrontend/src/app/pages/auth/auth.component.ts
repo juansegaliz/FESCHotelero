@@ -1,13 +1,12 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { LoginFormComponent } from '../../components/login-form/login-form.component';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormularioLoginComponent } from '../../../components/formulario-login/formulario-login.component';
 
 @Component({
   selector: 'Ffr-auth',
   standalone: true,
-  imports: [CommonModule, LoginFormComponent],
+  imports: [CommonModule, LoginFormComponent,FormularioLoginComponent],
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.scss',
 })
