@@ -26,16 +26,15 @@ export class FormularioLoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      email: ['', Validators.required, Validators.email],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
     });
   }
-
-  get f(): { [key: string]: AbstractControl } {
+  get f() {
     return this.loginForm.controls;
   }
 
-  onSubmit(): void {
+  async onSubmit() {
     this.submitted = true;
 
     if (this.loginForm.invalid) {

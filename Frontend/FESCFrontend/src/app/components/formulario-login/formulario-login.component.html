@@ -1,55 +1,80 @@
-<div class="py-24 px-10">
+<div class="py-24 px-10 mt-14 mb-14">
   <h2 class="text-2xl font-semibold mb-2 text-center">Iniciar Sesión</h2>
   <!-- <VeeForm v-slot="{ handleSubmit, resetForm }" :validation-schema="formulario" as="div"> -->
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="form-control w-full mt-4">
+      <label class="label">
+        <span class="label-text font-bold text-base-content"
+          >Correo Electronico</span
+        >
+      </label>
+      <input
+        class="input input-bordered w-full bg-gray-50"
+        placeholder="Ingresar su correo electronico"
+        name="email"
+        type="email"
+        formControlName="email"
+      />
+    </div>
+    @if (submitted && f['email'].errors) {
+      <!-- {{f['e']}} -->
+    <div class="invalid-feedback text-error">
+      @if (f['email'].errors['email']) {
+      <div>Correo Invalido</div>
+      } @if (f['email'].errors['required']) {
+      <div>Correo es Requerido</div>
+      }
+    </div>
+    }
+    <!-- {/* Password Input */} -->
+    <div class="form-control w-full mt-4">
+      <label class="label">
+        <span class="label-text font-bold text-base-content">Contraseña</span>
+      </label>
+      <input
+        type="password"
+        class="input input-bordered w-full bg-gray-50"
+        placeholder="Ingrese su contraseña"
+        name="password"
+        autocomplete="password"
+        formControlName="password"
+      />
+    </div>
 
-      <div class="form-control w-full mt-4">
-        <label class="label">
-          <span class='label-text text-base-content'>Correo Electronico</span>
-        </label>
-        <input class="input  input-bordered w-full" placeholder="Correo Electronico" name="email" formControlName="email"/>
-      </div>
-      @if (submitted && f['email'].errors) {
-        <div class="invalid-feedback text-error">
-          @if (f['email'].errors['required']) {
-          <div>Correo es Requerido</div>
-          } @if (f['email'].errors['email']) {
-          <div>Correo Invalido</div>
-          }
-        </div>
-        }
-      <!-- {/* Password Input */} -->
-      <div class='form-control w-full mt-4'>
-        <label class="label">
-          <span class='label-text text-base-content'>Contraseña</span>
-        </label>
-        <input type="password" class="input  input-bordered w-full" placeholder="password" name="password"
-          autocomplete="password" formControlName="password" />
-      </div>
+    @if (submitted && f['password'].errors) {
+    <div class="invalid-feedback text-error">
+      @if (f['password'].errors['required']) {
+      <div>La contraseña es requerida</div>
+      } @if (f['password'].errors['minlength']) {
+      <!-- <div>Password must be at least 6 characters</div> -->
+      } @if (f['password'].errors['maxlength']) {
+      <!-- <div>Username must not exceed 40 characters</div> -->
+      }
+    </div>
+    }
+    <!-- {/* Forgot Password Link */} -->
+    <div class="text-right text-primary text-error mt-2">
+      <a href="/forgot-password">
+        <span
+          class="text-sm text-error inline-block hover:text-primary hover:underline hover:cursor-pointer transition duration-200"
+        >
+          Olvido Su Contraseña?
+        </span>
+      </a>
+    </div>
+    <button type="submit" class="btn mt-2 w-full btn-error text-bold">
+      Ingresar
+    </button>
 
-      @if (submitted && f['password'].errors) {
-        <div class="invalid-feedback text-error">
-          @if (f['password'].errors['required']) {
-          <div>La contraseña es requerida</div>
-          } @if (f['password'].errors['minlength']) {
-          <!-- <div>Password must be at least 6 characters</div> -->
-          } @if (f['password'].errors['maxlength']) {
-          <!-- <div>Username must not exceed 40 characters</div> -->
-          }
-        </div>
-        }
-      <!-- {/* Forgot Password Link */} -->
-      <div class="text-right text-primary text-error mt-2">
-        <a href="/forgot-password">
-          <span
-            class="text-sm  inline-block  hover:text-primary hover:underline hover:cursor-pointer transition duration-200">
-            Olvido Su Contraseña?
-          </span>
-        </a>
-      </div>
-      <button type="submit" class="btn mt-2 w-full btn-error">
-        Iniciar Sesión
-      </button>
-    </form>
-
+    <div class="text-left text-sm mt-2">
+      No tienes una cuenta?
+      <a href="/forgot-password">
+        <span
+          class="text-sm text-error text-error inline-block hover:text-primary hover:underline hover:cursor-pointer transition duration-200"
+        >
+          Registrate
+        </span>
+      </a>
+    </div>
+  </form>
 </div>
