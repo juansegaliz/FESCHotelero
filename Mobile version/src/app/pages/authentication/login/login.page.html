@@ -1,7 +1,60 @@
-<ion-content [fullscreen]="true" class="login">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">login</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="login ion-padding">
+  <ion-row class="row-styles">
+    <ion-col>
+      <img class="icon-styles" src="../../../../assets/icon/fesc-icon.png" />
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="ion-text-center row-title">
+    <ion-col>
+      <h1 class="font-family title-styles">Iniciar sesión</h1>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="ion-text-center row-sub">
+    <ion-col>
+      <ion-label class="font-family label-sub"
+        >Bienvenido, ingresa tus credenciales ara ingresar nuevamente</ion-label
+      >
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="input-container ion-justify-content-center">
+    <ion-col class="col-image" size="4">
+      <img class="image-size" src="../../../../assets/icon/mail.png" />
+    </ion-col>
+    <ion-col size="8">
+      <ion-input placeholder="corre@gmail.com"> </ion-input>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="input-container-password ion-justify-content-center">
+    <ion-col class="col-image" size="4">
+      <img class="image-size" src="../../../../assets/icon/password.png" />
+    </ion-col>
+    <ion-col size="8">
+      <ion-input placeholder="********"> </ion-input>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="ion-text-center row-forgot">
+    <ion-col>
+      <a class="forgot-text">¿Olvidaste tu contraseña?</a>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="ion-text-center row-button-login">
+    <ion-col>
+      <button class="button-login">Continuar</button>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="row-access">
+    <ion-col class="ion-text-center">
+      <button>Google</button>
+    </ion-col>
+    <ion-col class="ion-text-center">
+      <button>GitHub</button>
+    </ion-col>
+  </ion-row>
 </ion-content>
