@@ -13,9 +13,12 @@
 
   <ion-row class="ion-text-center row-sub">
     <ion-col>
-      <ion-label class="font-family label-sub"
-        >Bienvenido, ingresa tus credenciales ara ingresar nuevamente</ion-label
-      >
+      <div class="contenedor-sub">
+        <ion-label class="font-family label-sub"
+          >Bienvenido, ingresa tus credenciales para ingresar
+          nuevamente</ion-label
+        >
+      </div>
     </ion-col>
   </ion-row>
 
@@ -37,12 +40,6 @@
     </ion-col>
   </ion-row>
 
-  <ion-row class="ion-text-center row-forgot">
-    <ion-col>
-      <a class="forgot-text">¿Olvidaste tu contraseña?</a>
-    </ion-col>
-  </ion-row>
-
   <ion-row class="ion-text-center row-button-login">
     <ion-col>
       <button class="button-login">Continuar</button>
@@ -51,10 +48,32 @@
 
   <ion-row class="row-access">
     <ion-col class="ion-text-center">
-      <button>Google</button>
+      <button class="button-account-google">
+        <img
+          class="icon-account-styles"
+          src="../../../../assets/icon/google-icon.png"
+        />
+      </button>
     </ion-col>
     <ion-col class="ion-text-center">
-      <button>GitHub</button>
+      <button class="button-account">
+        <img
+          class="icon-account-styles"
+          src="../../../../assets/icon/git-icon.png"
+        />
+      </button>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="ion-text-center row-forgot">
+    <ion-col>
+      <a class="forgot-text">¿Olvidaste tu contraseña?</a>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="ion-text-center row-new-account">
+    <ion-col>
+      <a class="forgot-text">¿Aún no tienes una cuenta?</a>
     </ion-col>
   </ion-row>
 </ion-content>
