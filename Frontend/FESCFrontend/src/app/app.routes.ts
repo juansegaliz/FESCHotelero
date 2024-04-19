@@ -4,6 +4,7 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 import { HomeGuard } from './core/guards/home.guard';
 import { HomeComponent } from './pages/home/home.component';
 import { AuthComponent } from './pages/auth/auth.component';
+import { CountriesComponent } from './pages/countries/countries.component';
 
 export const routes: Routes = [
   { path: 'login', component: AuthComponent },
@@ -11,7 +12,10 @@ export const routes: Routes = [
     path: '',
     children: [
       { path: '', component: HomeComponent },
-      // { path: 'home', component: HomeComponent },
+      {
+        path: 'parameters',
+        children: [{ path: 'countries', component: CountriesComponent }],
+      },
     ],
   },
   { path: '**', component: PageNotFoundComponent },
