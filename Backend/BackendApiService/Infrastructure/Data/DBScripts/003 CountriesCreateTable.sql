@@ -8,3 +8,6 @@
   `UpdatedByUserId` INT NOT NULL,
   `StatusId` INT NOT NULL,
   PRIMARY KEY (`CountryId`));
+
+ALTER TABLE `fesc_hotelero`.`Countries` 
+CHANGE COLUMN `CountryId` `CountryId` INT NOT NULL AUTO_INCREMENT ;
