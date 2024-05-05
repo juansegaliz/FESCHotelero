@@ -118,5 +118,29 @@ namespace Application.Services
 
             return response;
         }
+
+        public async Task<ResponseDTO<CountryDTO>> GetAsync(int id)
+        {
+            var response = new ResponseDTO<CountryDTO>(HttpStatusCode.BadRequest);
+
+            var country = await _countryRepository.Get(id);
+
+            if (country == null)
+            {
+                response.AddMessage("Pais no existe");
+            }
+
+            if (response.Messages.Any())
+            {
+                return response;
+            }
+
+            CountryDTO countryReturn = _mapper.Map<CountryDTO>(country);
+            
+            response.SetCode(HttpStatusCode.OK);
+            response.SetData(countryReturn);
+
+            return response;
+        }
     }
 }

@@ -13,6 +13,7 @@ namespace Application.Interfaces
         Task<ResponseDTO<CountryDTO>> CreateAsync(CreateCountryDTO request);
         Task<ResponseDTO<bool>> DeleteAsync(int id);
         Task<ResponseDTO<List<CountryDTO>>> GetAllAsync();
+        Task<ResponseDTO<CountryDTO>> GetAsync(int id);
         Task<ResponseDTO<bool>> UpdateAsync(int id, UpdateCountryDTO request);
     }
 }
