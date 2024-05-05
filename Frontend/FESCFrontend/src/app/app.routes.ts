@@ -6,6 +6,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { AuthComponent } from './pages/auth/auth.component';
 import { CountriesComponent } from './pages/countries/countries.component';
 import { WorkspacesComponent } from './pages/workspaces/workspaces.component';
+import path from 'path';
+import { FormAddComponent } from './pages/countries/form-add/form-add.component';
 
 export const routes: Routes = [
   { path: 'login', component: AuthComponent },
@@ -16,7 +18,16 @@ export const routes: Routes = [
       { path: 'workspaces', component: WorkspacesComponent },
       {
         path: 'parameters',
-        children: [{ path: 'countries', component: CountriesComponent }],
+        children: [
+          {
+            path: 'countries',
+            component: CountriesComponent
+          },
+          {
+            path: 'countries/add',
+            component: FormAddComponent
+          }
+        ],
       },
     ],
   },
