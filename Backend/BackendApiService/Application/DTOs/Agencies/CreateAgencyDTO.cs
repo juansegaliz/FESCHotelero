@@ -17,6 +17,7 @@ namespace Application.DTOs.Agencies
 
         public string? Email { get; set; }
 
+        [PhoneValidation]
         public string? Phone { get; set; }
 
         public string? Address { get; set; }
