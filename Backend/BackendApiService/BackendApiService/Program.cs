@@ -25,6 +25,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddAutoMapper(typeof(UserProfile));
 builder.Services.AddAutoMapper(typeof(CountryProfile));
+builder.Services.AddAutoMapper(typeof(CityProfile));
 
 builder.Services.AddScoped<IAppSettingsService, AppSettingsService>();
 builder.Services.AddScoped<MySQLDbContext>();
@@ -32,9 +33,11 @@ builder.Services.AddScoped<MySQLDbContext>();
 builder.Services.AddScoped<IRepository<User>, Repository<User>>();
 builder.Services.AddScoped<IRepositoryUser, RepositoryUser>();
 builder.Services.AddScoped<IRepository<Country>, Repository<Country>>();
+builder.Services.AddScoped<IRepository<City>, Repository<City>>();
 
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ICountryService, CountryService>();
+builder.Services.AddScoped<ICityService, CityService>();
 
 builder.Services.AddDbContext<MySQLDbContext>(options =>
 {
