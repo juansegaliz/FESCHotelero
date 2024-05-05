@@ -1,4 +1,4 @@
-﻿using Application.DTOs.Cities;
+﻿using Application.DTOs.Agencies;
 using Application.DTOs.Countries;
 using AutoMapper;
 using Infrastructure.Data.Scaffold;
@@ -10,21 +10,21 @@ using System.Threading.Tasks;
 
 namespace Application.AutomapperProfilers
 {
-    public class CityProfile : Profile
+    public class AgencyProfile : Profile
     {
-        public CityProfile()
+        public AgencyProfile()
         {
-            CreateMap<City, CityDTO>();
-            CreateMap<CreateCityDTO, City>()
-                .ForMember(dest => dest.CityId, opt => opt.Ignore())
+            CreateMap<Agency, AgencyDTO>();
+            CreateMap<CreateAgencyDTO, Agency>()
+                .ForMember(dest => dest.Agencyid, opt => opt.Ignore())
                 .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(_ => DateTime.Now))
                 .ForMember(dest => dest.UpdatedAt, opt => opt.MapFrom(_ => DateTime.Now))
                 .ForMember(dest => dest.CreatedByUserId, opt => opt.MapFrom(_ => 0))
                 .ForMember(dest => dest.UpdatedByUserId, opt => opt.MapFrom(_ => 0))
                 .ForMember(dest => dest.StatusId, opt => opt.MapFrom(_ => 0));
 
-            CreateMap<UpdateCityDTO, City>()
-                .ForMember(dest => dest.CityId, opt => opt.Ignore())
+            CreateMap<UpdateAgencyDTO, Agency>()
+                .ForMember(dest => dest.Agencyid, opt => opt.Ignore())
                 .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(_ => DateTime.Now))
                 .ForMember(dest => dest.UpdatedAt, opt => opt.MapFrom(_ => DateTime.Now))
                 .ForMember(dest => dest.CreatedByUserId, opt => opt.MapFrom(_ => 0))

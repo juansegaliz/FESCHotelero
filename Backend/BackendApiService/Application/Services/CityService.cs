@@ -1,4 +1,4 @@
-﻿using Application.DTOs.Cities;
+﻿using Application.DTOs.Agencies;
 using Application.DTOs.Response;
 using Application.DTOs.Users;
 using Application.Interfaces;
@@ -16,47 +16,47 @@ using System.Threading.Tasks;
 
 namespace Application.Services
 {
-    public class CityService : ICityService
+    public class AgencyService : IAgencyService
     {
-        private readonly IRepository<City> _cityRepository;
+        private readonly IRepository<Agency> _agencyRepository;
         private readonly IMapper _mapper;
 
-        public CityService(IMapper mapper, IRepository<City> cityRepository)
+        public AgencyService(IMapper mapper, IRepository<Agency> agencyRepository)
         {
             _mapper = mapper;
-            _cityRepository = cityRepository;
+            _agencyRepository = agencyRepository;
         }
 
-        public async Task<ResponseDTO<CityDTO>> CreateAsync(CreateCityDTO request)
+        public async Task<ResponseDTO<AgencyDTO>> CreateAsync(CreateAgencyDTO request)
         {
-            var response = new ResponseDTO<CityDTO>(System.Net.HttpStatusCode.BadRequest);
+            var response = new ResponseDTO<AgencyDTO>(System.Net.HttpStatusCode.BadRequest);
 
-            var createCity = _mapper.Map<Infrastructure.Data.Scaffold.City>(request);
-            var cityCreated = await _cityRepository.Create(createCity);
+            var createAgency = _mapper.Map<Infrastructure.Data.Scaffold.Agency>(request);
+            var agencyCreated = await _agencyRepository.Create(createAgency);
 
-            if (cityCreated is null)
+            if (agencyCreated is null)
             {
-                response.AddMessage("Ocurrió un error al momento de crear una ciudad");
+                response.AddMessage("Ocurrió un error al momento de crear una agencia");
                 return response;
             }
 
-            response = new ResponseDTO<CityDTO>(System.Net.HttpStatusCode.OK);
-            response.Data = _mapper.Map<CityDTO>(cityCreated);
-            response.Messages.Add("Ciudad registrada con éxito");
+            response = new ResponseDTO<AgencyDTO>(System.Net.HttpStatusCode.OK);
+            response.Data = _mapper.Map<AgencyDTO>(agencyCreated);
+            response.Messages.Add("Agencia registrada con éxito");
 
             return response;
         }
 
-        public async Task<ResponseDTO<bool>> UpdateAsync(int id, UpdateCityDTO request)
+        public async Task<ResponseDTO<bool>> UpdateAsync(int id, UpdateAgencyDTO request)
         {
             ResponseDTO<bool> response = new ResponseDTO<bool>(HttpStatusCode.BadRequest);
             response.SetData(false);
 
-            var City = await _cityRepository.Get(id);
+            var Agency = await _agencyRepository.Get(id);
 
-            if (City == null)
+            if (Agency == null)
             {
-                response.AddMessage("Ciudad no existe");
+                response.AddMessage("Agencia no existe");
             }
 
             if (response.Messages.Any())
@@ -64,14 +64,20 @@ namespace Application.Services
                 return response;
             }
 
-            City.Name = request.Name;
-            City.CountryId = request.CountryId;
+            Agency.Name = request.Name;
+            Agency.Description = request.Description;
+            Agency.Email = request.Email;
+            Agency.Phone = request.Phone;
+            Agency.Address = request.Address;
+            Agency.CountryId = request.CountryId;
+            Agency.CityId = request.CityId;
+            Agency.Zip = request.Zip;
 
-            await _cityRepository.Update(City);
+            await _agencyRepository.Update(Agency);
 
             response.SetCode(HttpStatusCode.OK);
             response.SetData(true);
-            response.AddMessage("Ciudad actualizada exitosamente");
+            response.AddMessage("Agencia actualizada exitosamente");
             return response;
         }
 
@@ -80,11 +86,11 @@ namespace Application.Services
             ResponseDTO<bool> response = new ResponseDTO<bool>(HttpStatusCode.BadRequest);
             response.SetData(false);
 
-            var City = await _cityRepository.Get(id);
+            var Agency = await _agencyRepository.Get(id);
 
-            if (City == null)
+            if (Agency == null)
             {
-                response.AddMessage("Ciudad no existe");
+                response.AddMessage("Agencia no existe");
             }
 
             if (response.Messages.Any())
@@ -92,25 +98,25 @@ namespace Application.Services
                 return response;
             }
 
-            await _cityRepository.Delete(id);
+            await _agencyRepository.Delete(id);
 
             response.SetCode(HttpStatusCode.OK);
             response.SetData(true);
-            response.AddMessage("Ciudad eliminada exitosamente");
+            response.AddMessage("Agencia eliminada exitosamente");
             return response;
         }
 
-        public async Task<ResponseDTO<List<CityDTO>>> GetAllAsync()
+        public async Task<ResponseDTO<List<AgencyDTO>>> GetAllAsync()
         {
-            var response = new ResponseDTO<List<CityDTO>>(HttpStatusCode.BadRequest);
+            var response = new ResponseDTO<List<AgencyDTO>>(HttpStatusCode.BadRequest);
 
-            var cities = await _cityRepository.GetAll();
+            var agencies = await _agencyRepository.GetAll();
 
-            var countriesReturn = new List<CityDTO>();
+            var countriesReturn = new List<AgencyDTO>();
 
-            cities.ForEach(City =>
+            agencies.ForEach(Agency =>
             {
-                countriesReturn.Add(_mapper.Map<CityDTO>(City));
+                countriesReturn.Add(_mapper.Map<AgencyDTO>(Agency));
             });
 
             response.SetCode(HttpStatusCode.OK);
@@ -119,15 +125,15 @@ namespace Application.Services
             return response;
         }
 
-        public async Task<ResponseDTO<CityDTO>> GetAsync(int id)
+        public async Task<ResponseDTO<AgencyDTO>> GetAsync(int id)
         {
-            var response = new ResponseDTO<CityDTO>(HttpStatusCode.BadRequest);
+            var response = new ResponseDTO<AgencyDTO>(HttpStatusCode.BadRequest);
 
-            var city = await _cityRepository.Get(id);
+            var agency = await _agencyRepository.Get(id);
 
-            if (city == null)
+            if (agency == null)
             {
-                response.AddMessage("Ciudad no existe");
+                response.AddMessage("Agencia no existe");
             }
 
             if (response.Messages.Any())
@@ -135,10 +141,10 @@ namespace Application.Services
                 return response;
             }
 
-            CityDTO cityReturn = _mapper.Map<CityDTO>(city);
+            AgencyDTO agencyReturn = _mapper.Map<AgencyDTO>(agency);
             
             response.SetCode(HttpStatusCode.OK);
-            response.SetData(cityReturn);
+            response.SetData(agencyReturn);
 
             return response;
         }
