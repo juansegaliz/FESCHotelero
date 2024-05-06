@@ -6,8 +6,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { AuthComponent } from './pages/auth/auth.component';
 import { CountriesComponent } from './pages/countries/countries.component';
 import { WorkspacesComponent } from './pages/workspaces/workspaces.component';
-import path from 'path';
-import { FormAddComponent } from './pages/countries/form-add/form-add.component';
+import { CountriesFormAddComponent } from './pages/countries/countries-form-add/countries-form-add.component';
+import { CountriesFormEditComponent } from './pages/countries/countries-form-edit/countries-form-edit.component';
 
 export const routes: Routes = [
   { path: 'login', component: AuthComponent },
@@ -25,7 +25,11 @@ export const routes: Routes = [
           },
           {
             path: 'countries/add',
-            component: FormAddComponent
+            component: CountriesFormAddComponent
+          },
+          {
+            path: 'countries/view/:id',
+            component: CountriesFormEditComponent
           }
         ],
       },

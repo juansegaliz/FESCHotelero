@@ -8,22 +8,22 @@
         <div class="flex flex-row justify-between pb-8">
             <div class="text-sm breadcrumbs">
                 <ul>
-                    <li><a>Inicio</a></li>
+                    <li><a routerLink="">Inicio</a></li>
                     <li><a>Parametros</a></li>
-                    <li><a>Paises</a></li>
+                    <li><a routerLink="/parameters/countries">Paises</a></li>
                     <li><a>Agregar</a></li>
                 </ul>
             </div>
         </div>
 
         <div class="flex flex-row w-full justify-center">
-            <div class="flex flex-col gap-2 w-full max-w-lg overflow-x-auto">
+            <form [formGroup]="form" (submit)="onSave($event, form)" class="flex flex-col gap-2 w-full max-w-lg overflow-x-auto">
                 <label class="form-control">
                     <div class="label">
                         <span class="label-text">Nombre:</span>
                         <!--<span class="label-text-alt">Top Right label</span>-->
                     </div>
-                    <input type="text" id="txtName" placeholder="Colombia" class="input input-bordered w-full max-w-lg" />
+                    <input type="text" id="txtName" formControlName="name" placeholder="Colombia" class="input input-bordered w-full max-w-lg" />
                     <div class="label">
                         <!--<span class="label-text-alt">Bottom Left label</span>-->
                         <!--<span class="label-text-alt">Bottom Right label</span>-->
@@ -36,7 +36,7 @@
                         <span class="label-text">Codigo:</span>
                         <!--<span class="label-text-alt">Top Right label</span>-->
                     </div>
-                    <input type="text" id="txtCode" placeholder="CO" class="input input-bordered w-full max-w-lg" />
+                    <input type="text" id="txtCode" formControlName="code" placeholder="CO" class="input input-bordered w-full max-w-lg" />
                     <div class="label">
                         <!--<span class="label-text-alt">Bottom Left label</span>-->
                         <!--<span class="label-text-alt">Bottom Right label</span>-->
@@ -47,11 +47,11 @@
             
     
                 <div class="flex flex-row justify-between w-full max-w-lg ">
-                    <button class="btn btn-neutral">Cancelar</button>
-                    <button class="btn btn-primary">Guardar</button>                
+                    <a class="btn btn-neutral" routerLink="/parameters/countries">Cancelar</a>
+                    <button class="btn btn-primary" type="submit">Guardar</button>                
                 </div>
     
-            </div>
+            </form>
         </div>
         
 

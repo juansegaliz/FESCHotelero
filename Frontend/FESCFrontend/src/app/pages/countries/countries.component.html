@@ -16,7 +16,7 @@
             </div>    
 
             <div>
-                <button class="btn btn-primary" routerLink="add">
+                <button class="btn btn-primary" routerLink="add" title="Agregar">
                     <i class="fa-regular fa-square-plus"></i>
                     Agregar
                 </button>
@@ -27,188 +27,21 @@
             <table class="table table-zebra">
                 <thead>
                     <tr>
-                        <th></th>
+                        <th>Id</th>
                         <th>Pais</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th>1</th>
-                        <td>Estados Unidos</td>
-                        <td>
-                            <button class="btn btn-square">
-                                <i class="fa-solid fa-eye"></i>
+                    <tr *ngFor="let d of data">
+                        <th>{{ d.countryId }}</th>
+                        <td>{{ d.name}}</td>
+                        <td class="flex gap-4">
+                            <button class="btn btn-primary btn-square" title="Editar" [routerLink]="['/parameters/countries/view', d.countryId]">
+                                <i class="fas fa-edit"></i>
                             </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>2</th>
-                        <td>Canadá</td>
-                        <td>
-                            <button class="btn btn-square">
-                                <i class="fa-solid fa-eye"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>3</th>
-                        <td>Reino Unido</td>
-                        <td>
-                            <button class="btn btn-square">
-                                <i class="fa-solid fa-eye"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>4</th>
-                        <td>Australia</td>
-                        <td>
-                            <button class="btn btn-square">
-                                <i class="fa-solid fa-eye"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>5</th>
-                        <td>Alemania</td>
-                        <td>
-                            <button class="btn btn-square">
-                                <i class="fa-solid fa-eye"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>6</th>
-                        <td>Francia</td>
-                        <td>
-                            <button class="btn btn-square">
-                                <i class="fa-solid fa-eye"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>7</th>
-                        <td>Japón</td>
-                        <td>
-                            <button class="btn btn-square">
-                                <i class="fa-solid fa-eye"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>8</th>
-                        <td>Brasil</td>
-                        <td>
-                            <button class="btn btn-square">
-                                <i class="fa-solid fa-eye"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>9</th>
-                        <td>México</td>
-                        <td>
-                            <button class="btn btn-square">
-                                <i class="fa-solid fa-eye"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>10</th>
-                        <td>Italia</td>
-                        <td>
-                            <button class="btn btn-square">
-                                <i class="fa-solid fa-eye"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>11</th>
-                        <td>India</td>
-                        <td>
-                            <button class="btn btn-square">
-                                <i class="fa-solid fa-eye"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>12</th>
-                        <td>China</td>
-                        <td>
-                            <button class="btn btn-square">
-                                <i class="fa-solid fa-eye"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>13</th>
-                        <td>Rusia</td>
-                        <td>
-                            <button class="btn btn-square">
-                                <i class="fa-solid fa-eye"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>14</th>
-                        <td>Sudáfrica</td>
-                        <td>
-                            <button class="btn btn-square">
-                                <i class="fa-solid fa-eye"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>15</th>
-                        <td>Egipto</td>
-                        <td>
-                            <button class="btn btn-square">
-                                <i class="fa-solid fa-eye"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>16</th>
-                        <td>Nigeria</td>
-                        <td>
-                            <button class="btn btn-square">
-                                <i class="fa-solid fa-eye"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>17</th>
-                        <td>Argentina</td>
-                        <td>
-                            <button class="btn btn-square">
-                                <i class="fa-solid fa-eye"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>18</th>
-                        <td>Chile</td>
-                        <td>
-                            <button class="btn btn-square">
-                                <i class="fa-solid fa-eye"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>19</th>
-                        <td>Colombia</td>
-                        <td>
-                            <button class="btn btn-square">
-                                <i class="fa-solid fa-eye"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>20</th>
-                        <td>Países Bajos</td>
-                        <td>
-                            <button class="btn btn-square">
-                                <i class="fa-solid fa-eye"></i>
+                            <button class="btn btn-accent btn-square" title="Eliminar" (click)="onDelete(d)">
+                                <i class="fa-solid fa-trash"></i>
                             </button>
                         </td>
                     </tr>
