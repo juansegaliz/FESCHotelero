@@ -21,3 +21,6 @@ ALTER TABLE `fesc_hotelero`.`Agencies`
 CHANGE COLUMN `Agencyid` `Agencyid` INT NOT NULL AUTO_INCREMENT ,
 ADD PRIMARY KEY (`Agencyid`);
 ;
+
+ALTER TABLE `fesc_hotelero`.`Agencies` 
+CHANGE COLUMN `Agencyid` `AgencyId` INT NOT NULL AUTO_INCREMENT ;

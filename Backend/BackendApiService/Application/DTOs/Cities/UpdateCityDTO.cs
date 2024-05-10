@@ -15,5 +15,8 @@ namespace Application.DTOs.Cities
 
         [Required]
         public int CountryId { get; set; }
+
+        [Required]
+        public int StateId { get; set; }
     }
 }

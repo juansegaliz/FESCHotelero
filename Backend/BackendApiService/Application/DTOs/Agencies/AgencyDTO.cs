@@ -8,7 +8,7 @@ namespace Application.DTOs.Agencies
 {
     public class AgencyDTO
     {
-        public int Agencyid { get; set; }
+        public int AgencyId { get; set; }
 
         public string Name { get; set; }
 

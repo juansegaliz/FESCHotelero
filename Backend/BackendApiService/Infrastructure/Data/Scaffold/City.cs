@@ -11,6 +11,8 @@ public partial class City
 
     public int CountryId { get; set; }
 
+    public int StateId { get; set; }
+
     public DateTime CreatedAt { get; set; }
 
     public DateTime UpdatedAt { get; set; }

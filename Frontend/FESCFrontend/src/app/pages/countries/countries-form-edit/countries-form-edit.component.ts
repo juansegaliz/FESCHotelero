@@ -45,9 +45,6 @@ export class CountriesFormEditComponent implements OnInit {
       this.id = +params['id'];
     });
 
-    console.log(this.id);
-    console.log();
-
     const country = (await this.countryService.get(this.id)).data;
     this.form.patchValue(country);
   }

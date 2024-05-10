@@ -5,7 +5,7 @@ namespace Infrastructure.Data.Scaffold;
 
 public partial class Agency
 {
-    public int Agencyid { get; set; }
+    public int AgencyId { get; set; }
 
     public string Name { get; set; } = null!;
 

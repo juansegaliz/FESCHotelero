@@ -11,3 +11,6 @@
 
 ALTER TABLE `fesc_hotelero`.`Cities` 
 CHANGE COLUMN `CityId` `CityId` INT NOT NULL AUTO_INCREMENT ;
+
+ALTER TABLE `fesc_hotelero`.`Cities` 
+ADD COLUMN `StateId` INT NOT NULL AFTER `CountryId`;

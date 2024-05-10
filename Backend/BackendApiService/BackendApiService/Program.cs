@@ -28,6 +28,7 @@ builder.Services.AddAutoMapper(typeof(CountryProfile));
 builder.Services.AddAutoMapper(typeof(CityProfile));
 builder.Services.AddAutoMapper(typeof(AgencyProfile));
 builder.Services.AddAutoMapper(typeof(CancellationReasonProfile));
+builder.Services.AddAutoMapper(typeof(StateProfile));
 
 builder.Services.AddScoped<IAppSettingsService, AppSettingsService>();
 builder.Services.AddScoped<MySQLDbContext>();
@@ -38,12 +39,14 @@ builder.Services.AddScoped<IRepository<Country>, Repository<Country>>();
 builder.Services.AddScoped<IRepository<City>, Repository<City>>();
 builder.Services.AddScoped<IRepository<Agency>, Repository<Agency>>();
 builder.Services.AddScoped<IRepository<CancellationReason>, Repository<CancellationReason>>();
+builder.Services.AddScoped<IRepository<State>, Repository<State>>();
 
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ICountryService, CountryService>();
 builder.Services.AddScoped<ICityService, CityService>();
 builder.Services.AddScoped<IAgencyService, AgencyService>();
 builder.Services.AddScoped<ICancellationReasonService, CancellationReasonService>();
+builder.Services.AddScoped<IStateService, StateService>();
 
 builder.Services.AddDbContext<MySQLDbContext>(options =>
 {

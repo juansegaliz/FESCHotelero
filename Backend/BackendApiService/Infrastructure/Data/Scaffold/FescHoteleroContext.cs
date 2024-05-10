@@ -31,6 +31,8 @@ public partial class FescHoteleroContext : DbContext
 
     public virtual DbSet<HotelEvent> HotelEvents { get; set; }
 
+    public virtual DbSet<State> States { get; set; }
+
     public virtual DbSet<User> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -41,7 +43,7 @@ public partial class FescHoteleroContext : DbContext
     {
         modelBuilder.Entity<Agency>(entity =>
         {
-            entity.HasKey(e => e.Agencyid).HasName("PRIMARY");
+            entity.HasKey(e => e.AgencyId).HasName("PRIMARY");
 
             entity.Property(e => e.Address).HasMaxLength(250);
             entity.Property(e => e.CreatedAt).HasColumnType("datetime");
@@ -138,6 +140,15 @@ public partial class FescHoteleroContext : DbContext
             entity.Property(e => e.Price).HasPrecision(10);
             entity.Property(e => e.StartDate).HasColumnType("date");
             entity.Property(e => e.StartTime).HasColumnType("time");
+            entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
+        });
+
+        modelBuilder.Entity<State>(entity =>
+        {
+            entity.HasKey(e => e.StateId).HasName("PRIMARY");
+
+            entity.Property(e => e.CreatedAt).HasColumnType("datetime");
+            entity.Property(e => e.Name).HasMaxLength(100);
             entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
         });
 

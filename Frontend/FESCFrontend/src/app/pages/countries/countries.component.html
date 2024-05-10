@@ -37,7 +37,7 @@
                         <th>{{ d.countryId }}</th>
                         <td>{{ d.name}}</td>
                         <td class="flex gap-4">
-                            <button class="btn btn-primary btn-square" title="Editar" [routerLink]="['/parameters/countries/view', d.countryId]">
+                            <button class="btn btn-primary btn-square" title="Editar" [routerLink]="['view', d.countryId]">
                                 <i class="fas fa-edit"></i>
                             </button>
                             <button class="btn btn-accent btn-square" title="Eliminar" (click)="onDelete(d)">

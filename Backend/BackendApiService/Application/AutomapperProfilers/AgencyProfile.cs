@@ -16,7 +16,7 @@ namespace Application.AutomapperProfilers
         {
             CreateMap<Agency, AgencyDTO>();
             CreateMap<CreateAgencyDTO, Agency>()
-                .ForMember(dest => dest.Agencyid, opt => opt.Ignore())
+                .ForMember(dest => dest.AgencyId, opt => opt.Ignore())
                 .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(_ => DateTime.Now))
                 .ForMember(dest => dest.UpdatedAt, opt => opt.MapFrom(_ => DateTime.Now))
                 .ForMember(dest => dest.CreatedByUserId, opt => opt.MapFrom(_ => 0))
@@ -24,7 +24,7 @@ namespace Application.AutomapperProfilers
                 .ForMember(dest => dest.StatusId, opt => opt.MapFrom(_ => 0));
 
             CreateMap<UpdateAgencyDTO, Agency>()
-                .ForMember(dest => dest.Agencyid, opt => opt.Ignore())
+                .ForMember(dest => dest.AgencyId, opt => opt.Ignore())
                 .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(_ => DateTime.Now))
                 .ForMember(dest => dest.UpdatedAt, opt => opt.MapFrom(_ => DateTime.Now))
                 .ForMember(dest => dest.CreatedByUserId, opt => opt.MapFrom(_ => 0))
