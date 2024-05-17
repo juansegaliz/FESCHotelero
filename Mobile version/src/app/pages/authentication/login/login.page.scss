@@ -3,7 +3,7 @@
 }
 
 .row-styles {
-  margin-top: 15px;
+  margin-top: 10px;
   margin-left: 10px;
 }
 
@@ -13,7 +13,7 @@
 }
 
 .row-title {
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 .row-sub {
@@ -22,6 +22,7 @@
 
 .font-family {
   font-family: Poppins-Bold;
+  color: black;
 }
 
 .title-styles {
@@ -29,6 +30,8 @@
 }
 
 .label-sub {
+  width: 220px;
+  height: 80px;
   font-size: 15px;
 }
 
@@ -54,10 +57,15 @@
 }
 
 .row-forgot {
-  margin-top: 30px;
+  margin-top: 20px;
+}
+
+.row-new-account {
+  margin-top: 10px;
 }
 
 .forgot-text {
+  font-size: 12px;
   font-weight: bold;
 }
 
@@ -65,7 +73,7 @@
   font-family: Poppins-bold;
   color: white;
   background-color: #fc2f2f;
-  width: 200px;
+  width: 100%;
   height: 50px;
   border-radius: 15px;
 }
@@ -76,4 +84,40 @@
 
 .row-access {
   margin-top: 20px;
+}
+
+.contenedor-sub {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-account {
+  margin-left: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 15px;
+}
+
+.button-account-google {
+  margin-right: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 15px;
+}
+
+.icon-account-styles {
+  width: 20px;
+}
+
+.ion-text-center .button-account-google {
+  float: right;
+}
+
+.ion-text-center .button-account {
+  float: left;
+}
+
+.text-placeholder {
+  color: black;
 }
