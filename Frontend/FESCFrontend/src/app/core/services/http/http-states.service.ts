@@ -11,7 +11,11 @@ import { Observable } from 'rxjs';
 export class HttpStatesService {
   private serverUrl = environment.serverUrl;
   constructor(private httpClient: HttpClient) { }
-  
+
+  getAllByCountryId(countryId: number): Observable<Response<State[]>> {
+    return this.httpClient.get<Response<State[]>>(`${this.serverUrl}/countries/${countryId}/states`);
+  }
+
   getAll(): Observable<Response<State[]>> {
     return this.httpClient.get<Response<State[]>>(`${this.serverUrl}/states`);
   }

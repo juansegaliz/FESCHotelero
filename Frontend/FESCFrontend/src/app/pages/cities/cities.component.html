@@ -1,1 +1,57 @@
-<p>cities works!</p>
+<div class="flex flex-row">
+    <Ffr-menu></Ffr-menu>
+    <div class="relative w-full flex flex-col h-screen overflow-y-hidden p-6">
+
+
+        <p class="text-xl">Ciudades</p>
+
+        <div class="flex flex-row justify-between pb-8">
+            <div class="text-sm breadcrumbs">
+                <ul>
+                    <li><a>Inicio</a></li> 
+                    <li><a>Parametros</a></li> 
+                    <li>Ciudades</li>
+                </ul>
+            </div>    
+
+            <div>
+                <button class="btn btn-primary" routerLink="add" title="Agregar">
+                    <i class="fa-regular fa-square-plus"></i>
+                    Agregar
+                </button>
+            </div>
+        </div>
+        
+        <div class="overflow-x-auto">
+            <table class="table table-zebra">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Ciudad</th>
+                        <th>Pais</th>
+                        <th>Departamento/Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let d of data">
+                        <th>{{ d.stateId }}</th>
+                        <td>{{ d.name}}</td>
+                        <th>{{ d.countryId }}</th>
+                        <th>{{ d.stateId }}</th>
+                        <td class="flex gap-4">
+                            <button class="btn btn-primary btn-square" title="Editar" [routerLink]="['view', d.stateId]">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn btn-accent btn-square" title="Eliminar" (click)="onDelete(d)">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+</div>
+

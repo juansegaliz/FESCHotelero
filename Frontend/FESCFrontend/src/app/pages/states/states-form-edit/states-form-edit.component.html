@@ -3,14 +3,14 @@
 
     <div class="relative w-full flex flex-col h-screen overflow-y-hidden p-6">
 
-        <p class="text-xl">Editar Pais</p>
+        <p class="text-xl">Editar Departamento/Estado</p>
 
         <div class="flex flex-row justify-between pb-8">
             <div class="text-sm breadcrumbs">
                 <ul>
                     <li><a routerLink="">Inicio</a></li>
                     <li><a>Parametros</a></li>
-                    <li><a routerLink="/parameters/states">Despartamentos/Estados</a></li>
+                    <li><a routerLink="/parameters/states">Departamentos/Estados</a></li>
                     <li><a>Editar</a></li>
                 </ul>
             </div>
@@ -40,6 +40,10 @@
                         <option disabled selected>Seleccione el pais</option>
                         <option *ngFor="let data of countriesSelectData" [value]="data.value">{{data.text}}</option>
                     </select>
+                    <div class="label">
+                      <!--<span class="label-text-alt">Alt label</span>-->
+                      <!--<span class="label-text-alt">Alt label</span>-->
+                    </div>
     
                 </label>
     

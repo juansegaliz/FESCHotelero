@@ -40,6 +40,7 @@ builder.Services.AddScoped<IRepository<City>, Repository<City>>();
 builder.Services.AddScoped<IRepository<Agency>, Repository<Agency>>();
 builder.Services.AddScoped<IRepository<CancellationReason>, Repository<CancellationReason>>();
 builder.Services.AddScoped<IRepository<State>, Repository<State>>();
+builder.Services.AddScoped<IRepositoryState, RepositoryState>();
 
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ICountryService, CountryService>();

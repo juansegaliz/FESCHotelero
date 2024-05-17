@@ -1,4 +1,4 @@
-﻿using Application.DTOs.Cities;
+﻿using Application.DTOs.States;
 using Application.DTOs.Countries;
 using AutoMapper;
 using Infrastructure.Data.Scaffold;

@@ -53,9 +53,17 @@ export class StateService {
     const response = await lastValueFrom(this.httpStatesService.getAll());
     return response;
   }
-  
+
   async getDataForSelect(): Promise<Select[]> {
     const response = await lastValueFrom(this.httpStatesService.getAll());
+    return response.data.map(item => ({
+      value: item.stateId,
+      text: item.name
+    }));
+  }
+  
+  async getDataForSelectByCountryId(countryId: number): Promise<Select[]> {
+    const response = await lastValueFrom(this.httpStatesService.getAllByCountryId(countryId));
     return response.data.map(item => ({
       value: item.stateId,
       text: item.name
