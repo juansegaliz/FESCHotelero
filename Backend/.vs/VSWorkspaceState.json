@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\BackendApiService",
+    "\\BackendApiService\\Application",
+    "\\BackendApiService\\BackendApiService",
+    "\\BackendApiService\\Infrastructure"
+  ],
+  "SelectedNode": "\\BackendApiService\\BackendApiService.sln",
+  "PreviewInSolutionExplorer": false
+}

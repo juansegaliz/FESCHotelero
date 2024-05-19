@@ -1,0 +1,137 @@
+<div class="py-10 px-10">
+  <h2 class="text-2xl font-semibold mb-2 text-center">Registro</h2>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-control w-full mt-4">
+      <label class="label">
+        <span class="label-text font-bold text-base-content">Nombre Completo</span>
+      </label>
+      <input
+        class="input input-bordered w-full bg-gray-50"
+        placeholder="Ingrese su nombre completo"
+        name="fullName"
+        type="text"
+        formControlName="fullName"
+      />
+    </div>
+
+    @if (submitted && f['fullName'].errors) {
+
+      <div class="invalid-feedback text-error">
+        @if (f['fullName'].errors['required']) {
+        <div>El nombre es Requerido</div>
+        }
+      </div>
+      }
+ 
+    <div class="form-control w-full mt-4">
+      <label class="label">
+        <span class="label-text font-bold text-base-content">Correo Electrónico</span>
+      </label>
+      <input
+        class="input input-bordered w-full bg-gray-50"
+        placeholder="Ingrese su correo electrónico"
+        name="email"
+        type="email"
+        formControlName="email"
+      />
+    </div>
+
+    @if (submitted && f['email'].errors) {
+
+    <div class="invalid-feedback text-error">
+      @if (f['email'].errors['email']) {
+      <div>Correo Invalido</div>
+      } @if (f['email'].errors['required']) {
+      <div>El correo es Requerido</div>
+      }
+    </div>
+    }
+
+    <div class="form-control w-full mt-4">
+      <label class="label">
+        <span class="label-text font-bold text-base-content">Número de Teléfono</span>
+      </label>
+      <input
+        class="input input-bordered w-full bg-gray-50"
+        placeholder="Ingrese su número de teléfono"
+        name="phoneNumber"
+        type="tel"
+        formControlName="phoneNumber"
+      />
+    </div>
+
+    @if (submitted && f['phoneNumber'].errors) {
+
+      <div class="invalid-feedback text-error">
+        @if (f['phoneNumber'].errors['required']) {
+        <div>El telefono es requerido</div>
+        } @if (f['phoneNumber'].errors['pattern']) {
+          <div>El número de teléfono debe comenzar con +57 y tener 10 dígitos adicionales</div>
+          }
+      </div>
+      }
+
+    <div class="form-control w-full mt-4">
+      <label class="label">
+        <span class="label-text font-bold text-base-content">Contraseña</span>
+      </label>
+      <input
+        type="password"
+        class="input input-bordered w-full bg-gray-50"
+        placeholder="Ingrese su contraseña"
+        name="password"
+        autocomplete="password"
+        formControlName="password"
+      />
+    </div>
+
+    @if (submitted && f['password'].errors) {
+      <div class="invalid-feedback text-error">
+        @if (f['password'].errors['required']) {
+        <div>La contraseña es requerida</div>
+        } @if (f['password'].errors['minlength']) {
+        <div>La contraseña debe tener minimo 8 caracteres</div>
+        } @if (f['password'].errors['maxlength']) {
+        <!-- <div>Username must not exceed 40 characters</div> -->
+        }
+      </div>
+      }
+
+    <div class="form-control w-full mt-4">
+      <label class="label">
+        <span class="label-text font-bold text-base-content">Confirmar Contraseña</span>
+      </label>
+      <input
+        type="password"
+        class="input input-bordered w-full bg-gray-50"
+        placeholder="Ingrese nuevamente su contraseña"
+        name="confirmPassword"
+        autocomplete="confirm-password"
+        formControlName="confirmPassword"
+      />
+    </div>
+    
+    @if (submitted && f['confirmPassword'].errors) {
+
+      <div class="invalid-feedback text-error">
+        @if (f['confirmPassword'].errors['required']) {
+        <div>La confirmacion de contraseña es requerida</div>
+        } @if (f['confirmPassword'].errors['passwordMatchValidator']) {
+        <div>Las contraseñas no coinciden</div>
+        }
+      </div>
+      }
+
+    <button type="submit" class="btn mt-6 w-full btn-error text-bold">Registrarse</button>
+
+    <div class="text-left text-sm mt-2">
+      ¿Ya tienes una cuenta?
+      <a href="/login">
+        <span class="text-sm text-error inline-block hover:text-primary hover:underline hover:cursor-pointer transition duration-200">
+          Iniciar Sesión
+        </span>
+      </a>
+    </div>
+  </form>
+</div>

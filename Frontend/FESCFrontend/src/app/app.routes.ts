@@ -4,9 +4,12 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 import { HomeGuard } from './core/guards/home.guard';
 import { HomeComponent } from './pages/home/home.component';
 import { AuthComponent } from './pages/auth/auth.component';
+import { SignupComponent } from './pages/signup/signup.component';
+
 
 export const routes: Routes = [
   { path: 'login', component: AuthComponent },
+  { path: 'registro', component:  SignupComponent},
   {
     path: '',
     children: [
