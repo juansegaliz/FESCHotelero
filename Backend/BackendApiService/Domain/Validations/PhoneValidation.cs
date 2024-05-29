@@ -18,7 +18,7 @@ namespace Domain.Validations
                 // Aquí puedes implementar tu lógica de validación para números de teléfono internacionales
                 if (!IsPhoneValid(phone))
                 {
-                    return new ValidationResult("Phone numbre is not valid.");
+                    return new ValidationResult("Phone number is not valid.");
                 }
             }
 

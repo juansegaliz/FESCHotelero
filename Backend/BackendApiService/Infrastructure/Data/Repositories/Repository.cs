@@ -47,9 +47,9 @@ namespace Infrastructure.Data.Repositories
             return (await _context.SaveChangesAsync() > 0);
         }
 
-        Task<T> IRepository<T>.Get(int id)
+        public async Task<T?> Get(int id)
         {
-            throw new NotImplementedException();
+            return await _dbSet.FindAsync(id);
         }
 
         public async Task<List<T>> GetAll()
