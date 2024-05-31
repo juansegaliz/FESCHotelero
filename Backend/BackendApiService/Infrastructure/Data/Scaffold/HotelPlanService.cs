@@ -3,15 +3,13 @@ using System.Collections.Generic;
 
 namespace Infrastructure.Data.Scaffold;
 
-public partial class Country
+public partial class HotelPlanService
 {
-    public int CountryId { get; set; }
+    public int HotelPlanServiceId { get; set; }
 
-    public string Name { get; set; } = null!;
+    public int HotelPlanId { get; set; }
 
-    public string Code { get; set; } = null!;
-
-    public int? PriorityOrder { get; set; }
+    public int HotelServiceId { get; set; }
 
     public DateTime CreatedAt { get; set; }
 
@@ -22,4 +20,8 @@ public partial class Country
     public int UpdatedByUserId { get; set; }
 
     public int StatusId { get; set; }
+
+    public virtual HotelPlan HotelPlan { get; set; } = null!;
+
+    public virtual HotelService HotelService { get; set; } = null!;
 }

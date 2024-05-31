@@ -39,7 +39,7 @@
                         <!--<span class="label-text-alt">Top Right label</span>-->
                     </div>
                     <select id="sCountry" formControlName="countryId" class="select select-bordered w-full max-w-lg">
-                        <option disabled selected>Seleccione el pais</option>
+                        <option value="0" disabled selected>Seleccione el pais</option>
                         <option *ngFor="let data of countriesSelectData" [value]="data.value">{{data.text}}</option>
                     </select>
                     <div class="label">

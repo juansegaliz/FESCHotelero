@@ -3,23 +3,11 @@ using System.Collections.Generic;
 
 namespace Infrastructure.Data.Scaffold;
 
-public partial class Company
+public partial class HotelPlan
 {
-    public int CompanyId { get; set; }
+    public int HotelPlanId { get; set; }
 
     public string Name { get; set; } = null!;
-
-    public string Address { get; set; } = null!;
-
-    public int CityId { get; set; }
-
-    public int StateId { get; set; }
-
-    public int CountryId { get; set; }
-
-    public string Phone { get; set; } = null!;
-
-    public string Email { get; set; } = null!;
 
     public DateTime CreatedAt { get; set; }
 
@@ -32,4 +20,6 @@ public partial class Company
     public int StatusId { get; set; }
 
     public int HotelId { get; set; }
+
+    public virtual ICollection<HotelPlanService> HotelPlanServices { get; set; } = new List<HotelPlanService>();
 }
