@@ -1,13 +1,57 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>register</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true" class="login ion-padding">
+  <ion-row class="row-styles">
+    <ion-col>
+      <img class="icon-styles" src="../../../../assets/icon/fesc-icon.png" />
+    </ion-col>
+  </ion-row>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">register</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-row class="ion-text-center row-title">
+    <ion-col>
+      <h1 class="font-family title-styles">Registrate</h1>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="ion-text-center row-sub">
+    <ion-col>
+      <div class="contenedor-sub">
+        <ion-label class="font-family label-sub"
+          >Ingresa tus credenciales para registrarte</ion-label
+        >
+      </div>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="input-container ion-justify-content-center">
+    <ion-col class="col-image" size="4">
+      <img class="image-size" src="../../../../assets/icon/user.png" />
+    </ion-col>
+    <ion-col size="8">
+      <ion-input class="text-placeholder" placeholder="Noombres y apellidos">
+      </ion-input>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="input-container ion-justify-content-center">
+    <ion-col class="col-image" size="4">
+      <img class="image-size" src="../../../../assets/icon/mail.png" />
+    </ion-col>
+    <ion-col size="8">
+      <ion-input class="text-placeholder" placeholder="Email"> </ion-input>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="input-container-password ion-justify-content-center">
+    <ion-col class="col-image" size="4">
+      <img class="image-size" src="../../../../assets/icon/password.png" />
+    </ion-col>
+    <ion-col size="8">
+      <ion-input class="text-placeholder" placeholder="********"> </ion-input>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="ion-text-center row-button-login">
+    <ion-col>
+      <button class="button-login">Registrate ahora</button>
+    </ion-col>
+  </ion-row>
 </ion-content>

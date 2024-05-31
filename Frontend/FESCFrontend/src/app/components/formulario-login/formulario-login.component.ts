@@ -7,10 +7,11 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'Ffr-formulario-login',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterModule],
   templateUrl: './formulario-login.component.html',
   styleUrl: './formulario-login.component.scss',
 })

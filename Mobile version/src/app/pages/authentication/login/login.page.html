@@ -13,9 +13,12 @@
 
   <ion-row class="ion-text-center row-sub">
     <ion-col>
-      <ion-label class="font-family label-sub"
-        >Bienvenido, ingresa tus credenciales ara ingresar nuevamente</ion-label
-      >
+      <div class="contenedor-sub">
+        <ion-label class="font-family label-sub"
+          >Bienvenido, ingresa tus credenciales para ingresar.
+          nuevamente</ion-label
+        >
+      </div>
     </ion-col>
   </ion-row>
 
@@ -24,7 +27,8 @@
       <img class="image-size" src="../../../../assets/icon/mail.png" />
     </ion-col>
     <ion-col size="8">
-      <ion-input placeholder="corre@gmail.com"> </ion-input>
+      <ion-input class="text-placeholder" placeholder="Email">
+      </ion-input>
     </ion-col>
   </ion-row>
 
@@ -33,13 +37,7 @@
       <img class="image-size" src="../../../../assets/icon/password.png" />
     </ion-col>
     <ion-col size="8">
-      <ion-input placeholder="********"> </ion-input>
-    </ion-col>
-  </ion-row>
-
-  <ion-row class="ion-text-center row-forgot">
-    <ion-col>
-      <a class="forgot-text">¿Olvidaste tu contraseña?</a>
+      <ion-input class="text-placeholder" placeholder="********"> </ion-input>
     </ion-col>
   </ion-row>
 
@@ -51,10 +49,34 @@
 
   <ion-row class="row-access">
     <ion-col class="ion-text-center">
-      <button>Google</button>
+      <button class="button-account-google">
+        <img
+          class="icon-account-styles"
+          src="../../../../assets/icon/google-icon.png"
+        />
+      </button>
     </ion-col>
     <ion-col class="ion-text-center">
-      <button>GitHub</button>
+      <button class="button-account">
+        <img
+          class="icon-account-styles"
+          src="../../../../assets/icon/git-icon.png"
+        />
+      </button>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="ion-text-center row-forgot">
+    <ion-col>
+      <a class="forgot-text">¿Olvidaste tu contraseña?</a>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="ion-text-center row-new-account">
+    <ion-col>
+      <a (click)="registerRedirect()" class="forgot-text"
+        >¿Aún no tienes una cuenta?</a
+      >
     </ion-col>
   </ion-row>
 </ion-content>

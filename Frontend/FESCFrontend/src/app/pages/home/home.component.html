@@ -1,12 +1,295 @@
-<p>home works!</p>
-<div class="grid grid-cols-4 gap-4 container mx-auto">
-  <!-- <div>01</div> -->
-  <Ffr-card [image]="'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJg2-nANw-n-cYghDeqkLlU8l1877wjivpRBqFet0DDA&s'" [textButton]="'ingresar'" [title]="'prueba'" ></Ffr-card>
-  <Ffr-card [image]="'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJg2-nANw-n-cYghDeqkLlU8l1877wjivpRBqFet0DDA&s'" [textButton]="'ingresar'" [title]="'prueba'" ></Ffr-card>
-  <Ffr-card [image]="'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJg2-nANw-n-cYghDeqkLlU8l1877wjivpRBqFet0DDA&s'" [textButton]="'ingresar'" [title]="'prueba'" ></Ffr-card>
-  <Ffr-card [image]="'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJg2-nANw-n-cYghDeqkLlU8l1877wjivpRBqFet0DDA&s'" [textButton]="'ingresar'" [title]="'prueba'" ></Ffr-card>
-  <Ffr-card [image]="'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJg2-nANw-n-cYghDeqkLlU8l1877wjivpRBqFet0DDA&s'" [textButton]="'ingresar'" [title]="'prueba'" ></Ffr-card>
-  <Ffr-card [image]="'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJg2-nANw-n-cYghDeqkLlU8l1877wjivpRBqFet0DDA&s'" [textButton]="'ingresar'" [title]="'prueba'" ></Ffr-card>
-  <!-- ... -->
-  <!-- <div>09</div> -->
+<div class="flex flex-row">
+  <Ffr-menu></Ffr-menu>
+
+  <div class="relative w-full flex flex-col h-screen overflow-y-hidden p-6">
+    <div class="grid grid-cols-2 gap-2">
+      <div>
+        <div class="grid grid-cols-3 gap-3">
+          <label
+            class="input input-bordered col-span-1 flex items-center gap-2"
+          >
+            <span>Código</span>
+            <input type="text" class="grow" placeholder="" />
+          </label>
+          <input
+            type="text"
+            placeholder=""
+            class="input input-bordered col-span-2"
+            disabled
+          />
+        </div>
+      </div>
+
+      <div>
+        <div class="grid grid-cols-2 gap-2">
+          <label class="input input-bordered flex items-center gap-2">
+            <span>Nit</span>
+            <input type="text" class="grow" placeholder="" />
+          </label>
+          <input
+            type="text"
+            placeholder=""
+            class="input input-bordered"
+            disabled
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-5 gap-5 mt-2">
+      <div class="col-span-4">
+        <label class="input input-bordered flex items-center gap-2">
+          <span>Dirección</span>
+          <input type="text" class="grow" placeholder="" />
+        </label>
+      </div>
+
+      <div>
+        <label class="input input-bordered flex items-center gap-2">
+          <span>Telefono</span>
+          <input type="text" class="grow" placeholder="" />
+        </label>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-5 gap-5 mt-2">
+      <div class="col-span-2">
+        <div class="grid grid-cols-5 gap-5">
+          <label
+            class="input input-bordered col-span-4 flex items-center gap-2"
+          >
+            <span>Fax</span>
+            <input type="text" class="grow" placeholder="" />
+          </label>
+          <label
+            class="input input-bordered col-span-1 flex items-center gap-1"
+          >
+            <span>Via</span>
+            <input type="text" class="grow" placeholder="" />
+          </label>
+        </div>
+      </div>
+      <div class="col-span-2">
+        <div class="grid grid-cols-3 gap-3">
+          <label
+            class="input input-bordered col-span-1 flex items-center gap-2"
+          >
+            <span>Aerolinia</span>
+            <input type="text" class="grow" placeholder="" />
+          </label>
+          <input
+            type="text"
+            placeholder=""
+            class="input input-bordered col-span-2"
+            disabled
+          />
+        </div>
+      </div>
+      <div class="col-span-1">
+        <label class="input input-bordered col-span-1 flex items-center gap-2">
+          <span>Vuelo</span>
+          <input type="text" class="grow" placeholder="" />
+        </label>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-5 gap-5 mt-2">
+      <div class="col-span-2">
+        <div class="grid grid-cols-3 gap-3">
+          <label
+            class="input input-bordered col-span-1 flex items-center gap-2"
+          >
+            <span>Ciudad</span>
+            <input type="text" class="grow" placeholder="" />
+          </label>
+          <input
+            type="text"
+            placeholder=""
+            class="input input-bordered col-span-2"
+            disabled
+          />
+        </div>
+      </div>
+      <div class="col-span-2">
+        <div class="grid grid-cols-3 gap-3">
+          <label
+            class="input input-bordered col-span-1 flex items-center gap-2"
+          >
+            <span>Pais</span>
+            <input type="text" class="grow" placeholder="" />
+          </label>
+          <input
+            type="text"
+            placeholder=""
+            class="input input-bordered col-span-2"
+            disabled
+          />
+        </div>
+      </div>
+      <div class="col-span-1">
+        <div class="grid grid-cols-2 gap-2">
+          <label class="label cursor-pointer">
+            <span class="label-text">% Allot</span>
+            <input type="checkbox" checked="checked" class="checkbox" />
+          </label>
+          <label class="label cursor-pointer">
+            <span class="label-text">% GRP</span>
+            <input type="checkbox" checked="checked" class="checkbox" />
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-5 gap-5 mt-2">
+      <div class="col-span-3">
+        <label class="input input-bordered col-span-1 flex items-center gap-2">
+          <span>Contacto</span>
+          <input type="text" class="grow" placeholder="" />
+        </label>
+      </div>
+      <div class="col-span-2">
+        <label class="input input-bordered col-span-1 flex items-center gap-2">
+          <span>Cargo</span>
+          <input type="text" class="grow" placeholder="" />
+        </label>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-5 gap-5 mt-2">
+      <div class="col-span-2">
+        <div class="grid grid-cols-3 gap-3">
+          <label
+            class="input input-bordered col-span-1 flex items-center gap-2"
+          >
+            <span>Empresa</span>
+            <input type="text" class="grow" placeholder="" />
+          </label>
+          <input
+            type="text"
+            placeholder=""
+            class="input input-bordered col-span-2"
+            disabled
+          />
+        </div>
+      </div>
+
+      <div class="col-span-1">
+        <label class="col-span-1 flex items-center gap-2">
+          <span class="">Medio</span>
+          <select class="grow select select-bordered">
+            <option>Email</option>
+            <option>Otro</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="col-span-2 grid grid-cols-2 gap-3">
+        <div class="grid grid-cols-3 gap-3 col-span-1">
+          <label class="col-span-1 flex items-center gap-2">
+            <span>Segmento</span>
+          </label>
+          <input
+            type="text"
+            placeholder=""
+            class="input input-bordered col-span-1"
+          />
+          <input
+            type="text"
+            placeholder=""
+            class="input input-bordered col-span-1"
+          />
+        </div>
+        <div class="col-span-1">
+          <input
+            type="text"
+            placeholder=""
+            class="input input-bordered col-span-1 w-full"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="grid grid-cols-5 gap-5 mt-2">
+      <div class="grid grid-cols-3 gap-2 col-span-4">
+        <div>
+          <label class="input input-bordered flex items-center gap-3">
+            <span>Fecha Cotización</span>
+            <input type="date" class="grow" placeholder="" />
+          </label>
+        </div>
+        <div>
+          <label class="input input-bordered flex items-center gap-3">
+            <span>Fecha Llegada</span>
+            <input type="date" class="grow" placeholder="" />
+          </label>
+        </div>
+        <div>
+          <label class="input input-bordered flex items-center gap-3">
+            <span>Fecha Salida</span>
+            <input type="date" class="grow" placeholder="" />
+          </label>
+        </div>
+      </div>
+      <div class="">
+        <label class="input input-bordered flex items-center gap-3">
+          <span>#Noches</span>
+          <input type="text" class="grow" placeholder="" />
+        </label>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-5 gap-4 mt-2">
+      <div class="col-span-3">
+        <div class="grid grid-cols-4 gap-2">
+          <div class="col-span-1">
+            <label
+              class="input input-bordered flex items-center gap-2"
+            >
+              <span>Plan</span>
+              <input type="text" class="grow" placeholder="" />
+            </label>
+          </div>
+          <div class="col-span-2">
+            <input
+              type="text"
+              placeholder=""
+              class="input input-bordered w-full"
+              disabled
+            />
+          </div>
+          <div class="w-24">
+            <label class="label cursor-pointer " style="justify-content: left;" >
+              <span class="label-text me-1" >Nuevo Plan</span>
+              <input type="checkbox" checked="checked" class="checkbox me-1" />
+            </label>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="col-span-2" > -->
+        <!-- <div class="grid grid-cols-2 gap-2"> -->
+          <div>
+            <label class="col-span-1 flex items-center gap-2">
+              <span class="">Garantia</span>
+              <select class="grow select select-bordered">
+                <option>Email</option>
+                <option>Otro</option>
+              </select>
+            </label>
+          </div>
+          <div>
+            <label class="col-span-1 flex items-center gap-2">
+              <span class="">Deposito</span>
+              <select class="grow select select-bordered">
+                <option>Email</option>
+                <option>Otro</option>
+              </select>
+            </label>
+          </div>
+
+        <!-- </div> -->
+      <!-- </div> -->
+    </div>
+  </div>
 </div>
