@@ -1,4 +1,4 @@
-﻿using Application.DTOs.Cities;
+﻿using Application.DTOs.States;
 using Application.DTOs.Countries;
 using Application.DTOs.Response;
 using Application.DTOs.Users;
@@ -19,10 +19,10 @@ namespace Application.Services
 {
     public class StateService : IStateService
     {
-        private readonly IRepository<State> _stateRepository;
+        private readonly IRepositoryState _stateRepository;
         private readonly IMapper _mapper;
 
-        public StateService(IMapper mapper, IRepository<State> stateRepository)
+        public StateService(IMapper mapper, IRepositoryState stateRepository)
         {
             _mapper = mapper;
             _stateRepository = stateRepository;
@@ -140,6 +140,25 @@ namespace Application.Services
             
             response.SetCode(HttpStatusCode.OK);
             response.SetData(stateReturn);
+
+            return response;
+        }
+
+        public async Task<ResponseDTO<List<StateDTO>>> GetAllByCountryIdAsync(int countryId)
+        {
+            var response = new ResponseDTO<List<StateDTO>>(HttpStatusCode.BadRequest);
+
+            var states = await _stateRepository.GetStatesByCountryId(countryId);
+
+            var statesReturn = new List<StateDTO>();
+
+            states.ForEach(state =>
+            {
+                statesReturn.Add(_mapper.Map<StateDTO>(state));
+            });
+
+            response.SetCode(HttpStatusCode.OK);
+            response.SetData(statesReturn);
 
             return response;
         }

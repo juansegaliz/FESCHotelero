@@ -16,6 +16,10 @@ import { StatesComponent } from './pages/states/states.component';
 import { StatesFormAddComponent } from './pages/states/states-form-add/states-form-add.component';
 import { StatesFormEditComponent } from './pages/states/states-form-edit/states-form-edit.component';
 import { BookingGroupsComponent } from './pages/booking/booking-groups/booking-groups.component';
+import { CitiesFormAddComponent } from './pages/cities/cities-form-add/cities-form-add.component';
+import { CitiesComponent } from './pages/cities/cities.component';
+import { CitiesFormEditComponent } from './pages/cities/cities-form-edit/cities-form-edit.component';
+import { BookingGroupsAddComponent } from './pages/booking/booking-groups/booking-groups-add/booking-groups-add.component';
 
 export const routes: Routes = [
   { path: 'login', component: AuthComponent },
@@ -30,43 +34,64 @@ export const routes: Routes = [
         children: [
           {
             path: 'countries',
-            component: CountriesComponent
+            component: CountriesComponent,
           },
           {
             path: 'countries/add',
-            component: CountriesFormAddComponent
+            component: CountriesFormAddComponent,
           },
           {
             path: 'countries/view/:id',
-            component: CountriesFormEditComponent
+            component: CountriesFormEditComponent,
           },
           {
             path: 'states',
-            component: StatesComponent
+            component: StatesComponent,
           },
           {
             path: 'states/add',
-            component: StatesFormAddComponent
+            component: StatesFormAddComponent,
           },
           {
             path: 'states/view/:id',
-            component: StatesFormEditComponent
+            component: StatesFormEditComponent,
+          },
+          {
+            path: 'cities',
+            component: CitiesComponent,
+          },
+          {
+            path: 'cities/add',
+            component: CitiesFormAddComponent,
+          },
+          {
+            path: 'cities/view/:id',
+            component: CitiesFormEditComponent,
           },
           {
             path: 'agencies',
-            component: AgenciesComponent
+            component: AgenciesComponent,
           },
           {
             path: 'agencies/add',
-            component: AgenciesFormAddComponent
+            component: AgenciesFormAddComponent,
           },
           {
             path: 'agencies/view/:id',
-            component: AgenciesFormEditComponent
+            component: AgenciesFormEditComponent,
+          }          
+        ],
+      },
+      {
+        path: 'booking',
+        children: [
+          {
+            path: 'groups',
+            component: BookingGroupsComponent,
           },
           {
-            path: 'booking/groups',
-            component: BookingGroupsComponent
+            path: 'groups/add',
+            component: BookingGroupsAddComponent,
           }
         ],
       },

@@ -31,6 +31,12 @@ public partial class FescHoteleroContext : DbContext
 
     public virtual DbSet<HotelEvent> HotelEvents { get; set; }
 
+    public virtual DbSet<HotelPlan> HotelPlans { get; set; }
+
+    public virtual DbSet<HotelPlanService> HotelPlanServices { get; set; }
+
+    public virtual DbSet<HotelService> HotelServices { get; set; }
+
     public virtual DbSet<State> States { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
@@ -97,6 +103,7 @@ public partial class FescHoteleroContext : DbContext
                 .IsFixedLength();
             entity.Property(e => e.CreatedAt).HasColumnType("datetime");
             entity.Property(e => e.Name).HasMaxLength(100);
+            entity.Property(e => e.PriorityOrder).HasDefaultValueSql("'0'");
             entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
         });
 
@@ -141,6 +148,45 @@ public partial class FescHoteleroContext : DbContext
             entity.Property(e => e.StartDate).HasColumnType("date");
             entity.Property(e => e.StartTime).HasColumnType("time");
             entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
+        });
+
+        modelBuilder.Entity<HotelPlan>(entity =>
+        {
+            entity.HasKey(e => e.HotelPlanId).HasName("PRIMARY");
+
+            entity.Property(e => e.CreatedAt).HasColumnType("datetime");
+            entity.Property(e => e.Name).HasMaxLength(250);
+            entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
+        });
+
+        modelBuilder.Entity<HotelPlanService>(entity =>
+        {
+            entity.HasKey(e => e.HotelPlanServiceId).HasName("PRIMARY");
+
+            entity.HasIndex(e => e.HotelPlanId, "HotelPlanId");
+
+            entity.HasIndex(e => e.HotelServiceId, "HotelServiceId");
+
+            entity.Property(e => e.CreatedAt).HasColumnType("datetime");
+            entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
+
+            entity.HasOne(d => d.HotelPlan).WithMany(p => p.HotelPlanServices)
+                .HasForeignKey(d => d.HotelPlanId)
+                .HasConstraintName("HotelPlanServices_ibfk_1");
+
+            entity.HasOne(d => d.HotelService).WithMany(p => p.HotelPlanServices)
+                .HasForeignKey(d => d.HotelServiceId)
+                .HasConstraintName("HotelPlanServices_ibfk_2");
+        });
+
+        modelBuilder.Entity<HotelService>(entity =>
+        {
+            entity.HasKey(e => e.HotelServiceId).HasName("PRIMARY");
+
+            entity.Property(e => e.CreatedAt).HasColumnType("datetime");
+            entity.Property(e => e.Name).HasMaxLength(250);
+            entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
+            entity.Property(e => e.Value).HasPrecision(10);
         });
 
         modelBuilder.Entity<State>(entity =>

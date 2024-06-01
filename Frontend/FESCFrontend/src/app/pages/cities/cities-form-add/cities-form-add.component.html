@@ -1,1 +1,82 @@
-<p>cities-form-add works!</p>
+<div class="flex flex-row">
+    <Ffr-menu></Ffr-menu>
+
+    <div class="relative w-full flex flex-col h-screen overflow-y-hidden p-6">
+
+        <p class="text-xl">Agregar Ciudades</p>
+
+        <div class="flex flex-row justify-between pb-8">
+            <div class="text-sm breadcrumbs">
+                <ul>
+                    <li><a routerLink="">Inicio</a></li>
+                    <li><a>Parametros</a></li>
+                    <li><a routerLink="/parameters/cities">Ciudades</a></li>
+                    <li><a>Agregar</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flex flex-row w-full justify-center">
+            <form [formGroup]="form" (submit)="onSave($event, form)"
+                class="flex flex-col gap-2 w-full max-w-lg overflow-x-auto">
+                <label class="form-control">
+                    <div class="label">
+                        <span class="label-text">Nombre:</span>
+                        <!--<span class="label-text-alt">Top Right label</span>-->
+                    </div>
+                    <input type="text" id="txtName" formControlName="name" placeholder="Cundinamarca"
+                        class="input input-bordered w-full max-w-lg" />
+                    <div class="label">
+                        <!--<span class="label-text-alt">Bottom Left label</span>-->
+                        <!--<span class="label-text-alt">Bottom Right label</span>-->
+                    </div>
+
+                </label>
+
+                <label class="form-control w-full max-w-lg">
+                    <div class="label">
+                        <span class="label-text">Pais:</span>
+                        <!--<span class="label-text-alt">Top Right label</span>-->
+                    </div>
+                    <select id="sCountry" formControlName="countryId" class="select select-bordered w-full max-w-lg" (ngModelChange)="onCountryChange($event)">
+                        <option disabled selected>Seleccione el pais</option>
+                        <option *ngFor="let data of countriesSelectData" [value]="data.value">{{data.text}}</option>
+                    </select>
+                    <div class="label">
+                      <!--<span class="label-text-alt">Alt label</span>-->
+                      <!--<span class="label-text-alt">Alt label</span>-->
+                    </div>
+
+                </label>
+
+                
+                <label class="form-control w-full max-w-lg">
+                    <div class="label">
+                        <span class="label-text">Departamento:</span>
+                        <!--<span class="label-text-alt">Top Right label</span>-->
+                    </div>
+                    <select id="sState" formControlName="stateId" class="select select-bordered w-full max-w-lg">
+                        <option disabled selected>Seleccione el departamento</option>
+                        <option *ngFor="let data of statesSelectData" [value]="data.value">{{data.text}}</option>
+                    </select>
+                    <div class="label">
+                      <!--<span class="label-text-alt">Alt label</span>-->
+                      <!--<span class="label-text-alt">Alt label</span>-->
+                    </div>
+
+                </label>
+
+
+
+                <div class="flex flex-row justify-between w-full max-w-lg ">
+                    <a class="btn btn-neutral" routerLink="/parameters/cities">Cancelar</a>
+                    <button class="btn btn-primary" type="submit">Guardar</button>
+                </div>
+
+            </form>
+        </div>
+
+
+    </div>
+
+</div>

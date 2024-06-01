@@ -1,4 +1,5 @@
-﻿using Application.DTOs.Countries;
+﻿using Application.DTOs.States;
+using Application.DTOs.Countries;
 using Application.DTOs.Response;
 using Application.DTOs.Users;
 using Application.Interfaces;
@@ -13,10 +14,12 @@ namespace BackendApiService.Controllers
     public class CountriesController : ControllerBase
     {
         private readonly ICountryService _countryService;
+        private readonly IStateService _stateService;
 
-        public CountriesController(ICountryService countryService)
+        public CountriesController(ICountryService countryService, IStateService stateService)
         {
             _countryService = countryService;
+            _stateService = stateService;
         }
 
         [HttpPost]
@@ -52,6 +55,13 @@ namespace BackendApiService.Controllers
         public async Task<IActionResult> Get(int id)
         {
             ResponseDTO<CountryDTO> response = await _countryService.GetAsync(id);
+            return new ObjectResult(response) { StatusCode = response.Code };
+        }
+
+        [HttpGet("{id}/states")]
+        public async Task<IActionResult> GetStates(int id)
+        {
+            ResponseDTO<List<StateDTO>> response = await _stateService.GetAllByCountryIdAsync(id);
             return new ObjectResult(response) { StatusCode = response.Code };
         }
     }

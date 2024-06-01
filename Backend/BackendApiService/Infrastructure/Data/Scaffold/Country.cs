@@ -11,6 +11,8 @@ public partial class Country
 
     public string Code { get; set; } = null!;
 
+    public int? PriorityOrder { get; set; }
+
     public DateTime CreatedAt { get; set; }
 
     public DateTime UpdatedAt { get; set; }

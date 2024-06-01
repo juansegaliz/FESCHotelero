@@ -1,0 +1,806 @@
+<div class="flex flex-row">
+    <Ffr-menu></Ffr-menu>
+
+    <div class="flex flex-col w-full p-8">
+
+        <p class="text-xl">Agregar Reserva de grupo</p>
+
+        <div class="flex flex-row justify-between pb-8">
+            <div class="text-sm breadcrumbs">
+                <ul>
+                    <li><a routerLink="">Inicio</a></li>
+                    <li><a>Reservas</a></li>
+                    <li><a routerLink="/parameters/cities">Grupos</a></li>
+                    <li><a>Agregar</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flex flex-col">
+
+            <form [formGroup]="form" (submit)="onSave($event, form)">
+                <div class="flex flex-row gap-4">
+                    <div class="w-6/12">
+
+                        <label class="form-control">
+                            <div class="label">
+                                <span class="label-text">Plan:</span>
+                                <!--<span class="label-text-alt">Top Right label</span>-->
+                            </div>
+                            <select id="sHotelPlan" formControlName="hotelPlanId"
+                                class="select select-bordered w-full max-w-lg">
+                                <option value="0" disabled selected>Seleccione el plan</option>
+                                <option *ngFor="let data of hotelplansSelectData" [value]="data.value">{{data.text}}
+                                </option>
+                            </select>
+                            <div class="label">
+                                <!--<span class="label-text-alt">Alt label</span>-->
+                                <!--<span class="label-text-alt">Alt label</span>-->
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="w-4/12">
+                        <label class="form-control">
+                            <div class="label">
+                                <span class="label-text">NIT:</span>
+                                <!--<span class="label-text-alt">Top Right label</span>-->
+                            </div>
+                            <input type="text" id="txtNIT" placeholder="NIT de la empresa"
+                                class="input input-bordered w-full" />
+                            <div class="label">
+                                <!--<span class="label-text-alt">Bottom Left label</span>-->
+                                <!--<span class="label-text-alt">Bottom Right label</span>-->
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="w-4/12">
+                        <label class="form-control">
+                            <div class="label">
+                                <span class="label-text">Nombre empresa:</span>
+                                <!--<span class="label-text-alt">Top Right label</span>-->
+                            </div>
+                            <input type="text" id="txtNombreEmpresa" placeholder="Nombre de la empresa"
+                                class="input input-bordered w-full" />
+                            <div class="label">
+                                <!--<span class="label-text-alt">Bottom Left label</span>-->
+                                <!--<span class="label-text-alt">Bottom Right label</span>-->
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="flex flex-row gap-4">
+                    <div class="w-6/12">
+
+                        <label class="form-control">
+                            <div class="label">
+                                <span class="label-text">Dirección:</span>
+                                <!--<span class="label-text-alt">Top Right label</span>-->
+                            </div>
+                            <input type="text" id="txtDireccion" placeholder="Dirección de la empresa"
+                                class="input input-bordered w-full" />
+                            <div class="label">
+                                <!--<span class="label-text-alt">Bottom Left label</span>-->
+                                <!--<span class="label-text-alt">Bottom Right label</span>-->
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="w-6/12">
+                        <label class="form-control">
+                            <div class="label">
+                                <span class="label-text">Telefono:</span>
+                                <!--<span class="label-text-alt">Top Right label</span>-->
+                            </div>
+                            <input type="text" id="txtTelefono" placeholder="Teléfono de la empresa"
+                                class="input input-bordered w-full" />
+                            <div class="label">
+                                <!--<span class="label-text-alt">Bottom Left label</span>-->
+                                <!--<span class="label-text-alt">Bottom Right label</span>-->
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="flex flex-row gap-4">
+
+                    <div class="w-3/12">
+
+                        <label class="form-control">
+                            <div class="label">
+                                <span class="label-text">Correo electrónico:</span>
+                                <!--<span class="label-text-alt">Top Right label</span>-->
+                            </div>
+                            <input type="text" id="txtCorreoElectronico" placeholder="Correo electronico de la empresa"
+                                class="input input-bordered w-full" />
+                            <div class="label">
+                                <!--<span class="label-text-alt">Bottom Left label</span>-->
+                                <!--<span class="label-text-alt">Bottom Right label</span>-->
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="w-1/12">
+                        <label class="form-control">
+                            <div class="label">
+                                <span class="label-text">Via:</span>
+                                <!--<span class="label-text-alt">Top Right label</span>-->
+                            </div>
+                            <input type="text" id="txtVia" placeholder="Via" class="input input-bordered w-full" />
+                            <div class="label">
+                                <!--<span class="label-text-alt">Bottom Left label</span>-->
+                                <!--<span class="label-text-alt">Bottom Right label</span>-->
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="w-2/12">
+                        <label class="form-control">
+                            <div class="label">
+                                <span class="label-text">Aerolinea:</span>
+                                <!--<span class="label-text-alt">Top Right label</span>-->
+                            </div>
+                            <input type="text" id="txtAerolinea" placeholder="Aerolinea"
+                                class="input input-bordered w-full" />
+                            <div class="label">
+                                <!--<span class="label-text-alt">Bottom Left label</span>-->
+                                <!--<span class="label-text-alt">Bottom Right label</span>-->
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="w-3/12">
+                        <label class="form-control">
+                            <div class="label">
+                                <span class="label-text">&nbsp;</span>
+                                <!--<span class="label-text-alt">Top Right label</span>-->
+                            </div>
+                            <input type="text" id="txtAerolinea" placeholder="Aerolinea"
+                                class="input input-bordered w-full" />
+                            <div class="label">
+                                <!--<span class="label-text-alt">Bottom Left label</span>-->
+                                <!--<span class="label-text-alt">Bottom Right label</span>-->
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="w-3/12">
+                        <label class="form-control">
+                            <div class="label">
+                                <span class="label-text">Vuelo:</span>
+                                <!--<span class="label-text-alt">Top Right label</span>-->
+                            </div>
+                            <input type="text" id="txtVuelo" placeholder="Vuelo" class="input input-bordered w-full" />
+                            <div class="label">
+                                <!--<span class="label-text-alt">Bottom Left label</span>-->
+                                <!--<span class="label-text-alt">Bottom Right label</span>-->
+                            </div>
+                        </label>
+                    </div>
+
+                </div>
+
+                <div class="flex flex-row gap-4">
+                    <div class="w-3/12">
+                        <label class="form-control">
+                            <div class="label">
+                                <span class="label-text">Pais:</span>
+                                <!--<span class="label-text-alt">Top Right label</span>-->
+                            </div>
+                            <input type="text" id="txtPais" placeholder="Pais" class="input input-bordered w-full" />
+                            <div class="label">
+                                <!--<span class="label-text-alt">Bottom Left label</span>-->
+                                <!--<span class="label-text-alt">Bottom Right label</span>-->
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="w-3/12">
+                        <label class="form-control">
+                            <div class="label">
+                                <span class="label-text">Departamento/Estado:</span>
+                                <!--<span class="label-text-alt">Top Right label</span>-->
+                            </div>
+                            <input type="text" id="txtState" placeholder="Departamento/Estado"
+                                class="input input-bordered w-full" />
+                            <div class="label">
+                                <!--<span class="label-text-alt">Bottom Left label</span>-->
+                                <!--<span class="label-text-alt">Bottom Right label</span>-->
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="w-3/12">
+                        <label class="form-control">
+                            <div class="label">
+                                <span class="label-text">Ciudad:</span>
+                                <!--<span class="label-text-alt">Top Right label</span>-->
+                            </div>
+                            <input type="text" id="txtCiudad" placeholder="Ciudad"
+                                class="input input-bordered w-full" />
+                            <div class="label">
+                                <!--<span class="label-text-alt">Bottom Left label</span>-->
+                                <!--<span class="label-text-alt">Bottom Right label</span>-->
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="w-1/12">
+                        <label class="form-control">
+                            <div class="label justify-center">
+                                <span class="label-text">% Allot:</span>
+                                <!--<span class="label-text-alt">Top Right label</span>-->
+                            </div>
+                            <div class="flex justify-center">
+                                <input type="checkbox" id="chkAllot" class="checkbox checkbox-lg" />
+                            </div>
+
+                        </label>
+                    </div>
+
+                    <div class="w-1/12">
+                        <label class="form-control">
+                            <div class="label justify-center">
+                                <span class="label-text">% GRP:</span>
+                                <!--<span class="label-text-alt">Top Right label</span>-->
+                            </div>
+                            <div class="flex justify-center">
+                                <input type="checkbox" id="chkGRP" class="checkbox checkbox-lg" />
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+
+                <div class="flex flex-row gap-4">
+                    <div class="w-8/12">
+                        <label class="form-control">
+                            <div class="label">
+                                <span class="label-text">Contacto:</span>
+                                <!--<span class="label-text-alt">Top Right label</span>-->
+                            </div>
+                            <input type="text" id="txtContacto" placeholder="Contacto"
+                                class="input input-bordered w-full" />
+                            <div class="label">
+                                <!--<span class="label-text-alt">Bottom Left label</span>-->
+                                <!--<span class="label-text-alt">Bottom Right label</span>-->
+                            </div>
+                        </label>
+                    </div>
+                    <div class="w-4/12">
+                        <label class="form-control">
+                            <div class="label">
+                                <span class="label-text">Cargo:</span>
+                                <!--<span class="label-text-alt">Top Right label</span>-->
+                            </div>
+                            <input type="text" id="txtCargo" placeholder="Cargo" class="input input-bordered w-full" />
+                            <div class="label">
+                                <!--<span class="label-text-alt">Bottom Left label</span>-->
+                                <!--<span class="label-text-alt">Bottom Right label</span>-->
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="flex flex-row gap-4">
+                    <div class="w-4/12">
+                        <label class="form-control">
+                            <div class="label">
+                                <span class="label-text">Empresa:</span>
+                                <!--<span class="label-text-alt">Top Right label</span>-->
+                            </div>
+                            <input type="text" id="txtEmpresa" placeholder="Empresa"
+                                class="input input-bordered w-full" />
+                            <div class="label">
+                                <!--<span class="label-text-alt">Bottom Left label</span>-->
+                                <!--<span class="label-text-alt">Bottom Right label</span>-->
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="w-4/12">
+                        <label class="form-control">
+                            <div class="label">
+                                <span class="label-text">Medio:</span>
+                                <!--<span class="label-text-alt">Top Right label</span>-->
+                            </div>
+                            <select id="sMedio" class="select select-bordered w-full">
+                                <option disabled selected>Seleccione el medio de contacto</option>
+                                <option>Email</option>
+                                <option>Otro</option>
+                            </select>
+                            <div class="label">
+                                <!--<span class="label-text-alt">Bottom Left label</span>-->
+                                <!--<span class="label-text-alt">Bottom Right label</span>-->
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="w-4/12">
+                        <label class="form-control">
+                            <div class="label">
+                                <span class="label-text">Segmento:</span>
+                                <!--<span class="label-text-alt">Top Right label</span>-->
+                            </div>
+                            <div class="flex gap-4 w-full">
+                                <input type="text" id="txtSegmento1" class="input input-bordered w-1/4" />
+                                <input type="text" id="txtSegmento2" class="input input-bordered w-1/4" />
+                                <input type="text" id="txtSegmento3" class="input input-bordered w-1/4" />
+                            </div>
+                            <div class="label">
+                                <!--<span class="label-text-alt">Bottom Left label</span>-->
+                                <!--<span class="label-text-alt">Bottom Right label</span>-->
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="flex flex-col gap-4">
+            <div class="flex flex-row gap-4">
+                <div class="w-1/4">
+                    <label class="form-control">
+                        <div class="label">
+                            <span class="label-text">Fecha de Cotización:</span>
+                            <!--<span class="label-text-alt">Top Right label</span>-->
+                        </div>
+                        <input type="date" id="txtFechaCotizacion" class="input input-bordered w-full" />
+                        <div class="label">
+                            <!--<span class="label-text-alt">Bottom Left label</span>-->
+                            <!--<span class="label-text-alt">Bottom Right label</span>-->
+                        </div>
+                    </label>
+                </div>
+                <div class="w-1/4">
+                    <label class="form-control">
+                        <div class="label">
+                            <span class="label-text">Fecha de Llegada:</span>
+                            <!--<span class="label-text-alt">Top Right label</span>-->
+                        </div>
+                        <input type="date" id="txtFechaLlegada" class="input input-bordered w-full" />
+                        <div class="label">
+                            <!--<span class="label-text-alt">Bottom Left label</span>-->
+                            <!--<span class="label-text-alt">Bottom Right label</span>-->
+                        </div>
+                    </label>
+                </div>
+                <div class="w-1/4">
+                    <label class="form-control">
+                        <div class="label">
+                            <span class="label-text">Fecha de Salida:</span>
+                            <!--<span class="label-text-alt">Top Right label</span>-->
+                        </div>
+                        <input type="date" id="txtFechaSalida" class="input input-bordered w-full" />
+                        <div class="label">
+                            <!--<span class="label-text-alt">Bottom Left label</span>-->
+                            <!--<span class="label-text-alt">Bottom Right label</span>-->
+                        </div>
+                    </label>
+                </div>
+                <div class="w-1/4">
+                    <label class="form-control">
+                        <div class="label">
+                            <span class="label-text">Número de noches:</span>
+                            <!--<span class="label-text-alt">Top Right label</span>-->
+                        </div>
+                        <input type="number" id="txtNoches" class="input input-bordered w-full" />
+                        <div class="label">
+                            <!--<span class="label-text-alt">Bottom Left label</span>-->
+                            <!--<span class="label-text-alt">Bottom Right label</span>-->
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="flex flex-row gap-4">
+                <div class="w-6/12">
+                    <label class="form-control">
+                        <div class="label">
+                            <span class="label-text">Plan:</span>
+                            <!--<span class="label-text-alt">Top Right label</span>-->
+                        </div>
+                        <input type="text" id="txtPlan" placeholder="Plan" class="input input-bordered w-full" />
+                        <div class="label">
+                            <!--<span class="label-text-alt">Bottom Left label</span>-->
+                            <!--<span class="label-text-alt">Bottom Right label</span>-->
+                        </div>
+                    </label>
+                </div>
+                <div class="w-3/12">
+                    <label class="form-control">
+                        <div class="label">
+                            <span class="label-text">Garantía:</span>
+                            <!--<span class="label-text-alt">Top Right label</span>-->
+                        </div>
+                        <select id="sMedio" class="select select-bordered w-full">
+                            <option disabled selected>Seleccione la garantía</option>
+                            <option>Carta empresarial</option>
+                            <option>Otro</option>
+                        </select>
+                        <div class="label">
+                            <!--<span class="label-text-alt">Bottom Left label</span>-->
+                            <!--<span class="label-text-alt">Bottom Right label</span>-->
+                        </div>
+                    </label>
+                </div>
+                <div class="w-3/12">
+                    <label class="form-control">
+                        <div class="label">
+                            <span class="label-text">Depósito:</span>
+                            <!--<span class="label-text-alt">Top Right label</span>-->
+                        </div>
+                        <select id="sMedio" class="select select-bordered w-full">
+                            <option disabled selected>Seleccione el depósito</option>
+                            <option>Equitativo</option>
+                            <option>Otro</option>
+                        </select>
+                        <div class="label">
+                            <!--<span class="label-text-alt">Bottom Left label</span>-->
+                            <!--<span class="label-text-alt">Bottom Right label</span>-->
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="flex flex-row gap-4">
+                <div class="w-3/12">
+                    <label class="form-control">
+                        <div class="label">
+                            <span class="label-text">Garantizar:</span>
+                            <!--<span class="label-text-alt">Top Right label</span>-->
+                        </div>
+                        <input type="date" id="txtFechaGrarantizar" class="input input-bordered w-full" />
+                        <div class="label">
+                            <!--<span class="label-text-alt">Bottom Left label</span>-->
+                            <!--<span class="label-text-alt">Bottom Right label</span>-->
+                        </div>
+                    </label>
+                </div>
+                <div class="w-3/12">
+                    <label class="form-control">
+                        <div class="label">
+                            <span class="label-text">Motivo del Viaje:</span>
+                            <!--<span class="label-text-alt">Top Right label</span>-->
+                        </div>
+                        <select id="sMotivoViaje" class="select select-bordered w-full">
+                            <option disabled selected>Seleccione el Motivo del viaje</option>
+                            <option>Negocios</option>
+                            <option>Otro</option>
+                        </select>
+                        <div class="label">
+                            <!--<span class="label-text-alt">Bottom Left label</span>-->
+                            <!--<span class="label-text-alt">Bottom Right label</span>-->
+                        </div>
+                    </label>
+                </div>
+                <div class="w-5/12">
+                    <label class="form-control">
+                        <div class="label">
+                            <span class="label-text">Agencia:</span>
+                            <!--<span class="label-text-alt">Top Right label</span>-->
+                        </div>
+                        <input type="text" id="txtFechaSalida" placeholder="Agencia"
+                            class="input input-bordered w-full" />
+                        <div class="label">
+                            <!--<span class="label-text-alt">Bottom Left label</span>-->
+                            <!--<span class="label-text-alt">Bottom Right label</span>-->
+                        </div>
+                    </label>
+                </div>
+                <div class="w-1/12">
+                    <label class="form-control">
+                        <div class="label justify-center">
+                            <span class="label-text">Comisionable:</span>
+                            <!--<span class="label-text-alt">Top Right label</span>-->
+                        </div>
+                        <div class="flex justify-center">
+                            <input type="checkbox" id="chkComisionable" class="checkbox checkbox-lg" />
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="flex flex-col gap-4">
+            <div class="flex flex-row gap-4">
+                <div class="w-4/12">
+                    <label class="form-control">
+                        <div class="label">
+                            <span class="label-text">Tarifa:</span>
+                            <!--<span class="label-text-alt">Top Right label</span>-->
+                        </div>
+                        <div class="flex gap-4">
+                            <select id="sTarifa" class="select select-bordered w-1/2">
+                                <option disabled selected>Seleccione la tarifa</option>
+                                <option>Tarifa</option>
+                                <option>Otro</option>
+                            </select>
+                            <select id="sDivisa" class="select select-bordered w-1/2">
+                                <option disabled selected>Seleccione la divisa</option>
+                                <option>Pesos (COP)</option>
+                                <option>Dolares (USD)</option>
+                                <option>Otro</option>
+                            </select>
+                        </div>
+                        <div class="label">
+                            <!--<span class="label-text-alt">Bottom Left label</span>-->
+                            <!--<span class="label-text-alt">Bottom Right label</span>-->
+                        </div>
+                    </label>
+                </div>
+
+                <div class="divider divider-horizontal"></div>
+
+                <div class="w-2/12">
+                    <label class="form-control">
+                        <div class="label">
+                            <span class="label-text">Estado Reserva:</span>
+                            <!--<span class="label-text-alt">Top Right label</span>-->
+                        </div>
+                        <select id="sEstadoReserva" class="select select-bordered w-full">
+                            <option disabled selected>Seleccione el estado de la reserva</option>
+                            <option>Permanente</option>
+                            <option>Tentativo</option>
+                            <option>Cancelado</option>
+                            <option>Otro</option>
+                        </select>
+                        <div class="label">
+                            <!--<span class="label-text-alt">Bottom Left label</span>-->
+                            <!--<span class="label-text-alt">Bottom Right label</span>-->
+                        </div>
+                    </label>
+                </div>
+
+                <div class="divider divider-horizontal"></div>
+
+                <div class="w-2/12">
+                    <label class="form-control">
+                        <div class="label">
+                            <span class="label-text">Reserva:</span>
+                            <!--<span class="label-text-alt">Top Right label</span>-->
+                        </div>
+                        <input type="text" id="txtReserva" placeholder="Reserva" class="input input-bordered w-full" />
+                        <div class="label">
+                            <!--<span class="label-text-alt">Bottom Left label</span>-->
+                            <!--<span class="label-text-alt">Bottom Right label</span>-->
+                        </div>
+                    </label>
+                </div>
+
+                <div class="w-2/12">
+                    <label class="form-control">
+                        <div class="label">
+                            <span class="label-text">Folio Maestro:</span>
+                            <!--<span class="label-text-alt">Top Right label</span>-->
+                        </div>
+                        <input type="text" id="txtReserva" placeholder="Folio Maestro"
+                            class="input input-bordered w-full" />
+                        <div class="label">
+                            <!--<span class="label-text-alt">Bottom Left label</span>-->
+                            <!--<span class="label-text-alt">Bottom Right label</span>-->
+                        </div>
+                    </label>
+                </div>
+
+                <div class="w-2/12">
+                    <label class="form-control">
+                        <div class="label justify-center">
+                            <span class="label-text">Ocultar tarifa en el registro hotelero:</span>
+                            <!--<span class="label-text-alt">Top Right label</span>-->
+                        </div>
+                        <div class="flex justify-center">
+                            <input type="checkbox" id="chkOcultar" class="checkbox checkbox-lg" />
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="flex flex-col gap-4">
+            <div class="flex flex-row gap-4">
+                <div class="w-4/12">
+                    <label class="form-control">
+                        <div class="label justify-center">
+                            <span class="label-text">Descuento en %:</span>
+                            <!--<span class="label-text-alt">Top Right label</span>-->
+                        </div>
+                        <div class="flex justify-center">
+                            <input type="checkbox" id="chkDescuento" class="checkbox checkbox-lg" />
+                        </div>
+                    </label>
+                </div>
+
+                <div class="w-4/12">
+                    <label class="form-control">
+                        <div class="label">
+                            <span class="label-text">% Tarifa a Cobrar:</span>
+                            <!--<span class="label-text-alt">Top Right label</span>-->
+                        </div>
+                        <input type="number" id="txtTarifa" placeholder="% Tarifa a Cobrar" value="0"
+                            class="input input-bordered w-full" />
+                        <div class="label">
+                            <!--<span class="label-text-alt">Bottom Left label</span>-->
+                            <!--<span class="label-text-alt">Bottom Right label</span>-->
+                        </div>
+                    </label>
+                </div>
+
+                <div class="w-4/12">
+                    <label class="form-control">
+                        <div class="label">
+                            <span class="label-text">Descuento paquete:</span>
+                            <!--<span class="label-text-alt">Top Right label</span>-->
+                        </div>
+                        <input type="number" id="txtDescuentoPaquete" placeholder="Descuento paquete" value="0"
+                            class="input input-bordered w-full" />
+                        <div class="label">
+                            <!--<span class="label-text-alt">Bottom Left label</span>-->
+                            <!--<span class="label-text-alt">Bottom Right label</span>-->
+                        </div>
+                    </label>
+                </div>
+
+            </div>
+
+            <div class="flex flex-row gap-4">
+                <div class="w-4/12">
+                    <label class="form-control">
+                        <div class="label">
+                            <span class="label-text">Cuenta contable:</span>
+                            <!--<span class="label-text-alt">Top Right label</span>-->
+                        </div>
+                        <input type="text" id="txtCuentaContableId" placeholder="Cuenta contable"
+                            class="input input-bordered w-full" />
+                        <div class="label">
+                            <!--<span class="label-text-alt">Bottom Left label</span>-->
+                            <!--<span class="label-text-alt">Bottom Right label</span>-->
+                        </div>
+                    </label>
+                </div>
+
+                <div class="w-8/12">
+                    <label class="form-control">
+                        <div class="label">
+                            <span class="label-text">&nbsp;</span>
+                            <!--<span class="label-text-alt">Top Right label</span>-->
+                        </div>
+                        <input type="text" id="txtCuentaContable" placeholder="Cuenta contable"
+                            class="input input-bordered w-full" />
+                        <div class="label">
+                            <!--<span class="label-text-alt">Bottom Left label</span>-->
+                            <!--<span class="label-text-alt">Bottom Right label</span>-->
+                        </div>
+                    </label>
+                </div>
+
+            </div>
+
+            <div class="flex flex-row gap-4">
+                <div class="w-full">
+                    <label class="form-control">
+                        <div class="label">
+                            <span class="label-text">Complejo:</span>
+                            <!--<span class="label-text-alt">Top Right label</span>-->
+                        </div>
+                        <input type="text" id="txtComplejo" placeholder="Complejo"
+                            class="input input-bordered w-full" />
+                        <div class="label">
+                            <!--<span class="label-text-alt">Bottom Left label</span>-->
+                            <!--<span class="label-text-alt">Bottom Right label</span>-->
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="flex flex-col gap-4">
+            <div class="flex flex-row justify-between">
+                <a class="btn btn-outline" routerLink="/booking/groups">Cancelar</a>
+
+                <button class="btn btn-outline btn-accent">Activar</button>
+                <button class="btn btn-primary" type="submit">Guardar</button>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="flex flex-col">
+            <div class="flex flex-row">
+                <div role="tablist" class="tabs tabs-lifted w-full">
+                    <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="Paquete" checked />
+                    <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
+                        <table class="table table-zebra">
+                            <thead>
+                                <tr>
+                                    <th title="Descripción del cargo">Descripción del cargo</th>
+                                    <th title="Valor">Valor</th>
+                                    <th title="Aplicar noche adicional">Ana</th>
+                                    <th title="Periodicidad">Per.</th>
+                                    <th title="A partir de la noche número">ApN</th>
+                                    <th title="A partir de la noche adicional número">ApNa</th>
+                                    <th title="Mandatorio por persona">Mdt</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>ALOJAMIENTO</td>
+                                    <td>0,00</td>
+                                    <td>SI</td>
+                                    <td>999</td>
+                                    <td>0</td>
+                                    <td>1</td>
+                                    <td>NO</td>
+                                </tr>
+                                <tr>
+                                    <td>DESAYUNO</td>
+                                    <td>7.000,00</td>
+                                    <td>SI</td>
+                                    <td>999</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>SI</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="Habitaciones" />
+                    <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
+                        <table class="table table-zebra">
+                            <thead>
+                                <tr>
+                                    <th title="Línea">Línea</th>
+                                    <th title="Tipo de habitación">Tipo de habitación</th>
+                                    <th title="Clase de habitación">Acomodación</th>
+                                    <th title="Cantidad">Cantidad</th>
+                                    <th title="Valor por habitaciones">Valor por habitaciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>JUNIOR SUITE</td>
+                                    <td>SENCILLA</td>
+                                    <td>3</td>
+                                    <td>0,00</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>SUPERIOR</td>
+                                    <td>DOBLE</td>
+                                    <td>2</td>
+                                    <td>0,00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="Personas" />
+                    <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">Personas
+                    </div>
+
+                    <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="Preregistro" disabled />
+                    <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">Preregistro
+                    </div>
+
+                    <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="Preferencias" />
+                    <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">Preferencias
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

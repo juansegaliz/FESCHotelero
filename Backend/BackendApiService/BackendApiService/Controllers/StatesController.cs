@@ -1,4 +1,4 @@
-﻿using Application.DTOs.Cities;
+﻿using Application.DTOs.States;
 using Application.DTOs.Countries;
 using Application.DTOs.Response;
 using Application.DTOs.Users;

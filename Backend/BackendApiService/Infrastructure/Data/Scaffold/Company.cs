@@ -13,6 +13,8 @@ public partial class Company
 
     public int CityId { get; set; }
 
+    public int StateId { get; set; }
+
     public int CountryId { get; set; }
 
     public string Phone { get; set; } = null!;
