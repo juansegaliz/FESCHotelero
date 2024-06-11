@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
-import { HttpAgenciesService } from './http/http-agencies.service';
+import { HttpAirlinesService } from './http/http-airlines.service';
 import { Observable, lastValueFrom } from 'rxjs';
 import { Response } from '../../models/api/response';
-import { Agency } from '../../models/entities/agencies/agencies';
+import { Airline } from '../../models/entities/airlines/airlines';
 import { Select } from '../../models/forms/select';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class AgencyService {
-  constructor(private httpAgenciesService: HttpAgenciesService) {}
+export class AirlineService {
+
+  constructor(private httpAirlinesService: HttpAirlinesService) {}
 
   add(
     name: string,
@@ -22,8 +23,8 @@ export class AgencyService {
     zip: string,
     hotelId: number
   ): Observable<Response<boolean>> {
-    const info: Agency = {
-      agencyId: 0,
+    const info: Airline = {
+      airlineId: 0,
       name: name,
       description: description,
       email: email,
@@ -40,11 +41,11 @@ export class AgencyService {
       hotelId: hotelId
     };
 
-    return this.httpAgenciesService.post(info);
+    return this.httpAirlinesService.post(info);
   }
 
   update(
-    agencyId: number,
+    airlineId: number,
     name: string,
     description: string,
     email: string,
@@ -55,8 +56,8 @@ export class AgencyService {
     zip: string,
     hotelId: number
   ): Observable<Response<boolean>> {
-    const info: Agency = {
-      agencyId: agencyId,
+    const info: Airline = {
+      airlineId: airlineId,
       name: name,
       description: description,
       email: email,
@@ -72,29 +73,29 @@ export class AgencyService {
       statusId: 1,
       hotelId: hotelId
     };
-    return this.httpAgenciesService.put(agencyId, info);
+    return this.httpAirlinesService.put(airlineId, info);
   }
 
-  delete(agencyId: number): Observable<Response<boolean>> {
-    return this.httpAgenciesService.delete(agencyId);
+  delete(airlineId: number): Observable<Response<boolean>> {
+    return this.httpAirlinesService.delete(airlineId);
   }
 
-  async get(agencyId: number): Promise<Response<Agency>> {
+  async get(airlineId: number): Promise<Response<Airline>> {
     const response = await lastValueFrom(
-      this.httpAgenciesService.get(agencyId)
+      this.httpAirlinesService.get(airlineId)
     );
     return response;
   }
 
-  async getAll(): Promise<Response<Agency[]>> {
-    const response = await lastValueFrom(this.httpAgenciesService.getAll());
+  async getAll(): Promise<Response<Airline[]>> {
+    const response = await lastValueFrom(this.httpAirlinesService.getAll());
     return response;
   }
   
   async getDataForSelect(): Promise<Select[]> {
-    const response = await lastValueFrom(this.httpAgenciesService.getAll());
+    const response = await lastValueFrom(this.httpAirlinesService.getAll());
     return response.data.map((item) => ({
-      value: item.agencyId,
+      value: item.airlineId,
       text: item.name,
     }));
   }

@@ -12,6 +12,10 @@ export class HttpCitiesService {
   private serverUrl = environment.serverUrl;
   constructor(private httpClient: HttpClient) { }
   
+  getAllByStateId(stateId: number): Observable<Response<City[]>> {
+    return this.httpClient.get<Response<City[]>>(`${this.serverUrl}/states/${stateId}/cities`);
+  }
+
   getAll(): Observable<Response<City[]>> {
     return this.httpClient.get<Response<City[]>>(`${this.serverUrl}/cities`);
   }

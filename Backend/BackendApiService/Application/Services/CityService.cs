@@ -1,5 +1,6 @@
 ﻿using Application.DTOs.Cities;
 using Application.DTOs.Response;
+using Application.DTOs.States;
 using Application.DTOs.Users;
 using Application.Interfaces;
 using AutoMapper;
@@ -18,10 +19,10 @@ namespace Application.Services
 {
     public class CityService : ICityService
     {
-        private readonly IRepository<City> _cityRepository;
+        private readonly IRepositoryCity _cityRepository;
         private readonly IMapper _mapper;
 
-        public CityService(IMapper mapper, IRepository<City> cityRepository)
+        public CityService(IMapper mapper, IRepositoryCity cityRepository)
         {
             _mapper = mapper;
             _cityRepository = cityRepository;
@@ -139,6 +140,25 @@ namespace Application.Services
             
             response.SetCode(HttpStatusCode.OK);
             response.SetData(cityReturn);
+
+            return response;
+        }
+
+        public async Task<ResponseDTO<List<CityDTO>>> GetAllByStateIdAsync(int stateId)
+        {
+            var response = new ResponseDTO<List<CityDTO>>(HttpStatusCode.BadRequest);
+
+            var data = await _cityRepository.GetCitiesByStateId(stateId);
+
+            var toReturn = new List<CityDTO>();
+
+            data.ForEach(d =>
+            {
+                toReturn.Add(_mapper.Map<CityDTO>(d));
+            });
+
+            response.SetCode(HttpStatusCode.OK);
+            response.SetData(toReturn);
 
             return response;
         }
