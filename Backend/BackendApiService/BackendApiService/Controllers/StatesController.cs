@@ -6,6 +6,7 @@ using Application.Interfaces;
 using Application.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Application.DTOs.Cities;
 
 namespace BackendApiService.Controllers
 {
@@ -14,10 +15,12 @@ namespace BackendApiService.Controllers
     public class StatesController : ControllerBase
     {
         private readonly IStateService _stateService;
+        private readonly ICityService _cityService;
 
-        public StatesController(IStateService stateService)
+        public StatesController(IStateService stateService, ICityService cityService)
         {
             _stateService = stateService;
+            _cityService = cityService;
         }
 
         [HttpPost]
@@ -53,6 +56,14 @@ namespace BackendApiService.Controllers
         public async Task<IActionResult> Get(int id)
         {
             ResponseDTO<StateDTO> response = await _stateService.GetAsync(id);
+            return new ObjectResult(response) { StatusCode = response.Code };
+        }
+
+
+        [HttpGet("{id}/cities")]
+        public async Task<IActionResult> GetCities(int id)
+        {
+            ResponseDTO<List<CityDTO>> response = await _cityService.GetAllByStateIdAsync(id);
             return new ObjectResult(response) { StatusCode = response.Code };
         }
     }

@@ -17,6 +17,12 @@ public partial class FescHoteleroContext : DbContext
 
     public virtual DbSet<Agency> Agencies { get; set; }
 
+    public virtual DbSet<Airline> Airlines { get; set; }
+
+    public virtual DbSet<Booking> Bookings { get; set; }
+
+    public virtual DbSet<BookingGroup> BookingGroups { get; set; }
+
     public virtual DbSet<CancellationReason> CancellationReasons { get; set; }
 
     public virtual DbSet<City> Cities { get; set; }
@@ -61,6 +67,177 @@ public partial class FescHoteleroContext : DbContext
             entity.Property(e => e.Zip)
                 .HasMaxLength(20)
                 .HasColumnName("ZIP");
+        });
+
+        modelBuilder.Entity<Airline>(entity =>
+        {
+            entity.HasKey(e => e.AirlineId).HasName("PRIMARY");
+
+            entity.Property(e => e.Address).HasMaxLength(250);
+            entity.Property(e => e.CreatedAt).HasColumnType("datetime");
+            entity.Property(e => e.Description).HasColumnType("text");
+            entity.Property(e => e.Email).HasMaxLength(100);
+            entity.Property(e => e.Name).HasMaxLength(250);
+            entity.Property(e => e.Phone).HasMaxLength(20);
+            entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
+            entity.Property(e => e.Zip)
+                .HasMaxLength(20)
+                .HasColumnName("ZIP");
+        });
+
+        modelBuilder.Entity<Booking>(entity =>
+        {
+            entity.HasKey(e => e.BookingId).HasName("PRIMARY");
+
+            entity.Property(e => e.BookingId).HasColumnName("bookingId");
+            entity.Property(e => e.BookingType)
+                .HasColumnType("enum('individual','group')")
+                .HasColumnName("bookingType");
+            entity.Property(e => e.CreatedAt)
+                .HasColumnType("datetime")
+                .HasColumnName("createdAt");
+            entity.Property(e => e.CreatedByUserId).HasColumnName("createdByUserId");
+            entity.Property(e => e.HotelId).HasColumnName("hotelId");
+            entity.Property(e => e.StatusId).HasColumnName("statusId");
+            entity.Property(e => e.UpdatedAt)
+                .HasColumnType("datetime")
+                .HasColumnName("updatedAt");
+            entity.Property(e => e.UpdatedByUserId).HasColumnName("updatedByUserId");
+        });
+
+        modelBuilder.Entity<BookingGroup>(entity =>
+        {
+            entity.HasKey(e => e.BookingId).HasName("PRIMARY");
+
+            entity.Property(e => e.BookingId).HasColumnName("bookingId");
+            entity.Property(e => e.AccountingAccountId).HasColumnName("accountingAccountId");
+            entity.Property(e => e.AccountingAccountName)
+                .HasMaxLength(250)
+                .HasColumnName("accountingAccountName");
+            entity.Property(e => e.AgencyId).HasColumnName("agencyId");
+            entity.Property(e => e.AgencyName)
+                .HasMaxLength(250)
+                .HasColumnName("agencyName");
+            entity.Property(e => e.AirlineId).HasColumnName("airlineId");
+            entity.Property(e => e.AirlineName)
+                .HasMaxLength(250)
+                .HasColumnName("airlineName");
+            entity.Property(e => e.Flight)
+                .HasMaxLength(250)
+                .HasColumnName("flight");
+            entity.Property(e => e.Allot).HasColumnName("allot");
+            entity.Property(e => e.ArrivalDate)
+                .HasColumnType("datetime")
+                .HasColumnName("arrivalDate");
+            entity.Property(e => e.CityId).HasColumnName("cityId");
+            entity.Property(e => e.CityName)
+                .HasMaxLength(250)
+                .HasColumnName("cityName");
+            entity.Property(e => e.Commissionable).HasColumnName("commissionable");
+            entity.Property(e => e.CompanyAddress)
+                .HasMaxLength(250)
+                .HasColumnName("companyAddress");
+            entity.Property(e => e.CompanyEmail)
+                .HasMaxLength(250)
+                .HasColumnName("companyEmail");
+            entity.Property(e => e.CompanyId).HasColumnName("companyId");
+            entity.Property(e => e.CompanyName)
+                .HasMaxLength(250)
+                .HasColumnName("companyName");
+            entity.Property(e => e.CompanyPhone)
+                .HasMaxLength(15)
+                .HasColumnName("companyPhone");
+            entity.Property(e => e.Complex)
+                .HasMaxLength(250)
+                .HasColumnName("complex");
+            entity.Property(e => e.ContactMethodId).HasColumnName("contactMethodId");
+            entity.Property(e => e.ContactMethodName)
+                .HasMaxLength(100)
+                .HasColumnName("contactMethodName");
+            entity.Property(e => e.ContactName)
+                .HasMaxLength(250)
+                .HasColumnName("contactName");
+            entity.Property(e => e.ContactWorkPosition)
+                .HasMaxLength(250)
+                .HasColumnName("contactWorkPosition");
+            entity.Property(e => e.CountryId).HasColumnName("countryId");
+            entity.Property(e => e.CountryName)
+                .HasMaxLength(250)
+                .HasColumnName("countryName");
+            entity.Property(e => e.CreatedAt)
+                .HasColumnType("datetime")
+                .HasColumnName("createdAt");
+            entity.Property(e => e.CreatedByUserId).HasColumnName("createdByUserId");
+            entity.Property(e => e.CurrencyId).HasColumnName("currencyId");
+            entity.Property(e => e.CurrencyName)
+                .HasMaxLength(250)
+                .HasColumnName("currencyName");
+            entity.Property(e => e.DepartureDate)
+                .HasColumnType("datetime")
+                .HasColumnName("departureDate");
+            entity.Property(e => e.DepositId).HasColumnName("depositId");
+            entity.Property(e => e.DepositName)
+                .HasMaxLength(100)
+                .HasColumnName("depositName");
+            entity.Property(e => e.Discount).HasColumnName("discount");
+            entity.Property(e => e.Grp).HasColumnName("grp");
+            entity.Property(e => e.GuaranteeDate)
+                .HasColumnType("date")
+                .HasColumnName("guaranteeDate");
+            entity.Property(e => e.GuaranteeId).HasColumnName("guaranteeId");
+            entity.Property(e => e.GuaranteeName)
+                .HasMaxLength(150)
+                .HasColumnName("guaranteeName");
+            entity.Property(e => e.HideRate).HasColumnName("hideRate");
+            entity.Property(e => e.HotelId).HasColumnName("hotelId");
+            entity.Property(e => e.HotelPlanId).HasColumnName("hotelPlanId");
+            entity.Property(e => e.HotelPlanName)
+                .HasMaxLength(250)
+                .HasColumnName("hotelPlanName");
+            entity.Property(e => e.MasterFolio).HasColumnName("masterFolio");
+            entity.Property(e => e.NumberOfNights).HasColumnName("numberOfNights");
+            entity.Property(e => e.PackageDiscount)
+                .HasPrecision(10)
+                .HasColumnName("packageDiscount");
+            entity.Property(e => e.QuotationDate)
+                .HasColumnType("datetime")
+                .HasColumnName("quotationDate");
+            entity.Property(e => e.RateId).HasColumnName("rateId");
+            entity.Property(e => e.RateName)
+                .HasMaxLength(250)
+                .HasColumnName("rateName");
+            entity.Property(e => e.RateToCharge)
+                .HasPrecision(10)
+                .HasColumnName("rateToCharge");
+            entity.Property(e => e.ReservationStatusId).HasColumnName("reservationStatusId");
+            entity.Property(e => e.ReservationStatusName)
+                .HasMaxLength(100)
+                .HasColumnName("reservationStatusName");
+            entity.Property(e => e.Segment01)
+                .HasMaxLength(250)
+                .HasColumnName("segment01");
+            entity.Property(e => e.Segment02)
+                .HasMaxLength(250)
+                .HasColumnName("segment02");
+            entity.Property(e => e.Segment03)
+                .HasMaxLength(250)
+                .HasColumnName("segment03");
+            entity.Property(e => e.StateId).HasColumnName("stateId");
+            entity.Property(e => e.StateName)
+                .HasMaxLength(250)
+                .HasColumnName("stateName");
+            entity.Property(e => e.StatusId).HasColumnName("statusId");
+            entity.Property(e => e.Transport)
+                .HasMaxLength(250)
+                .HasColumnName("transport");
+            entity.Property(e => e.TravelPurposeId).HasColumnName("travelPurposeId");
+            entity.Property(e => e.TravelPurposeName)
+                .HasMaxLength(100)
+                .HasColumnName("travelPurposeName");
+            entity.Property(e => e.UpdatedAt)
+                .HasColumnType("datetime")
+                .HasColumnName("updatedAt");
+            entity.Property(e => e.UpdatedByUserId).HasColumnName("updatedByUserId");
         });
 
         modelBuilder.Entity<CancellationReason>(entity =>

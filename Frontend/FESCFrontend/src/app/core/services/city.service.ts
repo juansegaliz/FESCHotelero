@@ -63,4 +63,12 @@ export class CityService {
       text: item.name
     }));
   }
+
+  async getDataForSelectByStateId(stateId: number): Promise<Select[]> {
+    const response = await lastValueFrom(this.httpCitiesService.getAllByStateId(stateId));
+    return response.data.map(item => ({
+      value: item.stateId,
+      text: item.name
+    }));
+  }
 }

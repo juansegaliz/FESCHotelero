@@ -16,9 +16,10 @@
             </div>
         </div>
 
-        <div class="flex flex-col">
+        <form [formGroup]="form" (submit)="onSave($event, form)">
+            <div class="flex flex-col">
 
-            <form [formGroup]="form" (submit)="onSave($event, form)">
+
                 <div class="flex flex-row gap-4">
                     <div class="w-6/12">
 
@@ -28,7 +29,7 @@
                                 <!--<span class="label-text-alt">Top Right label</span>-->
                             </div>
                             <select id="sHotelPlan" formControlName="hotelPlanId"
-                                class="select select-bordered w-full max-w-lg">
+                                (ngModelChange)="onHotelPlanChange($event)" class="select select-bordered w-full">
                                 <option value="0" disabled selected>Seleccione el plan</option>
                                 <option *ngFor="let data of hotelplansSelectData" [value]="data.value">{{data.text}}
                                 </option>
@@ -40,29 +41,18 @@
                         </label>
                     </div>
 
-                    <div class="w-4/12">
+                    <div class="w-6/12">
                         <label class="form-control">
                             <div class="label">
-                                <span class="label-text">NIT:</span>
+                                <span class="label-text">Empresa:</span>
                                 <!--<span class="label-text-alt">Top Right label</span>-->
                             </div>
-                            <input type="text" id="txtNIT" placeholder="NIT de la empresa"
-                                class="input input-bordered w-full" />
-                            <div class="label">
-                                <!--<span class="label-text-alt">Bottom Left label</span>-->
-                                <!--<span class="label-text-alt">Bottom Right label</span>-->
-                            </div>
-                        </label>
-                    </div>
-
-                    <div class="w-4/12">
-                        <label class="form-control">
-                            <div class="label">
-                                <span class="label-text">Nombre empresa:</span>
-                                <!--<span class="label-text-alt">Top Right label</span>-->
-                            </div>
-                            <input type="text" id="txtNombreEmpresa" placeholder="Nombre de la empresa"
-                                class="input input-bordered w-full" />
+                            <select id="sCompany" formControlName="companyId" (ngModelChange)="onCompanyChange($event)"
+                                class="select select-bordered w-full">
+                                <option value="0" disabled selected>Seleccione la empresa</option>
+                                <option *ngFor="let data of companySelectData" [value]="data.value">{{data.text}}
+                                </option>
+                            </select>
                             <div class="label">
                                 <!--<span class="label-text-alt">Bottom Left label</span>-->
                                 <!--<span class="label-text-alt">Bottom Right label</span>-->
@@ -79,8 +69,8 @@
                                 <span class="label-text">Dirección:</span>
                                 <!--<span class="label-text-alt">Top Right label</span>-->
                             </div>
-                            <input type="text" id="txtDireccion" placeholder="Dirección de la empresa"
-                                class="input input-bordered w-full" />
+                            <input type="text" id="txtCompanyAddress" placeholder="Dirección de la empresa"
+                                formControlName="companyAddress" class="input input-bordered w-full" />
                             <div class="label">
                                 <!--<span class="label-text-alt">Bottom Left label</span>-->
                                 <!--<span class="label-text-alt">Bottom Right label</span>-->
@@ -94,8 +84,8 @@
                                 <span class="label-text">Telefono:</span>
                                 <!--<span class="label-text-alt">Top Right label</span>-->
                             </div>
-                            <input type="text" id="txtTelefono" placeholder="Teléfono de la empresa"
-                                class="input input-bordered w-full" />
+                            <input type="text" id="txtCompanyPhone" placeholder="Teléfono de la empresa"
+                                formControlName="companyPhone" class="input input-bordered w-full" />
                             <div class="label">
                                 <!--<span class="label-text-alt">Bottom Left label</span>-->
                                 <!--<span class="label-text-alt">Bottom Right label</span>-->
@@ -113,22 +103,8 @@
                                 <span class="label-text">Correo electrónico:</span>
                                 <!--<span class="label-text-alt">Top Right label</span>-->
                             </div>
-                            <input type="text" id="txtCorreoElectronico" placeholder="Correo electronico de la empresa"
-                                class="input input-bordered w-full" />
-                            <div class="label">
-                                <!--<span class="label-text-alt">Bottom Left label</span>-->
-                                <!--<span class="label-text-alt">Bottom Right label</span>-->
-                            </div>
-                        </label>
-                    </div>
-
-                    <div class="w-1/12">
-                        <label class="form-control">
-                            <div class="label">
-                                <span class="label-text">Via:</span>
-                                <!--<span class="label-text-alt">Top Right label</span>-->
-                            </div>
-                            <input type="text" id="txtVia" placeholder="Via" class="input input-bordered w-full" />
+                            <input type="text" id="txtCompanyEmail" placeholder="Correo electronico de la empresa"
+                                formControlName="companyEmail" class="input input-bordered w-full" />
                             <div class="label">
                                 <!--<span class="label-text-alt">Bottom Left label</span>-->
                                 <!--<span class="label-text-alt">Bottom Right label</span>-->
@@ -139,11 +115,11 @@
                     <div class="w-2/12">
                         <label class="form-control">
                             <div class="label">
-                                <span class="label-text">Aerolinea:</span>
+                                <span class="label-text">Via:</span>
                                 <!--<span class="label-text-alt">Top Right label</span>-->
                             </div>
-                            <input type="text" id="txtAerolinea" placeholder="Aerolinea"
-                                class="input input-bordered w-full" />
+                            <input type="text" id="txtVia" placeholder="Via" class="input input-bordered w-full"
+                                formControlName="transport" />
                             <div class="label">
                                 <!--<span class="label-text-alt">Bottom Left label</span>-->
                                 <!--<span class="label-text-alt">Bottom Right label</span>-->
@@ -151,14 +127,19 @@
                         </label>
                     </div>
 
-                    <div class="w-3/12">
+                    <div class="w-4/12">
                         <label class="form-control">
                             <div class="label">
-                                <span class="label-text">&nbsp;</span>
+                                <span class="label-text">Aerolinea:</span>
                                 <!--<span class="label-text-alt">Top Right label</span>-->
                             </div>
-                            <input type="text" id="txtAerolinea" placeholder="Aerolinea"
-                                class="input input-bordered w-full" />
+                            <select id="sAirline" formControlName="airlineId"
+                                class="select select-bordered w-full max-w-lg"
+                                (ngModelChange)="onAirlineChange($event)">
+                                <option value="0" disabled selected>Seleccione la aerolinea</option>
+                                <option *ngFor="let data of airlinesSelectData" [value]="data.value">{{data.text}}
+                                </option>
+                            </select>
                             <div class="label">
                                 <!--<span class="label-text-alt">Bottom Left label</span>-->
                                 <!--<span class="label-text-alt">Bottom Right label</span>-->
@@ -189,7 +170,13 @@
                                 <span class="label-text">Pais:</span>
                                 <!--<span class="label-text-alt">Top Right label</span>-->
                             </div>
-                            <input type="text" id="txtPais" placeholder="Pais" class="input input-bordered w-full" />
+                            <select id="sCountry" formControlName="countryId"
+                                class="select select-bordered w-full max-w-lg"
+                                (ngModelChange)="onCountryChange($event)">
+                                <option value="0" disabled selected>Seleccione el pais</option>
+                                <option *ngFor="let data of countriesSelectData" [value]="data.value">{{data.text}}
+                                </option>
+                            </select>
                             <div class="label">
                                 <!--<span class="label-text-alt">Bottom Left label</span>-->
                                 <!--<span class="label-text-alt">Bottom Right label</span>-->
@@ -203,8 +190,12 @@
                                 <span class="label-text">Departamento/Estado:</span>
                                 <!--<span class="label-text-alt">Top Right label</span>-->
                             </div>
-                            <input type="text" id="txtState" placeholder="Departamento/Estado"
-                                class="input input-bordered w-full" />
+                            <select id="sState" formControlName="stateId" class="select select-bordered w-full max-w-lg"
+                                (ngModelChange)="onStateChange($event)">
+                                <option value="0" disabled selected>Seleccione el departamento/estado</option>
+                                <option *ngFor="let data of statesSelectData" [value]="data.value">{{data.text}}
+                                </option>
+                            </select>
                             <div class="label">
                                 <!--<span class="label-text-alt">Bottom Left label</span>-->
                                 <!--<span class="label-text-alt">Bottom Right label</span>-->
@@ -218,8 +209,11 @@
                                 <span class="label-text">Ciudad:</span>
                                 <!--<span class="label-text-alt">Top Right label</span>-->
                             </div>
-                            <input type="text" id="txtCiudad" placeholder="Ciudad"
-                                class="input input-bordered w-full" />
+                            <select id="sCity" formControlName="cityId" class="select select-bordered w-full max-w-lg" (ngModelChange)="onCityChange($event)">
+                                <option value="0" disabled selected>Seleccione la ciudad</option>
+                                <option *ngFor="let data of citiesSelectData" [value]="data.value">{{data.text}}
+                                </option>
+                            </select>
                             <div class="label">
                                 <!--<span class="label-text-alt">Bottom Left label</span>-->
                                 <!--<span class="label-text-alt">Bottom Right label</span>-->
@@ -234,7 +228,8 @@
                                 <!--<span class="label-text-alt">Top Right label</span>-->
                             </div>
                             <div class="flex justify-center">
-                                <input type="checkbox" id="chkAllot" class="checkbox checkbox-lg" />
+                                <input type="checkbox" id="chkAllot" class="checkbox checkbox-lg"
+                                    formControlName="allot" />
                             </div>
 
                         </label>
@@ -247,7 +242,7 @@
                                 <!--<span class="label-text-alt">Top Right label</span>-->
                             </div>
                             <div class="flex justify-center">
-                                <input type="checkbox" id="chkGRP" class="checkbox checkbox-lg" />
+                                <input type="checkbox" id="chkGRP" class="checkbox checkbox-lg" formControlName="grp" />
                             </div>
                         </label>
                     </div>
@@ -262,7 +257,7 @@
                                 <!--<span class="label-text-alt">Top Right label</span>-->
                             </div>
                             <input type="text" id="txtContacto" placeholder="Contacto"
-                                class="input input-bordered w-full" />
+                                class="input input-bordered w-full" formControlName="contactName" />
                             <div class="label">
                                 <!--<span class="label-text-alt">Bottom Left label</span>-->
                                 <!--<span class="label-text-alt">Bottom Right label</span>-->
@@ -275,7 +270,7 @@
                                 <span class="label-text">Cargo:</span>
                                 <!--<span class="label-text-alt">Top Right label</span>-->
                             </div>
-                            <input type="text" id="txtCargo" placeholder="Cargo" class="input input-bordered w-full" />
+                            <input type="text" id="txtCargo" placeholder="Cargo" class="input input-bordered w-full" formControlName="contactWorkPosition" />
                             <div class="label">
                                 <!--<span class="label-text-alt">Bottom Left label</span>-->
                                 <!--<span class="label-text-alt">Bottom Right label</span>-->
@@ -291,7 +286,7 @@
                                 <span class="label-text">Empresa:</span>
                                 <!--<span class="label-text-alt">Top Right label</span>-->
                             </div>
-                            <input type="text" id="txtEmpresa" placeholder="Empresa"
+                            <input type="text" id="txtCompanyName" placeholder="Empresa" formControlName="companyName"
                                 class="input input-bordered w-full" />
                             <div class="label">
                                 <!--<span class="label-text-alt">Bottom Left label</span>-->
@@ -306,10 +301,11 @@
                                 <span class="label-text">Medio:</span>
                                 <!--<span class="label-text-alt">Top Right label</span>-->
                             </div>
-                            <select id="sMedio" class="select select-bordered w-full">
-                                <option disabled selected>Seleccione el medio de contacto</option>
-                                <option>Email</option>
-                                <option>Otro</option>
+                            <select id="sMedio" formControlName="contactMethodId" class="select select-bordered w-full"
+                                (ngModelChange)="onContactMethodChange($event)">
+                                <option value="0" disabled selected>Seleccione el medio de contacto</option>
+                                <option *ngFor="let data of contactMethodsSelectData" [value]="data.value">{{data.text}}
+                                </option>
                             </select>
                             <div class="label">
                                 <!--<span class="label-text-alt">Bottom Left label</span>-->
@@ -325,9 +321,12 @@
                                 <!--<span class="label-text-alt">Top Right label</span>-->
                             </div>
                             <div class="flex gap-4 w-full">
-                                <input type="text" id="txtSegmento1" class="input input-bordered w-1/4" />
-                                <input type="text" id="txtSegmento2" class="input input-bordered w-1/4" />
-                                <input type="text" id="txtSegmento3" class="input input-bordered w-1/4" />
+                                <input type="text" id="txtSegmento1" class="input input-bordered w-1/4"
+                                    formControlName="segment01" />
+                                <input type="text" id="txtSegmento2" class="input input-bordered w-1/4"
+                                    formControlName="segment02" />
+                                <input type="text" id="txtSegmento3" class="input input-bordered w-1/4"
+                                    formControlName="segment03" />
                             </div>
                             <div class="label">
                                 <!--<span class="label-text-alt">Bottom Left label</span>-->
@@ -336,386 +335,414 @@
                         </label>
                     </div>
                 </div>
-            </form>
-        </div>
-
-        <div class="divider"></div>
-
-        <div class="flex flex-col gap-4">
-            <div class="flex flex-row gap-4">
-                <div class="w-1/4">
-                    <label class="form-control">
-                        <div class="label">
-                            <span class="label-text">Fecha de Cotización:</span>
-                            <!--<span class="label-text-alt">Top Right label</span>-->
-                        </div>
-                        <input type="date" id="txtFechaCotizacion" class="input input-bordered w-full" />
-                        <div class="label">
-                            <!--<span class="label-text-alt">Bottom Left label</span>-->
-                            <!--<span class="label-text-alt">Bottom Right label</span>-->
-                        </div>
-                    </label>
-                </div>
-                <div class="w-1/4">
-                    <label class="form-control">
-                        <div class="label">
-                            <span class="label-text">Fecha de Llegada:</span>
-                            <!--<span class="label-text-alt">Top Right label</span>-->
-                        </div>
-                        <input type="date" id="txtFechaLlegada" class="input input-bordered w-full" />
-                        <div class="label">
-                            <!--<span class="label-text-alt">Bottom Left label</span>-->
-                            <!--<span class="label-text-alt">Bottom Right label</span>-->
-                        </div>
-                    </label>
-                </div>
-                <div class="w-1/4">
-                    <label class="form-control">
-                        <div class="label">
-                            <span class="label-text">Fecha de Salida:</span>
-                            <!--<span class="label-text-alt">Top Right label</span>-->
-                        </div>
-                        <input type="date" id="txtFechaSalida" class="input input-bordered w-full" />
-                        <div class="label">
-                            <!--<span class="label-text-alt">Bottom Left label</span>-->
-                            <!--<span class="label-text-alt">Bottom Right label</span>-->
-                        </div>
-                    </label>
-                </div>
-                <div class="w-1/4">
-                    <label class="form-control">
-                        <div class="label">
-                            <span class="label-text">Número de noches:</span>
-                            <!--<span class="label-text-alt">Top Right label</span>-->
-                        </div>
-                        <input type="number" id="txtNoches" class="input input-bordered w-full" />
-                        <div class="label">
-                            <!--<span class="label-text-alt">Bottom Left label</span>-->
-                            <!--<span class="label-text-alt">Bottom Right label</span>-->
-                        </div>
-                    </label>
-                </div>
             </div>
 
-            <div class="flex flex-row gap-4">
-                <div class="w-6/12">
-                    <label class="form-control">
-                        <div class="label">
-                            <span class="label-text">Plan:</span>
-                            <!--<span class="label-text-alt">Top Right label</span>-->
-                        </div>
-                        <input type="text" id="txtPlan" placeholder="Plan" class="input input-bordered w-full" />
-                        <div class="label">
-                            <!--<span class="label-text-alt">Bottom Left label</span>-->
-                            <!--<span class="label-text-alt">Bottom Right label</span>-->
-                        </div>
-                    </label>
-                </div>
-                <div class="w-3/12">
-                    <label class="form-control">
-                        <div class="label">
-                            <span class="label-text">Garantía:</span>
-                            <!--<span class="label-text-alt">Top Right label</span>-->
-                        </div>
-                        <select id="sMedio" class="select select-bordered w-full">
-                            <option disabled selected>Seleccione la garantía</option>
-                            <option>Carta empresarial</option>
-                            <option>Otro</option>
-                        </select>
-                        <div class="label">
-                            <!--<span class="label-text-alt">Bottom Left label</span>-->
-                            <!--<span class="label-text-alt">Bottom Right label</span>-->
-                        </div>
-                    </label>
-                </div>
-                <div class="w-3/12">
-                    <label class="form-control">
-                        <div class="label">
-                            <span class="label-text">Depósito:</span>
-                            <!--<span class="label-text-alt">Top Right label</span>-->
-                        </div>
-                        <select id="sMedio" class="select select-bordered w-full">
-                            <option disabled selected>Seleccione el depósito</option>
-                            <option>Equitativo</option>
-                            <option>Otro</option>
-                        </select>
-                        <div class="label">
-                            <!--<span class="label-text-alt">Bottom Left label</span>-->
-                            <!--<span class="label-text-alt">Bottom Right label</span>-->
-                        </div>
-                    </label>
-                </div>
-            </div>
 
-            <div class="flex flex-row gap-4">
-                <div class="w-3/12">
-                    <label class="form-control">
-                        <div class="label">
-                            <span class="label-text">Garantizar:</span>
-                            <!--<span class="label-text-alt">Top Right label</span>-->
-                        </div>
-                        <input type="date" id="txtFechaGrarantizar" class="input input-bordered w-full" />
-                        <div class="label">
-                            <!--<span class="label-text-alt">Bottom Left label</span>-->
-                            <!--<span class="label-text-alt">Bottom Right label</span>-->
-                        </div>
-                    </label>
-                </div>
-                <div class="w-3/12">
-                    <label class="form-control">
-                        <div class="label">
-                            <span class="label-text">Motivo del Viaje:</span>
-                            <!--<span class="label-text-alt">Top Right label</span>-->
-                        </div>
-                        <select id="sMotivoViaje" class="select select-bordered w-full">
-                            <option disabled selected>Seleccione el Motivo del viaje</option>
-                            <option>Negocios</option>
-                            <option>Otro</option>
-                        </select>
-                        <div class="label">
-                            <!--<span class="label-text-alt">Bottom Left label</span>-->
-                            <!--<span class="label-text-alt">Bottom Right label</span>-->
-                        </div>
-                    </label>
-                </div>
-                <div class="w-5/12">
-                    <label class="form-control">
-                        <div class="label">
-                            <span class="label-text">Agencia:</span>
-                            <!--<span class="label-text-alt">Top Right label</span>-->
-                        </div>
-                        <input type="text" id="txtFechaSalida" placeholder="Agencia"
-                            class="input input-bordered w-full" />
-                        <div class="label">
-                            <!--<span class="label-text-alt">Bottom Left label</span>-->
-                            <!--<span class="label-text-alt">Bottom Right label</span>-->
-                        </div>
-                    </label>
-                </div>
-                <div class="w-1/12">
-                    <label class="form-control">
-                        <div class="label justify-center">
-                            <span class="label-text">Comisionable:</span>
-                            <!--<span class="label-text-alt">Top Right label</span>-->
-                        </div>
-                        <div class="flex justify-center">
-                            <input type="checkbox" id="chkComisionable" class="checkbox checkbox-lg" />
-                        </div>
-                    </label>
-                </div>
-            </div>
-        </div>
+            <div class="divider"></div>
 
-        <div class="divider"></div>
+            <div class="flex flex-col gap-4">
+                <div class="flex flex-row gap-4">
+                    <div class="w-1/4">
+                        <label class="form-control">
+                            <div class="label">
+                                <span class="label-text">Fecha de Cotización:</span>
+                                <!--<span class="label-text-alt">Top Right label</span>-->
+                            </div>
+                            <input type="date" id="txtQuotationDate" class="input input-bordered w-full"
+                                formControlName="quotationDate" [readOnly]="true" />
+                            <div class="label">
+                                <!--<span class="label-text-alt">Bottom Left label</span>-->
+                                <!--<span class="label-text-alt">Bottom Right label</span>-->
+                            </div>
+                        </label>
+                    </div>
+                    <div class="w-1/4">
+                        <label class="form-control">
+                            <div class="label">
+                                <span class="label-text">Fecha de Llegada:</span>
+                                <!--<span class="label-text-alt">Top Right label</span>-->
+                            </div>
+                            <input type="date" id="txtFechaLlegada" class="input input-bordered w-full"
+                                formControlName="arrivalDate" />
+                            <div class="label">
+                                <!--<span class="label-text-alt">Bottom Left label</span>-->
+                                <!--<span class="label-text-alt">Bottom Right label</span>-->
+                            </div>
+                        </label>
+                    </div>
+                    <div class="w-1/4">
+                        <label class="form-control">
+                            <div class="label">
+                                <span class="label-text">Fecha de Salida:</span>
+                                <!--<span class="label-text-alt">Top Right label</span>-->
+                            </div>
+                            <input type="date" id="txtFechaSalida" class="input input-bordered w-full"
+                                formControlName="departureDate" />
+                            <div class="label">
+                                <span *ngIf="form.controls['departureDate'].hasError('dateRange')"
+                                    class="label-text-alt text-error">Fecha de salida no puede ser inferior a la fecha
+                                    de llegada.</span>
+                                <!--<span class="label-text-alt">Bottom Right label</span>-->
+                            </div>
+                        </label>
+                    </div>
+                    <div class="w-1/4">
+                        <label class="form-control">
+                            <div class="label">
+                                <span class="label-text">Número de noches:</span>
+                                <!--<span class="label-text-alt">Top Right label</span>-->
+                            </div>
+                            <input type="number" id="txtNoches" class="input input-bordered w-full"
+                                formControlName="numberOfNights" [readOnly]="true" />
+                            <div class="label">
+                                <span *ngIf="form.controls['numberOfNights'].hasError('min')"
+                                    class="label-text-alt text-error">No puede ser inferior a 0</span>
+                                <!--<span class="label-text-alt">Bottom Left label</span>-->
+                                <!--<span class="label-text-alt">Bottom Right label</span>-->
+                            </div>
+                        </label>
+                    </div>
+                </div>
 
-        <div class="flex flex-col gap-4">
-            <div class="flex flex-row gap-4">
-                <div class="w-4/12">
-                    <label class="form-control">
-                        <div class="label">
-                            <span class="label-text">Tarifa:</span>
-                            <!--<span class="label-text-alt">Top Right label</span>-->
-                        </div>
-                        <div class="flex gap-4">
-                            <select id="sTarifa" class="select select-bordered w-1/2">
-                                <option disabled selected>Seleccione la tarifa</option>
-                                <option>Tarifa</option>
-                                <option>Otro</option>
+                <div class="flex flex-row gap-4">
+                    <div class="w-6/12">
+                        <label class="form-control">
+                            <div class="label">
+                                <span class="label-text">Plan:</span>
+                                <!--<span class="label-text-alt">Top Right label</span>-->
+                            </div>
+                            <input type="text" id="txtPlan" placeholder="Plan" class="input input-bordered w-full"
+                                formControlName="hotelPlanName" />
+                            <div class="label">
+                                <!--<span class="label-text-alt">Bottom Left label</span>-->
+                                <!--<span class="label-text-alt">Bottom Right label</span>-->
+                            </div>
+                        </label>
+                    </div>
+                    <div class="w-3/12">
+                        <label class="form-control">
+                            <div class="label">
+                                <span class="label-text">Garantía:</span>
+                                <!--<span class="label-text-alt">Top Right label</span>-->
+                            </div>
+                            <select id="sGarantia" formControlName="guaranteeId" class="select select-bordered w-full"
+                                (ngModelChange)="onGuaranteeChange($event)">
+                                <option value="0" disabled selected>Seleccione la garantía</option>
+                                <option *ngFor="let data of guaranteesSelectData" [value]="data.value">{{data.text}}
+                                </option>
                             </select>
-                            <select id="sDivisa" class="select select-bordered w-1/2">
-                                <option disabled selected>Seleccione la divisa</option>
-                                <option>Pesos (COP)</option>
-                                <option>Dolares (USD)</option>
-                                <option>Otro</option>
+                            <div class="label">
+                                <!--<span class="label-text-alt">Bottom Left label</span>-->
+                                <!--<span class="label-text-alt">Bottom Right label</span>-->
+                            </div>
+                        </label>
+                    </div>
+                    <div class="w-3/12">
+                        <label class="form-control">
+                            <div class="label">
+                                <span class="label-text">Depósito:</span>
+                                <!--<span class="label-text-alt">Top Right label</span>-->
+                            </div>
+                            <select id="sDeposit" formControlName="depositId" class="select select-bordered w-full"
+                                (ngModelChange)="onDepositChange($event)">
+                                <option value="0" disabled selected>Seleccione la depósito</option>
+                                <option *ngFor="let data of depositsSelectData" [value]="data.value">{{data.text}}
+                                </option>
                             </select>
-                        </div>
-                        <div class="label">
-                            <!--<span class="label-text-alt">Bottom Left label</span>-->
-                            <!--<span class="label-text-alt">Bottom Right label</span>-->
-                        </div>
-                    </label>
+                            <div class="label">
+                                <!--<span class="label-text-alt">Bottom Left label</span>-->
+                                <!--<span class="label-text-alt">Bottom Right label</span>-->
+                            </div>
+                        </label>
+                    </div>
                 </div>
 
-                <div class="divider divider-horizontal"></div>
-
-                <div class="w-2/12">
-                    <label class="form-control">
-                        <div class="label">
-                            <span class="label-text">Estado Reserva:</span>
-                            <!--<span class="label-text-alt">Top Right label</span>-->
-                        </div>
-                        <select id="sEstadoReserva" class="select select-bordered w-full">
-                            <option disabled selected>Seleccione el estado de la reserva</option>
-                            <option>Permanente</option>
-                            <option>Tentativo</option>
-                            <option>Cancelado</option>
-                            <option>Otro</option>
-                        </select>
-                        <div class="label">
-                            <!--<span class="label-text-alt">Bottom Left label</span>-->
-                            <!--<span class="label-text-alt">Bottom Right label</span>-->
-                        </div>
-                    </label>
-                </div>
-
-                <div class="divider divider-horizontal"></div>
-
-                <div class="w-2/12">
-                    <label class="form-control">
-                        <div class="label">
-                            <span class="label-text">Reserva:</span>
-                            <!--<span class="label-text-alt">Top Right label</span>-->
-                        </div>
-                        <input type="text" id="txtReserva" placeholder="Reserva" class="input input-bordered w-full" />
-                        <div class="label">
-                            <!--<span class="label-text-alt">Bottom Left label</span>-->
-                            <!--<span class="label-text-alt">Bottom Right label</span>-->
-                        </div>
-                    </label>
-                </div>
-
-                <div class="w-2/12">
-                    <label class="form-control">
-                        <div class="label">
-                            <span class="label-text">Folio Maestro:</span>
-                            <!--<span class="label-text-alt">Top Right label</span>-->
-                        </div>
-                        <input type="text" id="txtReserva" placeholder="Folio Maestro"
-                            class="input input-bordered w-full" />
-                        <div class="label">
-                            <!--<span class="label-text-alt">Bottom Left label</span>-->
-                            <!--<span class="label-text-alt">Bottom Right label</span>-->
-                        </div>
-                    </label>
-                </div>
-
-                <div class="w-2/12">
-                    <label class="form-control">
-                        <div class="label justify-center">
-                            <span class="label-text">Ocultar tarifa en el registro hotelero:</span>
-                            <!--<span class="label-text-alt">Top Right label</span>-->
-                        </div>
-                        <div class="flex justify-center">
-                            <input type="checkbox" id="chkOcultar" class="checkbox checkbox-lg" />
-                        </div>
-                    </label>
+                <div class="flex flex-row gap-4">
+                    <div class="w-3/12">
+                        <label class="form-control">
+                            <div class="label">
+                                <span class="label-text">Garantizar:</span>
+                                <!--<span class="label-text-alt">Top Right label</span>-->
+                            </div>
+                            <input type="date" id="txtFechaGrarantizar" class="input input-bordered w-full"
+                                formControlName="guaranteeDate" />
+                            <div class="label">
+                                <span *ngIf="form.controls['guaranteeDate'].hasError('dateRange')"
+                                    class="label-text-alt text-error">Fecha de Garantizar esta cotización, no puede ser
+                                    menor a la Fecha de Cotización.</span>
+                                <!--<span class="label-text-alt">Bottom Left label</span>-->
+                                <!--<span class="label-text-alt">Bottom Right label</span>-->
+                            </div>
+                        </label>
+                    </div>
+                    <div class="w-3/12">
+                        <label class="form-control">
+                            <div class="label">
+                                <span class="label-text">Motivo del Viaje:</span>
+                                <!--<span class="label-text-alt">Top Right label</span>-->
+                            </div>
+                            <select id="sTravelPurpose" formControlName="travelPurposeId"
+                                class="select select-bordered w-full" (ngModelChange)="onTravelPurposeChange($event)">
+                                <option value="0" disabled selected>Seleccione el Motivo del viaje</option>
+                                <option *ngFor="let data of travelPurposesSelectData" [value]="data.value">{{data.text}}
+                                </option>
+                            </select>
+                            <div class="label">
+                                <!--<span class="label-text-alt">Bottom Left label</span>-->
+                                <!--<span class="label-text-alt">Bottom Right label</span>-->
+                            </div>
+                        </label>
+                    </div>
+                    <div class="w-5/12">
+                        <label class="form-control">
+                            <div class="label">
+                                <span class="label-text">Agencia:</span>
+                                <!--<span class="label-text-alt">Top Right label</span>-->
+                            </div>
+                            <select id="sAgency" formControlName="agencyId" (ngModelChange)="onAgencyChange($event)"
+                                class="select select-bordered w-full">
+                                <option value="0" disabled selected>Seleccione la agencia</option>
+                                <option *ngFor="let data of agenciesSelectData" [value]="data.value">{{data.text}}
+                                </option>
+                            </select>
+                            <div class="label">
+                                <!--<span class="label-text-alt">Bottom Left label</span>-->
+                                <!--<span class="label-text-alt">Bottom Right label</span>-->
+                            </div>
+                        </label>
+                    </div>
+                    <div class="w-1/12">
+                        <label class="form-control">
+                            <div class="label justify-center">
+                                <span class="label-text">Comisionable:</span>
+                                <!--<span class="label-text-alt">Top Right label</span>-->
+                            </div>
+                            <div class="flex justify-center">
+                                <input type="checkbox" id="chkComisionable" class="checkbox checkbox-lg"
+                                    formControlName="commissionable" />
+                            </div>
+                        </label>
+                    </div>
                 </div>
             </div>
-        </div>
+
+            <div class="divider"></div>
+
+            <div class="flex flex-col gap-4">
+                <div class="flex flex-row gap-4">
+                    <div class="w-4/12">
+                        <label class="form-control">
+                            <div class="label">
+                                <span class="label-text">Tarifa:</span>
+                                <!--<span class="label-text-alt">Top Right label</span>-->
+                            </div>
+                            <div class="flex gap-4">
+                                <select id="sTarifa" formControlName="rateId" (ngModelChange)="onRateChange($event)"
+                                    class="select select-bordered w-full">
+                                    <option value="0" disabled selected>Seleccione la tarifa</option>
+                                    <option *ngFor="let data of ratesSelectData" [value]="data.value">{{data.text}}
+                                    </option>
+                                </select>
+                                <select id="sDivisa" formControlName="currencyId" (ngModelChange)="onCurrencyChange($event)"
+                                    class="select select-bordered w-full">
+                                    <option value="0" disabled selected>Seleccione la divisa</option>
+                                    <option *ngFor="let data of currenciesSelectData" [value]="data.value">{{data.text}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="label">
+                                <!--<span class="label-text-alt">Bottom Left label</span>-->
+                                <!--<span class="label-text-alt">Bottom Right label</span>-->
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="divider divider-horizontal"></div>
+
+                    <div class="w-2/12">
+                        <label class="form-control">
+                            <div class="label">
+                                <span class="label-text">Estado Reserva:</span>
+                                <!--<span class="label-text-alt">Top Right label</span>-->
+                            </div>
+                            <select id="sReservationStatuses" formControlName="reservationStatusId"
+                                (ngModelChange)="onReservationStatusesChange($event)"
+                                class="select select-bordered w-full">
+                                <option value="0" disabled selected>Seleccione el estado de la reserva</option>
+                                <option *ngFor="let data of reservationStatusesSelectData" [value]="data.value">
+                                    {{data.text}}
+                                </option>
+                            </select>
+                            <div class="label">
+                                <!--<span class="label-text-alt">Bottom Left label</span>-->
+                                <!--<span class="label-text-alt">Bottom Right label</span>-->
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="divider divider-horizontal"></div>
+
+                    <div class="w-2/12">
+                        <label class="form-control">
+                            <div class="label">
+                                <span class="label-text">Reserva:</span>
+                                <!--<span class="label-text-alt">Top Right label</span>-->
+                            </div>
+                            <input type="text" id="txtReserva" placeholder="Reserva" class="input input-bordered w-full"
+                                formControlName="bookingId" [readOnly]="true" />
+                            <div class="label">
+                                <!--<span class="label-text-alt">Bottom Left label</span>-->
+                                <!--<span class="label-text-alt">Bottom Right label</span>-->
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="w-2/12">
+                        <label class="form-control">
+                            <div class="label">
+                                <span class="label-text">Folio Maestro:</span>
+                                <!--<span class="label-text-alt">Top Right label</span>-->
+                            </div>
+                            <input type="text" id="txtReserva" placeholder="Folio Maestro"
+                                class="input input-bordered w-full" formControlName="masterFolio" [readOnly]="true" />
+                            <div class="label">
+                                <!--<span class="label-text-alt">Bottom Left label</span>-->
+                                <!--<span class="label-text-alt">Bottom Right label</span>-->
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="w-2/12">
+                        <label class="form-control">
+                            <div class="label justify-center">
+                                <span class="label-text">Ocultar tarifa en el registro hotelero:</span>
+                                <!--<span class="label-text-alt">Top Right label</span>-->
+                            </div>
+                            <div class="flex justify-center">
+                                <input type="checkbox" id="chkOcultar" class="checkbox checkbox-lg"
+                                    formControlName="hideRate" />
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="flex flex-col gap-4">
+                <div class="flex flex-row gap-4">
+                    <div class="w-4/12">
+                        <label class="form-control">
+                            <div class="label justify-center">
+                                <span class="label-text">Descuento en %:</span>
+                                <!--<span class="label-text-alt">Top Right label</span>-->
+                            </div>
+                            <div class="flex justify-center">
+                                <input type="checkbox" id="chkDescuento" class="checkbox checkbox-lg"
+                                    formControlName="discount" />
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="w-4/12">
+                        <label class="form-control">
+                            <div class="label">
+                                <span class="label-text">% Tarifa a Cobrar:</span>
+                                <!--<span class="label-text-alt">Top Right label</span>-->
+                            </div>
+                            <input type="number" id="txtTarifa" placeholder="% Tarifa a Cobrar" value="0"
+                                class="input input-bordered w-full" formControlName="rateToCharge" />
+                            <div class="label">
+                                <!--<span class="label-text-alt">Bottom Left label</span>-->
+                                <!--<span class="label-text-alt">Bottom Right label</span>-->
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="w-4/12">
+                        <label class="form-control">
+                            <div class="label">
+                                <span class="label-text">Descuento paquete:</span>
+                                <!--<span class="label-text-alt">Top Right label</span>-->
+                            </div>
+                            <input type="number" id="txtDescuentoPaquete" placeholder="Descuento paquete" value="0"
+                                class="input input-bordered w-full" formControlName="packageDiscount" />
+                            <div class="label">
+                                <!--<span class="label-text-alt">Bottom Left label</span>-->
+                                <!--<span class="label-text-alt">Bottom Right label</span>-->
+                            </div>
+                        </label>
+                    </div>
+
+                </div>
+
+                <div class="flex flex-row gap-4">
+                    <div class="w-4/12">
+                        <label class="form-control">
+                            <div class="label">
+                                <span class="label-text">Cuenta contable:</span>
+                                <!--<span class="label-text-alt">Top Right label</span>-->
+                            </div>
+                            <input type="text" id="txtCuentaContableId" placeholder="Cuenta contable" formControlName="accountingAccountId"
+                                class="input input-bordered w-full" [readOnly]="true" />
+                            <div class="label">
+                                <!--<span class="label-text-alt">Bottom Left label</span>-->
+                                <!--<span class="label-text-alt">Bottom Right label</span>-->
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="w-8/12">
+                        <label class="form-control">
+                            <div class="label">
+                                <span class="label-text">&nbsp;</span>
+                                <!--<span class="label-text-alt">Top Right label</span>-->
+                            </div>
+                            <input type="text" id="txtCuentaContable" placeholder="Cuenta contable" formControlName="accountingAccountName"
+                                class="input input-bordered w-full" [readOnly]="true" />
+                            <div class="label">
+                                <!--<span class="label-text-alt">Bottom Left label</span>-->
+                                <!--<span class="label-text-alt">Bottom Right label</span>-->
+                            </div>
+                        </label>
+                    </div>
+
+                </div>
+
+                <div class="flex flex-row gap-4">
+                    <div class="w-full">
+                        <label class="form-control">
+                            <div class="label">
+                                <span class="label-text">Complejo:</span>
+                                <!--<span class="label-text-alt">Top Right label</span>-->
+                            </div>
+                            <input type="text" id="txtComplejo" placeholder="Complejo"
+                                class="input input-bordered w-full" formControlName="complex" [readOnly]="true" />
+                            <div class="label">
+                                <!--<span class="label-text-alt">Bottom Left label</span>-->
+                                <!--<span class="label-text-alt">Bottom Right label</span>-->
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="flex flex-col gap-4">
+                <div class="flex flex-row justify-between">
+                    <a class="btn btn-outline" routerLink="/booking/groups">Cancelar</a>
+
+                    <button class="btn btn-outline btn-accent" *ngIf="false">Activar</button>
+                    <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Guardar</button>
+                </div>
+            </div>
+
+        </form>
 
         <div class="divider"></div>
 
-        <div class="flex flex-col gap-4">
-            <div class="flex flex-row gap-4">
-                <div class="w-4/12">
-                    <label class="form-control">
-                        <div class="label justify-center">
-                            <span class="label-text">Descuento en %:</span>
-                            <!--<span class="label-text-alt">Top Right label</span>-->
-                        </div>
-                        <div class="flex justify-center">
-                            <input type="checkbox" id="chkDescuento" class="checkbox checkbox-lg" />
-                        </div>
-                    </label>
-                </div>
-
-                <div class="w-4/12">
-                    <label class="form-control">
-                        <div class="label">
-                            <span class="label-text">% Tarifa a Cobrar:</span>
-                            <!--<span class="label-text-alt">Top Right label</span>-->
-                        </div>
-                        <input type="number" id="txtTarifa" placeholder="% Tarifa a Cobrar" value="0"
-                            class="input input-bordered w-full" />
-                        <div class="label">
-                            <!--<span class="label-text-alt">Bottom Left label</span>-->
-                            <!--<span class="label-text-alt">Bottom Right label</span>-->
-                        </div>
-                    </label>
-                </div>
-
-                <div class="w-4/12">
-                    <label class="form-control">
-                        <div class="label">
-                            <span class="label-text">Descuento paquete:</span>
-                            <!--<span class="label-text-alt">Top Right label</span>-->
-                        </div>
-                        <input type="number" id="txtDescuentoPaquete" placeholder="Descuento paquete" value="0"
-                            class="input input-bordered w-full" />
-                        <div class="label">
-                            <!--<span class="label-text-alt">Bottom Left label</span>-->
-                            <!--<span class="label-text-alt">Bottom Right label</span>-->
-                        </div>
-                    </label>
-                </div>
-
-            </div>
-
-            <div class="flex flex-row gap-4">
-                <div class="w-4/12">
-                    <label class="form-control">
-                        <div class="label">
-                            <span class="label-text">Cuenta contable:</span>
-                            <!--<span class="label-text-alt">Top Right label</span>-->
-                        </div>
-                        <input type="text" id="txtCuentaContableId" placeholder="Cuenta contable"
-                            class="input input-bordered w-full" />
-                        <div class="label">
-                            <!--<span class="label-text-alt">Bottom Left label</span>-->
-                            <!--<span class="label-text-alt">Bottom Right label</span>-->
-                        </div>
-                    </label>
-                </div>
-
-                <div class="w-8/12">
-                    <label class="form-control">
-                        <div class="label">
-                            <span class="label-text">&nbsp;</span>
-                            <!--<span class="label-text-alt">Top Right label</span>-->
-                        </div>
-                        <input type="text" id="txtCuentaContable" placeholder="Cuenta contable"
-                            class="input input-bordered w-full" />
-                        <div class="label">
-                            <!--<span class="label-text-alt">Bottom Left label</span>-->
-                            <!--<span class="label-text-alt">Bottom Right label</span>-->
-                        </div>
-                    </label>
-                </div>
-
-            </div>
-
-            <div class="flex flex-row gap-4">
-                <div class="w-full">
-                    <label class="form-control">
-                        <div class="label">
-                            <span class="label-text">Complejo:</span>
-                            <!--<span class="label-text-alt">Top Right label</span>-->
-                        </div>
-                        <input type="text" id="txtComplejo" placeholder="Complejo"
-                            class="input input-bordered w-full" />
-                        <div class="label">
-                            <!--<span class="label-text-alt">Bottom Left label</span>-->
-                            <!--<span class="label-text-alt">Bottom Right label</span>-->
-                        </div>
-                    </label>
-                </div>
-            </div>
-        </div>
-
-        <div class="divider"></div>
-
-        <div class="flex flex-col gap-4">
-            <div class="flex flex-row justify-between">
-                <a class="btn btn-outline" routerLink="/booking/groups">Cancelar</a>
-
-                <button class="btn btn-outline btn-accent">Activar</button>
-                <button class="btn btn-primary" type="submit">Guardar</button>
-            </div>
-        </div>
-
-        <div class="divider"></div>
-
-        <div class="flex flex-col">
+        <div class="flex flex-col" *ngIf="false">
             <div class="flex flex-row">
                 <div role="tablist" class="tabs tabs-lifted w-full">
                     <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="Paquete" checked />
