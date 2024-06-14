@@ -38,8 +38,10 @@ public partial class BookingGroup
     public string Transport { get; set; } = null!;
 
     public int AirlineId { get; set; }
-
+        
     public string AirlineName { get; set; } = null!;
+    
+    public string Flight { get; set; } = null!;
 
     public int CountryId { get; set; }
 

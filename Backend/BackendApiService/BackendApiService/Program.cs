@@ -67,7 +67,8 @@ builder.Services.AddScoped<IBookingGroupService, BookingGroupService>();
 
 builder.Services.AddDbContext<MySQLDbContext>(options =>
 {
-    string conn = "server=localhost;database=feschotelero;user=root;password=Root-Password-1234-$;";
+    string conn = "server=172.19.0.2;database=feschotelero;user=root;password=Root-Password-1234-$;";
+    //string conn = Environment.GetEnvironmentVariable("mysql_connection");
     options.UseMySql(conn, ServerVersion.AutoDetect(conn));
 });
 
@@ -86,11 +87,11 @@ builder.Services.AddCors(opt =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+//if (app.Environment.IsDevelopment())
+//{
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+//}
 
 app.UseCors("CorsPolicy");
 
@@ -99,5 +100,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseDeveloperExceptionPage(); //
 
 app.Run();

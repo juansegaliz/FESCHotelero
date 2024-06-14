@@ -122,6 +122,9 @@ public partial class FescHoteleroContext : DbContext
             entity.Property(e => e.AirlineName)
                 .HasMaxLength(250)
                 .HasColumnName("airlineName");
+            entity.Property(e => e.Flight)
+                .HasMaxLength(250)
+                .HasColumnName("flight");
             entity.Property(e => e.Allot).HasColumnName("allot");
             entity.Property(e => e.ArrivalDate)
                 .HasColumnType("datetime")

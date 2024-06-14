@@ -15,5 +15,6 @@ namespace Application.Interfaces
         Task<ResponseDTO<List<BookingGroupDTO>>> GetAllAsync();
         Task<ResponseDTO<BookingGroupDTO>> GetAsync(int id);
         Task<ResponseDTO<bool>> UpdateAsync(int id, UpdateBookingGroupDTO request);
+        Task<ResponseDTO<List<BookingGroupDTO>>> GetTableViewAsync();
     }
 }

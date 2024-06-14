@@ -47,6 +47,8 @@ namespace Application.DTOs.BookingGroups
 
         public string AirlineName { get; set; } = null!;
 
+        public string Flight { get; set; } = null!;
+
         public int CountryId { get; set; }
 
         public string CountryName { get; set; } = null!;

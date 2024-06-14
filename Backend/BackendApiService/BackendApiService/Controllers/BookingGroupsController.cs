@@ -58,5 +58,12 @@ namespace BackendApiService.Controllers
             ResponseDTO<BookingGroupDTO> response = await _bookingGroupService.GetAsync(id);
             return new ObjectResult(response) { StatusCode = response.Code };
         }
+
+        [HttpGet("tableview")]
+        public async Task<IActionResult> GetTableView()
+        {
+            ResponseDTO<List<BookingGroupDTO>> response = await _bookingGroupService.GetTableViewAsync();
+            return new ObjectResult(response) { StatusCode = response.Code };
+        }
     }
 }

@@ -217,5 +217,24 @@ namespace Application.Services
 
             return response;
         }
+
+        public async Task<ResponseDTO<List<BookingGroupDTO>>> GetTableViewAsync()
+        {
+            var response = new ResponseDTO<List<BookingGroupDTO>>(HttpStatusCode.BadRequest);
+
+            var info = (await _repository.GetAll()).OrderByDescending(r => r.UpdatedAt).ToList();
+
+            var toReturn = new List<BookingGroupDTO>();
+
+            info.ForEach(data =>
+            {
+                toReturn.Add(_mapper.Map<BookingGroupDTO>(data));
+            });
+
+            response.SetCode(HttpStatusCode.OK);
+            response.SetData(toReturn);
+
+            return response;
+        }
     }
 }

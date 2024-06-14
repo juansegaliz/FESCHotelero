@@ -30,6 +30,7 @@ CREATE TABLE BookingGroups (
   transport VARCHAR(250) NOT NULL,
   airlineId INT NOT NULL,
   airlineName VARCHAR(250) NOT NULL,
+  flight VARCHAR(250) NOT NULL,
   countryId INT NOT NULL,
   countryName VARCHAR(250) NOT NULL,
   stateId INT NOT NULL,
