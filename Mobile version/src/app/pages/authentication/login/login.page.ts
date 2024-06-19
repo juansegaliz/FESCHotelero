@@ -11,8 +11,10 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {}
 
-  registerRedirect() {
-    console.log('Se hace click alenrutador a');
+  redirectRegister() {
     this.router.navigate(['/pages/authentication/register']);
+  }
+  redirectToDashboard() {
+    this.router.navigate(['/pages/dashboard/home']);
   }
 }

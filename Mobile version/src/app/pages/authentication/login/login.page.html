@@ -5,7 +5,7 @@
     </ion-col>
   </ion-row>
 
-  <ion-row class="ion-text-center row-title">
+  <ion-row class="ion-text-center mt-16">
     <ion-col>
       <h1 class="font-family title-styles">Iniciar sesión</h1>
     </ion-col>
@@ -27,8 +27,7 @@
       <img class="image-size" src="../../../../assets/icon/mail.png" />
     </ion-col>
     <ion-col size="8">
-      <ion-input class="text-placeholder" placeholder="Email">
-      </ion-input>
+      <ion-input placeholder="correo@gmail.com"> </ion-input>
     </ion-col>
   </ion-row>
 
@@ -37,13 +36,13 @@
       <img class="image-size" src="../../../../assets/icon/password.png" />
     </ion-col>
     <ion-col size="8">
-      <ion-input class="text-placeholder" placeholder="********"> </ion-input>
+      <ion-input placeholder="********"> </ion-input>
     </ion-col>
   </ion-row>
 
   <ion-row class="ion-text-center row-button-login">
     <ion-col>
-      <button class="button-login">Continuar</button>
+      <button class="button-login" (click)="redirectToDashboard()">Continuar</button>
     </ion-col>
   </ion-row>
 
@@ -68,13 +67,17 @@
 
   <ion-row class="ion-text-center row-forgot">
     <ion-col>
-      <a class="forgot-text">¿Olvidaste tu contraseña?</a>
+      <a class="forgot-text underline text-blue-500"
+        >¿Olvidaste tu contraseña?</a
+      >
     </ion-col>
   </ion-row>
 
   <ion-row class="ion-text-center row-new-account">
     <ion-col>
-      <a (click)="registerRedirect()" class="forgot-text"
+      <a
+        (click)="redirectRegister()"
+        class="forgot-text underline text-blue-500"
         >¿Aún no tienes una cuenta?</a
       >
     </ion-col>
