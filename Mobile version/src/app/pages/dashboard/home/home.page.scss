@@ -1,0 +1,29 @@
+.bg-custom {
+  --background: #f9f9f9;
+}
+.font-family {
+  font-family: Poppins-Bold;
+}
+
+ion-card.customCard {
+  background-color: transparent;
+  width: 100%;
+  height: 80%;
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: auto;
+  border-radius: 5%;
+  border: none;
+  box-shadow: none;
+}
+
+.image-styles {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.swiper-margin {
+  margin-right: 10px;
+}

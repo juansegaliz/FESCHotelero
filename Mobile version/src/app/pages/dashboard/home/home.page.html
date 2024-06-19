@@ -1,0 +1,194 @@
+<ion-toolbar class="bg-custom">
+  <ion-buttons slot="start">
+    <ion-menu-button auto-hide="false">
+      <img src="../../../../assets/icon/BurgerMenu.png" />
+    </ion-menu-button>
+  </ion-buttons>
+</ion-toolbar>
+
+<ion-content>
+  <ion-row class="mt-10 ml-4 mr-4">
+    <div class="flex">
+      <label class="text-[#fc2f2f] font-semibold font-family"
+        >Consigue tu hospedaje</label
+      >
+    </div>
+
+    <div class="flex justify-center items-center w-full mt-6">
+      <div class="flex justify-center items-center w-full mr-6">
+        <input
+          type="text"
+          placeholder="Type here"
+          class="input input-bordered w-full max-w-xs"
+        />
+      </div>
+      <div class="flex justify-center items-center w-[30%]">
+        <button class="btn bg-[#fc2f2f] w-full">
+          <img class="w-6" src="../../../../assets/icon/filterIcon.png" />
+        </button>
+      </div>
+    </div>
+
+    <div class="flex w-full mt-6">
+      <label class="text-[#fc2f2f] font-semibold font-family">Categorias</label>
+    </div>
+
+    <div class="flex justify-center items-center mt-6 w-full">
+      <div class="flex justify-center items-center w-full">
+        <button class="btn">Hotel</button>
+      </div>
+      <div class="flex justify-center items-center w-full">
+        <button class="btn">Residencia</button>
+      </div>
+      <div class="flex justify-center items-center w-full">
+        <button class="btn">Casa</button>
+      </div>
+    </div>
+
+    <ion-card class="customCard">
+      <ion-card-content>
+        <swiper-container
+          [slidesPerView]="2"
+          class="h-[160px] w-full"
+          [spaceBetween]="20"
+        >
+          <swiper-slide>
+            <div
+              class="card w-full h-full shadow-md image-styles"
+              [style.backgroundImage]="'url(' + hotel1 + ')'"
+            >
+              <div
+                class="card-body w-full flex justify-end items-end h-full p-4"
+              >
+                <div class="flex flex-col justify-end items-end w-full">
+                  <div class="w-full">
+                    <label class="text-white">Ibis hotel</label>
+                  </div>
+                  <div class="w-full">
+                    <label class="text-white">Cucuta</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </swiper-slide>
+          <swiper-slide>
+            <div
+              class="card w-full h-full shadow-md image-styles"
+              [style.backgroundImage]="'url(' + hotel2 + ')'"
+            >
+              <div
+                class="card-body w-full flex justify-end items-end h-full p-4"
+              >
+                <div class="flex flex-col justify-end items-end w-full">
+                  <div class="w-full">
+                    <label class="text-white">Ibis hotel</label>
+                  </div>
+                  <div class="w-full">
+                    <label class="text-white">Cucuta</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </swiper-slide>
+          <swiper-slide class="swiper-margin">
+            <div
+              class="card w-full h-full shadow-md image-styles"
+              [style.backgroundImage]="'url(' + hotel3 + ')'"
+            >
+              <div
+                class="card-body w-full flex justify-end items-end h-full p-4"
+              >
+                <div class="flex flex-col justify-end items-end w-full">
+                  <div class="w-full">
+                    <label class="text-white">Ibis hotel</label>
+                  </div>
+                  <div class="w-full">
+                    <label class="text-white">Cucuta</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </swiper-slide>
+        </swiper-container>
+      </ion-card-content>
+    </ion-card>
+
+    <div class="flex w-full mt-6">
+      <label class="text-[#fc2f2f] font-semibold font-family"
+        >Planes de hoteles</label
+      >
+    </div>
+
+    <ion-card class="customCard">
+      <ion-card-content>
+        <swiper-container
+          [slidesPerView]="2"
+          class="h-[160px] w-full"
+          [spaceBetween]="20"
+        >
+          <swiper-slide>
+            <div
+              class="card w-full h-full shadow-md image-styles"
+              [style.backgroundImage]="'url(' + hotel3 + ')'"
+            >
+              <div
+                class="card-body w-full flex justify-end items-end h-full p-4"
+              >
+                <div class="flex flex-col justify-end items-end w-full">
+                  <div class="w-full">
+                    <label class="text-white">Ibis hotel</label>
+                  </div>
+                  <div class="w-full">
+                    <label class="text-white">Cucuta</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </swiper-slide>
+          <swiper-slide>
+            <div
+              class="card w-full h-full shadow-md image-styles"
+              [style.backgroundImage]="'url(' + hotel2 + ')'"
+            >
+              <div
+                class="card-body w-full flex justify-end items-end h-full p-4"
+              >
+                <div class="flex flex-col justify-end items-end w-full">
+                  <div class="w-full">
+                    <label class="text-white">Ibis hotel</label>
+                  </div>
+                  <div class="w-full">
+                    <label class="text-white">Cucuta</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </swiper-slide>
+          <swiper-slide class="swiper-margin">
+            <div
+              class="card w-full h-full shadow-md image-styles"
+              [style.backgroundImage]="'url(' + hotel3 + ')'"
+            >
+              <div
+                class="card-body w-full flex justify-end items-end h-full p-4"
+              >
+                <div class="flex flex-col justify-end items-end w-full">
+                  <div class="w-full">
+                    <label class="text-white">Ibis hotel</label>
+                  </div>
+                  <div class="w-full">
+                    <label class="text-white">Cucuta</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </swiper-slide>
+        </swiper-container>
+      </ion-card-content>
+    </ion-card>
+
+    <div class="flex justify-center items-center">
+      <div class="flex justify-center items-center"></div>
+    </div>
+  </ion-row>
+</ion-content>
