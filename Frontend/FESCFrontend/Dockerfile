@@ -23,6 +23,6 @@ WORKDIR /app
 
 COPY --from=stage-build /app/dist/fescfrontend /app/
 
-EXPOSE 4000
+EXPOSE 80
 
 CMD [ "node","./server/server.mjs" ]
