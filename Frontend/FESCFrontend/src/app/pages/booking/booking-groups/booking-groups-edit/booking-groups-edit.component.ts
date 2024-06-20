@@ -1,44 +1,45 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MenuComponent } from '../../../../components/menu/menu.component';
-import { Router, RouterModule } from '@angular/router';
+import { Component } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { MenuComponent } from '../../../../components/menu/menu.component';
 import { CommonModule } from '@angular/common';
+import { HotelplanService } from '../../../../core/services/hotelplan.service';
+import { CompanyService } from '../../../../core/services/company.service';
 import { CityService } from '../../../../core/services/city.service';
 import { StateService } from '../../../../core/services/state.service';
 import { CountryService } from '../../../../core/services/country.service';
+import { AirlineService } from '../../../../core/services/airline.service';
+import { AgencyService } from '../../../../core/services/agency.service';
+import { BookingGroupService } from '../../../../core/services/booking-group.service';
 import { Select } from '../../../../models/forms/select';
-import { HotelplanService } from '../../../../core/services/hotelplan.service';
-import { CompanyService } from '../../../../core/services/company.service';
+import { Subscription } from 'rxjs';
+import { format, addDays, differenceInDays, addMonths } from 'date-fns';
+import { validateDateRange } from '../../../../core/custom-validators/validateDateRange';
+import { BookingGroup } from '../../../../models/entities/bookings/bookinggroup';
 import { Company } from '../../../../models/entities/companies/companies';
 import { Response } from '../../../../models/api/response';
-import { BookingGroup } from '../../../../models/entities/bookings/bookinggroup';
-import { City } from '../../../../models/entities/cities/cities';
 import { Country } from '../../../../models/entities/countries/countries';
 import { State } from '../../../../models/entities/states/states';
-import { validateDateRange } from '../../../../core/custom-validators/validateDateRange';
-import { format, addDays, differenceInDays, addMonths } from 'date-fns';
-import { Subscription } from 'rxjs';
+import { City } from '../../../../models/entities/cities/cities';
 import { HotelPlan } from '../../../../models/entities/hotelplans/hotelplans';
-import { AirlineService } from '../../../../core/services/airline.service';
-import { Airline } from '../../../../models/entities/airlines/airlines';
-import { AgencyService } from '../../../../core/services/agency.service';
 import { Agency } from '../../../../models/entities/agencies/agencies';
-import { BookingGroupService } from '../../../../core/services/booking-group.service';
+import { Airline } from '../../../../models/entities/airlines/airlines';
 
 @Component({
-  selector: 'Ffr-booking-groups-add',
+  selector: 'Ffr-booking-groups-edit',
   standalone: true,
   imports: [RouterModule, MenuComponent, ReactiveFormsModule, CommonModule],
-  templateUrl: './booking-groups-add.component.html',
-  styleUrl: './booking-groups-add.component.scss',
+  templateUrl: './booking-groups-edit.component.html',
+  styleUrl: './booking-groups-edit.component.scss',
 })
-export class BookingGroupsAddComponent implements OnInit, OnDestroy {
+export class BookingGroupsEditComponent {
   constructor(
+    private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private hotelplanService: HotelplanService,
     private companyService: CompanyService,
@@ -66,6 +67,8 @@ export class BookingGroupsAddComponent implements OnInit, OnDestroy {
     this.currenciesSelectData = [];
     this.reservationStatusesSelectData = [];
   }
+
+  id: number = 0;
 
   hotelplansSelectData: Select[];
   companySelectData: Select[];
@@ -156,7 +159,12 @@ export class BookingGroupsAddComponent implements OnInit, OnDestroy {
         packageDiscount: [0, Validators.required],
         accountingAccountId: 0,
         accountingAccountName: '',
-        complex: ['', Validators.required]
+        complex: ['', Validators.required],
+
+        //cityId: null,
+        //name: ['', Validators.required],
+        //countryId: [0, Validators.required],
+        //stateId: [0, Validators.required]
       },
       {
         validators: [
@@ -168,6 +176,8 @@ export class BookingGroupsAddComponent implements OnInit, OnDestroy {
   }
 
   async ngOnInit(): Promise<void> {
+    this.id = parseInt(this.route.snapshot.paramMap.get('id')!);   
+
     this.hotelplansSelectData = await this.hotelplanService.getDataForSelect();
     this.companySelectData = await this.companyService.getDataForSelect();
     this.airlinesSelectData = await this.airlineService.getDataForSelect();
@@ -229,9 +239,26 @@ export class BookingGroupsAddComponent implements OnInit, OnDestroy {
         });
       });
 
+    const data: BookingGroup = (await this.bookingGroupService.get(this.id))
+      .data;
+    
+    this.form.patchValue(data);
+    
     this.form.patchValue({
-      complex: 'Hotel por defecto',
+      quotationDate: format(data.quotationDate, 'yyyy-MM-dd'),
+      arrivalDate: format(data.arrivalDate, 'yyyy-MM-dd'),
+      departureDate: format(data.departureDate, 'yyyy-MM-dd'),
+      guaranteeDate: format(data.guaranteeDate, 'yyyy-MM-dd')
     });
+
+    this.statesSelectData = await this.stateService.getDataForSelectByCountryId(
+      data.countryId
+    );
+
+    this.citiesSelectData = await this.cityService.getDataForSelectByStateId(
+      data.stateId
+    );
+
   }
 
   async ngOnDestroy(): Promise<void> {
@@ -241,6 +268,10 @@ export class BookingGroupsAddComponent implements OnInit, OnDestroy {
 
   async onCompanyChange(event: Event): Promise<void> {
     const info: BookingGroup = this.form.value;
+
+    if (info.companyId == 0)
+      return;    
+
     const responseData: Response<Company> = await this.companyService.get(
       info.companyId
     );
@@ -262,9 +293,12 @@ export class BookingGroupsAddComponent implements OnInit, OnDestroy {
     const data = this.countriesSelectData.filter(
       (r) => r.value == info.countryId
     );
-    this.form.patchValue({
-      countryName: data[0].text,
-    });
+
+    if (data.length > 0) {
+      this.form.patchValue({
+        countryName: data[0].text,
+      });
+    }
   }
 
   async onStateChange(event: Event): Promise<void> {
@@ -274,17 +308,23 @@ export class BookingGroupsAddComponent implements OnInit, OnDestroy {
     );
 
     const data = this.statesSelectData.filter((r) => r.value == info.stateId);
-    this.form.patchValue({
-      stateName: data[0].text,
-    });
+
+    if (data.length > 0) {
+      this.form.patchValue({
+        stateName: data[0].text,
+      });
+    }
   }
 
   async onCityChange(event: Event): Promise<void> {
     const info: City = this.form.value;
     const data = this.citiesSelectData.filter((r) => r.value == info.cityId);
-    this.form.patchValue({
-      cityName: data[0].text,
-    });
+
+    if (data.length > 0) {
+      this.form.patchValue({
+        cityName: data[0].text,
+      });
+    }
   }
 
   async onHotelPlanChange(event: Event): Promise<void> {
@@ -292,9 +332,12 @@ export class BookingGroupsAddComponent implements OnInit, OnDestroy {
     const data = this.hotelplansSelectData.filter(
       (r) => r.value == info.hotelPlanId
     );
-    this.form.patchValue({
-      hotelPlanName: data[0].text,
-    });
+
+    if (data.length > 0) {
+      this.form.patchValue({
+        hotelPlanName: data[0].text,
+      });
+    }
   }
 
   async onAgencyChange(event: Event): Promise<void> {
@@ -302,9 +345,12 @@ export class BookingGroupsAddComponent implements OnInit, OnDestroy {
     const data = this.agenciesSelectData.filter(
       (r) => r.value == info.agencyId
     );
-    this.form.patchValue({
-      agencyName: data[0].text,
-    });
+
+    if (data.length > 0) {
+      this.form.patchValue({
+        agencyName: data[0].text,
+      });
+    }
   }
 
   async onAirlineChange(event: Event): Promise<void> {
@@ -312,9 +358,12 @@ export class BookingGroupsAddComponent implements OnInit, OnDestroy {
     const data = this.airlinesSelectData.filter(
       (r) => r.value == info.airlineId
     );
-    this.form.patchValue({
-      airlineName: data[0].text,
-    });
+
+    if (data.length > 0) {
+      this.form.patchValue({
+        airlineName: data[0].text,
+      });
+    }
   }
 
   async onContactMethodChange(event: Event): Promise<void> {
@@ -322,9 +371,12 @@ export class BookingGroupsAddComponent implements OnInit, OnDestroy {
     const data = this.contactMethodsSelectData.filter(
       (r) => r.value == info.contactMethodId
     );
-    this.form.patchValue({
-      contactMethodName: data[0].text,
-    });
+
+    if (data.length > 0) {
+      this.form.patchValue({
+        contactMethodName: data[0].text,
+      });
+    }
   }
 
   async onGuaranteeChange(event: Event): Promise<void> {
@@ -332,9 +384,12 @@ export class BookingGroupsAddComponent implements OnInit, OnDestroy {
     const data = this.guaranteesSelectData.filter(
       (r) => r.value == info.guaranteeId
     );
-    this.form.patchValue({
-      guaranteeName: data[0].text,
-    });
+
+    if (data.length > 0) {
+      this.form.patchValue({
+        guaranteeName: data[0].text,
+      });
+    }
   }
 
   async onDepositChange(event: Event): Promise<void> {
@@ -342,9 +397,12 @@ export class BookingGroupsAddComponent implements OnInit, OnDestroy {
     const data = this.depositsSelectData.filter(
       (r) => r.value == info.depositId
     );
-    this.form.patchValue({
-      depositName: data[0].text,
-    });
+
+    if (data.length > 0) {
+      this.form.patchValue({
+        depositName: data[0].text,
+      });
+    }
   }
 
   async onTravelPurposeChange(event: Event): Promise<void> {
@@ -352,17 +410,23 @@ export class BookingGroupsAddComponent implements OnInit, OnDestroy {
     const data = this.travelPurposesSelectData.filter(
       (r) => r.value == info.travelPurposeId
     );
-    this.form.patchValue({
-      travelPurposeName: data[0].text,
-    });
+
+    if (data.length > 0) {
+      this.form.patchValue({
+        travelPurposeName: data[0].text,
+      });
+    }
   }
 
   async onRateChange(event: Event): Promise<void> {
     const info: BookingGroup = this.form.value;
     const data = this.ratesSelectData.filter((r) => r.value == info.rateId);
-    this.form.patchValue({
-      rateName: data[0].text,
-    });
+
+    if (data.length > 0) {
+      this.form.patchValue({
+        rateName: data[0].text,
+      });
+    }
   }
 
   async onCurrencyChange(event: Event): Promise<void> {
@@ -370,9 +434,12 @@ export class BookingGroupsAddComponent implements OnInit, OnDestroy {
     const data = this.currenciesSelectData.filter(
       (r) => r.value == info.currencyId
     );
-    this.form.patchValue({
-      currencyName: data[0].text,
-    });
+
+    if (data.length > 0) {
+      this.form.patchValue({
+        currencyName: data[0].text,
+      });
+    }
   }
 
   async onReservationStatusesChange(event: Event): Promise<void> {
@@ -380,9 +447,12 @@ export class BookingGroupsAddComponent implements OnInit, OnDestroy {
     const data = this.reservationStatusesSelectData.filter(
       (r) => r.value == info.reservationStatusId
     );
-    this.form.patchValue({
-      reservationStatusName: data[0].text,
-    });
+
+    if (data.length > 0) {
+      this.form.patchValue({
+        reservationStatusName: data[0].text,
+      });
+    }
   }
 
   async getNumberOfNights(

@@ -73,6 +73,7 @@ export class CompanyService {
   }
 
   async get(companyId: number): Promise<Response<Company>> {
+    console.log(companyId);
     const response = await lastValueFrom(
       this.httpCompaniesService.get(companyId)
     );

@@ -22,6 +22,9 @@ export interface BookingGroup {
   transport: string;
   airlineId: number;
   airlineName: string;
+
+  flight: string;
+
   countryId: number;
   countryName: string;
   stateId: number;
