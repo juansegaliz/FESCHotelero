@@ -20,6 +20,7 @@ import { CitiesFormAddComponent } from './pages/cities/cities-form-add/cities-fo
 import { CitiesComponent } from './pages/cities/cities.component';
 import { CitiesFormEditComponent } from './pages/cities/cities-form-edit/cities-form-edit.component';
 import { BookingGroupsAddComponent } from './pages/booking/booking-groups/booking-groups-add/booking-groups-add.component';
+import { BookingGroupsEditComponent } from './pages/booking/booking-groups/booking-groups-edit/booking-groups-edit.component';
 
 export const routes: Routes = [
   { path: 'login', component: AuthComponent },
@@ -92,7 +93,11 @@ export const routes: Routes = [
           {
             path: 'groups/add',
             component: BookingGroupsAddComponent,
-          }
+          },
+          {
+            path: 'groups/view/:id',
+            component: BookingGroupsEditComponent,
+          }  
         ],
       },
     ],

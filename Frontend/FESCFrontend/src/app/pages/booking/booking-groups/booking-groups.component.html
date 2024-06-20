@@ -26,24 +26,27 @@
             <table class="table table-zebra">
                 <thead>
                     <tr>
-                        <th>Id</th>
-                        <th>Agencia</th>
-                        <th>Acciones</th>
+                        <th>Reserva #</th>
+                        <th>Empresa</th>
+                        <th>Plan</th>
+                        <th>Actualizado el</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!--<tr *ngFor="let d of data">
-                        <th>{{ d.agencyId }}</th>
-                        <td>{{ d.name}}</td>
+                    <tr *ngFor="let d of data">
+                        <th>{{ d.bookingId }}</th>
+                        <td>{{ d.companyName}}</td>
+                        <td>{{ d.hotelPlanName}}</td>
+                        <td>{{ d.updatedAt | dateFormat }}</td>
                         <td class="flex gap-4">
-                            <button class="btn btn-primary btn-square" title="Editar" [routerLink]="['view', d.countryId]">
+                            <button class="btn btn-primary btn-square" title="Editar" [routerLink]="['view', d.bookingId]">
                                 <i class="fas fa-edit"></i>
                             </button>
                             <button class="btn btn-accent btn-square" title="Eliminar" (click)="onDelete(d)">
                                 <i class="fa-solid fa-trash"></i>
                             </button>
                         </td>
-                    </tr>-->
+                    </tr>
                 </tbody>
             </table>
         </div>

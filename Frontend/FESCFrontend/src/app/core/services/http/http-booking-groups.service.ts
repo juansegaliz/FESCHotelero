@@ -31,4 +31,8 @@ export class HttpBookingGroupsService {
   delete(id: number): Observable<Response<boolean>> {
     return this.httpClient.delete<Response<boolean>>(`${this.serverUrl}/bookinggroups/${id}`);
   }
+  
+  getTableview(): Observable<Response<BookingGroup[]>> {
+    return this.httpClient.get<Response<BookingGroup[]>>(`${this.serverUrl}/bookinggroups/tableview`);
+  }
 }

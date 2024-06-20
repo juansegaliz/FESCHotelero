@@ -29,6 +29,7 @@ export class BookingGroupService {
     transport: string,
     airlineId: number,
     airlineName: string,
+    flight: string,
     countryId: number,
     countryName: string,
     stateId: number,
@@ -86,7 +87,8 @@ export class BookingGroupService {
       segment03: segment03,
       transport: transport,
       airlineId: airlineId,
-      airlineName: airlineName,
+      airlineName: airlineName,      
+      flight: flight,
       countryId: countryId,
       countryName: countryName,
       stateId: stateId,
@@ -154,6 +156,7 @@ export class BookingGroupService {
     transport: string,
     airlineId: number,
     airlineName: string,
+    flight: string,
     countryId: number,
     countryName: string,
     stateId: number,
@@ -212,6 +215,7 @@ export class BookingGroupService {
       transport: transport,
       airlineId: airlineId,
       airlineName: airlineName,
+      flight: flight,
       countryId: countryId,
       countryName: countryName,
       stateId: stateId,
@@ -272,6 +276,11 @@ export class BookingGroupService {
 
   async getAll(): Promise<Response<BookingGroup[]>> {
     const response = await lastValueFrom(this.httpBookingGroupsService.getAll());
+    return response;
+  }
+
+  async getTableview(): Promise<Response<BookingGroup[]>> {
+    const response = await lastValueFrom(this.httpBookingGroupsService.getTableview());
     return response;
   }
   /*
