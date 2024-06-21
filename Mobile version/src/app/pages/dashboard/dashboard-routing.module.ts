@@ -13,6 +13,20 @@ const routes: Routes = [
         loadChildren: () =>
           import('./home/home.module').then((m) => m.HomePageModule),
       },
+      {
+        path: 'airlines',
+        loadChildren: () =>
+          import('./airlines/airlines.module').then(
+            (m) => m.AirlinesPageModule
+          ),
+      },
+      {
+        path: 'hotel-plans',
+        loadChildren: () =>
+          import('./hotel-plans/hotel-plans.module').then(
+            (m) => m.HotelPlansPageModule
+          ),
+      },
     ],
   },
 ];

@@ -10,6 +10,7 @@ import {
 import { BackendServiceService } from 'src/app/services/backend-service.service';
 import { ChangeDetectorRef } from '@angular/core';
 import { register } from 'swiper/element/bundle';
+import { Router } from '@angular/router';
 
 register();
 
@@ -87,7 +88,10 @@ export class HomePage implements OnInit {
     zip: '',
   };
 
-  constructor(private backendService: BackendServiceService) {}
+  constructor(
+    private backendService: BackendServiceService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.getHotel();
@@ -140,5 +144,13 @@ export class HomePage implements OnInit {
   }
   closeModalHotel() {
     this.myModalHotel?.nativeElement.close();
+  }
+
+  redirectToHotelPlans() {
+    this.router.navigate(['/pages/dashboard/hotel-plans']);
+  }
+
+  redirectToAirlines() {
+    this.router.navigate(['/pages/dashboard/airlines']);
   }
 }

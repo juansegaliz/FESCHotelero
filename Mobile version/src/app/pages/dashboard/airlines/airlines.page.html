@@ -1,0 +1,100 @@
+<ion-content [fullscreen]="true">
+  <ion-toolbar class="bg-custom">
+    <ion-buttons slot="start">
+      <ion-menu-button auto-hide="false" (click)="backButton()">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+          />
+        </svg>
+      </ion-menu-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button>
+        <div class="avatar online p-2">
+          <div class="w-12 h-12 rounded-full bg-white">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6 h-full w-full"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+              />
+            </svg>
+          </div>
+        </div>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <div class="flex ml-4 justify-start items-center mt-10">
+    <label class="text-[#fc2f2f] font-semibold font-family text-lg"
+      >Aerolineas disponibles</label
+    >
+  </div>
+
+  <div class="flex flex-wrap mt-8">
+    <div *ngFor="let airline of airlines; let i = index" class="w-1/2 p-2">
+      <div class="flex justify-center items-center w-full">
+        <div class="card card-compact w-full bg-base-100 shadow-xl">
+          <figure>
+            <img
+              [src]="airline.name == 'Avianca' ? avianca : airline.name == 'LATAM' ? latam : airline.name == 'American Airlines' ? americanAirlines : airline.name == 'Delta Air Lines' ? deltaAirlines : airline.name == 'United Airlines' ? unitedAirlines : 'urlImagenDefault'"
+              alt="{{airline.name}}"
+              class="object-cover h-32 w-full"
+            />
+          </figure>
+          <div class="card-body">
+            <h2 class="card-title">{{ airline.name }}</h2>
+            <p class="h-[40px]">{{ airline.description }}</p>
+            <div class="card-actions justify-center">
+              <button
+                (click)="airlineDetails(airline)"
+                class="btn bg-[#fc2f2f] text-white"
+              >
+                Informacion
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="(i + 1) % 2 === 0" class="w-full"></div>
+    </div>
+  </div>
+
+  <dialog id="my_modal_5" #myModal class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box">
+      <h3 class="font-bold text-lg">
+        Aerolinea: <span class="text-[#fc2f2f]">{{ airlineDetail.name }}</span>
+      </h3>
+
+      <div class="flex flex-col w-full mt-6">
+        <p>Direccion: {{ airlineDetail.address }}</p>
+        <p>Descripcion: {{ airlineDetail.description }}</p>
+        <p>Telefono: {{ airlineDetail.phone }}</p>
+      </div>
+
+      <div class="flex justify-center items-center w-full mt-6">
+        <button (click)="closeModal()" class="btn bg-[#fc2f2f] text-white">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </dialog>
+</ion-content>
