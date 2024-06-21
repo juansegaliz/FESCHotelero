@@ -5,6 +5,12 @@ WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
 
+# Variables
+ARG ConnectionString="server=localhost;database=fesc_hotelero;user=root;password=Root-Password-1234-$;"
+ARG Origins="http://localhost:4200,http://localhost:4000"
+ENV ConnectionString=${ConnectionString}
+ENV Origins=${Origins}
+
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
@@ -24,5 +30,13 @@ RUN dotnet publish "BackendApiService.csproj" -c $BUILD_CONFIGURATION -o /app/pu
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "BackendApiService.dll"]
+
+# Instalar jq y bash para el procesamiento JSON
+RUN apt-get update && apt-get install -y jq bash
+
+COPY set_configuration.sh /app/set_configuration.sh
+COPY Infrastructure/Configuration/appsettings.json /app/Configuration/appsettings.json
+RUN chmod +x /app/set_configuration.sh
+
+ENTRYPOINT ["/bin/bash", "/app/set_configuration.sh"]
 
