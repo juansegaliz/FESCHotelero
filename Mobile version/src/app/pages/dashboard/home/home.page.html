@@ -33,7 +33,7 @@
   <ion-row class="mt-10 ml-4 mr-4">
     <div class="flex">
       <label class="text-[#fc2f2f] font-semibold font-family">
-        Consigue tu plan de hotel
+        Encuentra hoteles cercanos
       </label>
     </div>
 
@@ -54,7 +54,7 @@
             stroke-width="1.5"
             stroke="currentColor"
             class="size-6"
-            style="color: white" 
+            style="color: white"
           >
             <path
               stroke-linecap="round"
@@ -73,20 +73,14 @@
     <div
       class="flex flex-row justify-center items-center h-[100px] w-full gap-x-2 mt-14"
     >
-      <div class="flex justify-center items-center w-full">
+      <div
+        *ngFor="let airline of airlines | slice:0:2; let i = index"
+        class="flex justify-center items-center w-full"
+      >
         <div
+          (click)="airlineDetails(airline)"
           class="card w-full h-[140px] shadow-lg"
-          [style.backgroundImage]="'url(' + avianca + ')'"
-          [style.backgroundSize]="'contain'"
-          [style.backgroundPosition]="'center'"
-        >
-          <div class="card-body"></div>
-        </div>
-      </div>
-      <div class="flex justify-center items-center w-full h-[140px]">
-        <div
-          class="card w-full h-[140px] shadow-lg"
-          [style.backgroundImage]="'url(' + latam + ')'"
+          [style.backgroundImage]="airline.name == 'Avianca' ? 'url(' + avianca + ')' : airline.name == 'LATAM' ? 'url(' + latam + ')' : ''"
           [style.backgroundSize]="'contain'"
           [style.backgroundPosition]="'center'"
         >
@@ -122,24 +116,22 @@
     <div
       class="flex flex-row justify-center items-center h-[100px] w-full gap-x-2 mt-14"
     >
-      <div class="flex justify-center items-center w-full">
+      <div
+        *ngFor="let plan of hotelPlans| slice:0:2; let i = index"
+        class="flex justify-center items-center w-full h-[140px]"
+      >
         <div
+          (click)="detailHotelPlan(plan)"
           class="card w-full h-[140px] shadow-lg"
-          [style.backgroundImage]="'url(' + hotel1 + ')'"
+          [style.backgroundImage]="plan.name == 'Plan europeo' ? 'url(' + hotel1 + ')' : plan.name == 'Continental' ? 'url(' + hotel2 + ')' : ''"
           [style.backgroundSize]="'cover'"
           [style.backgroundPosition]="'center'"
         >
           <div class="card-body"></div>
-        </div>
-      </div>
-      <div class="flex justify-center items-center w-full h-[140px]">
-        <div
-          class="card w-full h-[140px] shadow-lg"
-          [style.backgroundImage]="'url(' + hotel2 + ')'"
-          [style.backgroundSize]="'cover'"
-          [style.backgroundPosition]="'center'"
-        >
-          <div class="card-body"></div>
+
+          <div class="flex ml-2 justify-start items-end">
+            <p class="text-white">{{ plan.name }}</p>
+          </div>
         </div>
       </div>
       <div class="flex justify-center items-center w-[50%] h-[140px]">
@@ -166,4 +158,48 @@
       <div class="flex justify-center items-center"></div>
     </div>
   </ion-row>
+
+  <dialog id="my_modal_5" #myModal class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box">
+      <h3 class="font-bold text-lg">
+        Aerolinea: <span class="text-[#fc2f2f]">{{ airlineDetail.name }}</span>
+      </h3>
+
+      <div class="flex flex-col w-full mt-6">
+        <p>Direccion: {{ airlineDetail.address }}</p>
+        <p>Descripcion: {{ airlineDetail.description }}</p>
+        <p>Telefono: {{ airlineDetail.phone }}</p>
+      </div>
+
+      <div class="flex justify-center items-center w-full mt-6">
+        <button (click)="closeModal()" class="btn bg-[#fc2f2f] text-white">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog
+    id="my_modal_5"
+    #myModalHotel
+    class="modal modal-bottom sm:modal-middle"
+  >
+    <div class="modal-box">
+      <h3 class="font-bold text-lg">
+        Nombre del plan:
+        <span class="text-[#fc2f2f]">{{ hotelPlanDetail.name }}</span>
+      </h3>
+
+      <div class="flex flex-col w-full mt-6">
+        <p>Creado: {{ hotelPlanDetail.createdAt }}</p>
+        <p>Costo: $ 640.000</p>
+      </div>
+
+      <div class="flex justify-center items-center w-full mt-6">
+        <button (click)="closeModalHotel()" class="btn bg-[#fc2f2f] text-white">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </dialog>
 </ion-content>
