@@ -1,7 +1,77 @@
 <div class="flex flex-row">
   <Ffr-menu></Ffr-menu>
 
-  <div class="relative w-full flex flex-col h-screen overflow-y-hidden p-6">
-    
+  <div class="relative w-full flex flex-col overflow-y-hidden p-6">
+    <p class="text-xl font-bold">Inicio</p>
+
+    <div class="divider"></div>
+
+    <div class="flex flex-row pb-4">
+      <p class="text-xl">
+        <i class="fa-solid fa-book"></i>
+        Reservas
+      </p>
+    </div>
+
+    <div class="flex flex-row gap-8">
+      <a routerLink="/booking/groups">
+        <Ffr-workspacecard image="../../../assets/bookinggroups.jpg" title="Grupos"></Ffr-workspacecard>
+      </a>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="flex flex-row pb-4">
+      <p class="text-xl">
+        <i class="fa-solid fa-sliders"></i>
+        Parametrización
+      </p>
+    </div>
+
+    <div class="flex flex-row flex-wrap gap-8">
+      <a routerLink="/parameters/guests">
+        <Ffr-workspacecard image="../../../assets/guest.jpg" title="Huespedes"></Ffr-workspacecard>
+      </a>
+
+      <a routerLink="/parameters/companies">
+        <Ffr-workspacecard image="../../../assets/companies.jpg" title="Empresas"></Ffr-workspacecard>
+      </a>
+
+      <a routerLink="/parameters/agencies">
+        <Ffr-workspacecard image="../../../assets/agencies.jpg" title="Agencias"></Ffr-workspacecard>
+      </a>
+
+      <a routerLink="/parameters/airlines">
+        <Ffr-workspacecard image="../../../assets/airlines.jpg" title="Aerolineas"></Ffr-workspacecard>
+      </a>
+
+      <a routerLink="/parameters/countries">
+        <Ffr-workspacecard image="../../../assets/countries.jpg" title="Paises"></Ffr-workspacecard>
+      </a>
+
+      <a routerLink="/parameters/states">
+        <Ffr-workspacecard image="../../../assets/states.jpg" title="Departamentos/Estados"></Ffr-workspacecard>
+      </a>
+
+      <a routerLink="/parameters/cities">
+        <Ffr-workspacecard image="../../../assets/cities.jpg" title="Ciudades"></Ffr-workspacecard>
+      </a>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="flex flex-row pb-4">
+      <p class="text-xl">
+        <i class="fa-solid fa-gear"></i>
+        Configuración
+      </p>
+    </div>
+
+    <div class="flex flex-row flex-wrap gap-8">
+      <a routerLink="/configuration/users">
+        <Ffr-workspacecard image="../../../assets/configuration-users.jpg" title="Usuarios"></Ffr-workspacecard>
+      </a>
+    </div>
+
   </div>
 </div>

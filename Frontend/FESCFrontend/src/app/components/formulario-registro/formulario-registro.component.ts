@@ -1,74 +1,100 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators, } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { UserService } from '../../core/services/user.service';
+import { Router, RouterModule } from '@angular/router';
+import { User } from '../../models/entities/users/user';
+import { Response } from '../../models/api/response';
+import { UserCreate } from '../../models/entities/users/userCreate';
+import { validateMatchValues } from '../../core/custom-validators/validateMatchValues';
+import { NgIf } from '@angular/common';
+import { validatePhoneNumber } from '../../core/custom-validators/validatePhoneNumber';
 
 @Component({
   selector: 'Ffr-formulario-registro',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [RouterModule, ReactiveFormsModule, NgIf],
   templateUrl: './formulario-registro.component.html',
-  styleUrls: ['./formulario-registro.component.scss']
+  styleUrls: ['./formulario-registro.component.scss'],
 })
-export class FormularioRegistroComponent implements OnInit {
-  registerForm= new FormGroup({
-    fullName: new FormControl(''),
-    email: new FormControl(''),
-    phoneNumber: new FormControl(''),
-    password: new FormControl(''),
-    confirmPassword: new FormControl(''),
-  });
-
-  submitted = false;
-
-  constructor(private formBuilder: FormBuilder) {}
-
-  ngOnInit(): void {
-    this.registerForm = this.formBuilder.group({
-      fullName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      phoneNumber: ['', [Validators.required, Validators.pattern(/^\+57\d{10}$/)]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
-      confirmPassword: ['', Validators.required],
-    }, { validator: this.passwordMatchValidator });
+export class FormularioRegistroComponent {
+  constructor(
+    private formBuilder: FormBuilder,
+    private userService: UserService,
+    private router: Router
+  ) {
+    this.form = this.getForm();
   }
 
+  form: FormGroup;
 
-  get f() { return this.registerForm.controls; }
-
-  async onSubmit() {
-    this.submitted = true;
-
-    if (this.registerForm.invalid) {
-      return;
-    }
-
-    console.log(JSON.stringify(this.registerForm.value, null, 2));
-
-    this.registerForm.reset();
-    this.submitted = false;
+  getForm(): FormGroup {
+    return this.formBuilder.group(
+      {
+        userId: null,
+        fullName: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
+        phone: ['', Validators.required],
+        password: ['', Validators.required],
+        passwordconfirm: ['', Validators.required],
+        roleId: 0,
+        departmentId: 0,
+      },
+      {
+        validators: [
+          validateMatchValues('password', 'passwordconfirm'),
+          validatePhoneNumber('phone'),
+        ],
+      }
+    );
   }
 
-  onReset(): void {
-    this.submitted = false;
-    this.registerForm.reset();
+  async onSave(event: Event, form: FormGroup): Promise<void> {
+    event.preventDefault();
+
+    const info: UserCreate = form.value;
+
+    console.log(this.form);
+
+    await this.save(info);
   }
 
+  async save(info: UserCreate): Promise<void> {
+    this.userService
+      .add(
+        info.email,
+        info.password,
+        info.fullName,
+        info.roleId!,
+        info.departmentId!,
+        info.phone
+      )
+      .subscribe(
+        (responseSuccess: Response<boolean>) => {
+          const message = Object.entries(responseSuccess.messages)
+            .map(([key, value]) => `${value}`)
+            .join(' ');
 
-  passwordMatchValidator(control: FormGroup): { [key: string]: boolean } | null {
-    const passwordControl = control.get('password');
-    const confirmPasswordControl = control.get('confirmPassword');
-      
-    if (!passwordControl || !confirmPasswordControl) {
-      return null; 
-    }
-  
-    const password = passwordControl.value;
-    const confirmPassword = confirmPasswordControl.value;
-  
-    if (password !== confirmPassword) {
-      confirmPasswordControl.setErrors({ passwordMatchValidator: true });
-      return { passwordMatchValidator: true };
-    } else {
-      return null; 
-    }
+          alert(message);
+          this.router.navigateByUrl('/login');
+          //this.snackbarService.openSuccess(message, 'close');
+        },
+        (responseError: any) => {
+          console.log(responseError);
+          const data =
+            responseError.error.errors || responseError.error.messages;
+          const message = Object.entries(data)
+            .map(([key, value]) => `${value}`)
+            .join(' ');
+
+          alert(message);
+          //this.snackbarService.openError(message, 'close');
+        }
+      );
   }
 }
