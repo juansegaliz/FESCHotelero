@@ -27,3 +27,25 @@ ion-card.customCard {
 .swiper-margin {
   margin-right: 10px;
 }
+
+
+/* styles.css */
+@keyframes resize {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.customCard {
+  transition: transform 0.5s ease-in-out;
+}
+
+.resize {
+  animation: resize 2s infinite;
+}
